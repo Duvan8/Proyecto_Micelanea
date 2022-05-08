@@ -1,0 +1,85 @@
+body{
+    background-image: url(./imagenes/fondo\ login.jpg);
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+a{
+    text-decoration-style: none;
+}
+.login{
+    background-color: rgba(255, 1, 149, 0.728);
+    border-radius: 5px;
+    padding: 17px;
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+#botonlogin{
+    background-color: #00b3ff;
+}
+.btn-burger{
+    display: none;
+    width: 55px;
+    height: 55px;
+    border-radius: 5px;
+    background: none;
+    transition: all 0.5s ease-in-out;
+}
+.btn-burger-icon{
+    display: block;
+    margin: auto;
+    width: 30px;
+    height: 4px;
+    background-color: #ff8c00;
+    border-radius: 2px;
+    transition: all 0.5s ease-in-out;
+}
+.btn-burger-icon:before,
+.btn-burger-icon:after{
+    content: '';
+    display: block;
+    margin: auto;
+    width: 30px;
+    height: 4px;
+    background-color: #ff8c00;
+    border-radius: 2px;
+    transition: all 0.5s ease-in-out;
+}
+.btn-burger-icon:before{
+    transform: translateY(-11px);
+}
+.btn-burger-icon:after{
+    transform: translateY(7px);
+}
+.btn-burger.show.btn-burger-icon{
+    background: transparent;
+}
+.btn-burger.show.btn-burger-icon:before{
+    transform: translateY(2px) rotate(45deg);
+}
+.btn-burger.show.btn-burger-icon:after{
+    transform: translateY(-2px) rotate(-45deg);
+}
+@media(max-width:400px){
+    .login{
+        width: 90%;
+    }
+    .btn-burger{
+        display: block;
+    }
+    #menu{
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100vw;
+        background-color: #fff;
+        clip-path: circle(30px at 93% -30%);
+        transition: all 0.5s ease-out;
+    }
+}
