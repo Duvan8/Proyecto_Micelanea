@@ -11,10 +11,7 @@ app.set('port',3000);
 app.set('view engine', 'ejs');
 app.set('views',path.join(__dirname,'vistas/'));
 
-app.get('/',(req, res) => {
-    res.render('index.ejs');
-    //res.sendFile(path.join(__dirname,'vistas/index'));
-});
+app.use(require('./rutas/rutas'));
 
 app.listen(app.get('port'), () => {
     console.log("Se esta ultilizando el puerto",app.get('port'));
