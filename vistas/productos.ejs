@@ -11,7 +11,8 @@
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/sweetalert2.css">
 	<link rel="stylesheet" href="css/material.min.css">
-	<link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+	<!-- <link rel="stylesheet" href="css/material-design-iconic-font.min.css"> -->
 	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
 	<link rel="stylesheet" href="css/main.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -225,84 +226,38 @@
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 												<input class="mdl-textfield__input" type="number" pattern="-?[0-9- ]*(\.[0-9]+)?" id="BarCode">
 												<label class="mdl-textfield__label" for="BarCode">Codigo de Barras</label>
-												<span class="mdl-textfield__error">codigo invalido</span>
 											</div>
 										</div>
 										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 												<input class="mdl-textfield__input" type="text" pattern="-?[A-Za-z0-9áéíóúÁÉÍÓÚ ]*(\.[0-9]+)?" id="NameProduct">
-												<label class="mdl-textfield__label" for="NameProduct">Name</label>
-												<span class="mdl-textfield__error">Invalid name</span>
+												<label class="mdl-textfield__label" for="NameProduct">Nombre</label>
 											</div>
 										</div>
 										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 												<input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="StrockProduct">
 												<label class="mdl-textfield__label" for="StrockProduct">Unidades</label>
-												<span class="mdl-textfield__error">numero invalido</span>
 											</div>
 										</div>
 										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 												<input class="mdl-textfield__input" type="text" pattern="-?[0-9.]*(\.[0-9]+)?" id="PriceProduct">
 												<label class="mdl-textfield__label" for="PriceProduct">Precio</label>
-												<span class="mdl-textfield__error">Precio Invalido</span>
 											</div>
 										</div>
 										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 												<input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="discountProduct">
-												<label class="mdl-textfield__label" for="discountProduct">% Descuento</label>
-												<span class="mdl-textfield__error">Descuento Invalido</span>
+												<label class="mdl-textfield__label" for="discountProduct">% IVA</label>
 											</div>	
-										</div>
-										<div class="mdl-cell mdl-cell--12-col">
-									        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS Y MODELO DEL PROVEEDOR</legend><br>
-									    </div>
-										<div class="mdl-cell mdl-cell--12-col">
-											<div class="mdl-textfield mdl-js-textfield">
-												<select class="mdl-textfield__input">
-													<option value="" disabled="" selected="">Seleccionar Proveedor</option>
-													<option value="">Proveedor 1</option>
-													<option value="">Proveedor 2</option>
-												</select>
-											</div>
-									    </div>
-										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="text"  id="modelProduct">
-												<label class="mdl-textfield__label" for="modelProduct">Modelo</label>
-												<span class="mdl-textfield__error">Modelo Invalido</span>
-											</div>
-										</div>
-										<div class="mdl-cell mdl-cell--12-col">
-									        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; OTHER DATA</legend><br>
-									    </div>
-										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield">
-												<input type="date" class="mdl-textfield__input">
-											</div>
-										</div>
-										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield">
-												<select class="mdl-textfield__input">
-													<option value="" disabled="" selected="">Select status</option>
-													<option value="">Active</option>
-													<option value="">deactivated</option>
-												</select>
-											</div>
-										</div>
-										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield">
-												<input type="file">
-											</div>
 										</div>
 									</div>
 									<p class="text-center">
 										<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addProduct">
 											<i class="zmdi zmdi-plus"></i>
 										</button>
-										<div class="mdl-tooltip" for="btn-addProduct">Add Product</div>
+										<div class="mdl-tooltip" for="btn-addProduct">Adicionar Producto</div>
 									</p>
 								</form>
 							</div>
@@ -312,88 +267,90 @@
 			</div>
 			<div class="mdl-tabs__panel" id="tabListProducts">
 				<div class="mdl-grid">
-					<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
-						<form action="#">
-							<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-								<label class="mdl-button mdl-js-button mdl-button--icon" for="searchProduct">
-									<i class="zmdi zmdi-search"></i>
-								</label>
-								<div class="mdl-textfield__expandable-holder">
-									<input class="mdl-textfield__input" type="text" id="searchProduct">
-									<label class="mdl-textfield__label"></label>
-								</div>
+					<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+						<div class="full-width panel mdl-shadow--2dp">
+							<div class="full-width panel-tittle bg-success text-center tittles">
+								Lista de Productos
 							</div>
-						</form>
-						<nav class="full-width menu-categories">
-							<ul class="list-unstyle text-center">
-								<li><a href="#!">Category 1</a></li>
-								<li><a href="#!">Category 2</a></li>
-								<li><a href="#!">Category 3</a></li>
-								<li><a href="#!">Category 4</a></li>
-							</ul>
-						</nav>
-						<div class="full-width text-center" style="padding: 30px 0;">
-							<div class="mdl-card mdl-shadow--2dp full-width product-card">
-								<div class="mdl-card__title">
-									<img src="assets/img/fontLogin.jpg" alt="product" class="img-responsive">
-								</div>
-								<div class="mdl-card__supporting-text">
-									<small>Stock</small><br>
-									<small>Category</small>
-								</div>
-								<div class="mdl-card__actions mdl-card--border">
-									Product name
-									<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-										<i class="zmdi zmdi-more"></i>
-									</button>
-								</div>
-							</div>
-							<div class="mdl-card mdl-shadow--2dp full-width product-card">
-								<div class="mdl-card__title">
-									<img src="assets/img/fontLogin.jpg" alt="product" class="img-responsive">
-								</div>
-								<div class="mdl-card__supporting-text">
-									<small>Stock</small><br>
-									<small>Category</small>
-								</div>
-								<div class="mdl-card__actions mdl-card--border">
-									Product name
-									<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-										<i class="zmdi zmdi-more"></i>
-									</button>
-								</div>
-							</div>
-							<div class="mdl-card mdl-shadow--2dp full-width product-card">
-								<div class="mdl-card__title">
-									<img src="assets/img/fontLogin.jpg" alt="product" class="img-responsive">
-								</div>
-								<div class="mdl-card__supporting-text">
-									<small>Stock</small><br>
-									<small>Category</small>
-								</div>
-								<div class="mdl-card__actions mdl-card--border">
-									Product name
-									<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-										<i class="zmdi zmdi-more"></i>
-									</button>
-								</div>
-							</div>
-							<div class="mdl-card mdl-shadow--2dp full-width product-card">
-								<div class="mdl-card__title">
-									<img src="assets/img/fontLogin.jpg" alt="product" class="img-responsive">
-								</div>
-								<div class="mdl-card__supporting-text">
-									<small>Stock</small><br>
-									<small>Category</small>
-								</div>
-								<div class="mdl-card__actions mdl-card--border">
-									Product name
-									<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-										<i class="zmdi zmdi-more"></i>
-									</button>
+							<div class="full-width panel-content">
+								<form action="#">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+										<label class="mdl-button mdl-js-button mdl-button--icon" for="searchProvider">
+											<i class="zmdi zmdi-search"></i>
+										</label>
+										<div class="mdl-textfield__expandable-holder">
+											<input class="mdl-textfield__input" type="text" id="searchProvider">
+											<label class="mdl-textfield__label"></label>
+										</div>
+									</div>
+								</form>
+								<div class="mdl-list">
+									<div class="mdl-list__item mdl-list__item--two-line">
+										<span class="mdl-list__item-primary-content">
+											<i class="zmdi zmdi-truck mdl-list__item-avatar"></i>
+											<span>1. Nombre Producto</span>
+											<span class="mdl-list__item-sub-title">RUT</span>
+										</span>
+										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
+									</div>
+									<li class="full-width divider-menu-h"></li>
+									<div class="mdl-list__item mdl-list__item--two-line">
+										<span class="mdl-list__item-primary-content">
+											<i class="zmdi zmdi-truck mdl-list__item-avatar"></i>
+											<span>2. Nombre Producto</span>
+											<span class="mdl-list__item-sub-title">RUT</span>
+										</span>
+										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
+									</div>
+									<li class="full-width divider-menu-h"></li>
+									<div class="mdl-list__item mdl-list__item--two-line">
+										<span class="mdl-list__item-primary-content">
+											<i class="zmdi zmdi-truck mdl-list__item-avatar"></i>
+											<span>3. Nombre Producto</span>
+											<span class="mdl-list__item-sub-title">RUT</span>
+										</span>
+										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
+									</div>
+									<li class="full-width divider-menu-h"></li>
+									<div class="mdl-list__item mdl-list__item--two-line">
+										<span class="mdl-list__item-primary-content">
+											<i class="zmdi zmdi-truck mdl-list__item-avatar"></i>
+											<span>4. Nombre Producto</span>
+											<span class="mdl-list__item-sub-title">RUT</span>
+										</span>
+										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
+									</div>
+									<li class="full-width divider-menu-h"></li>
+									<div class="mdl-list__item mdl-list__item--two-line">
+										<span class="mdl-list__item-primary-content">
+											<i class="zmdi zmdi-truck mdl-list__item-avatar"></i>
+											<span>5. Nombre Producto</span>
+											<span class="mdl-list__item-sub-title">RUT</span>
+										</span>
+										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
+									</div>
+									<li class="full-width divider-menu-h"></li>
+									<div class="mdl-list__item mdl-list__item--two-line">
+										<span class="mdl-list__item-primary-content">
+											<i class="zmdi zmdi-truck mdl-list__item-avatar"></i>
+											<span>6. Nombre Producto</span>
+											<span class="mdl-list__item-sub-title">RUT</span>
+										</span>
+										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
+									</div>
+									<li class="full-width divider-menu-h"></li>
+									<div class="mdl-list__item mdl-list__item--two-line">
+										<span class="mdl-list__item-primary-content">
+											<i class="zmdi zmdi-truck mdl-list__item-avatar"></i>
+											<span>7. Nombre Producto</span>
+											<span class="mdl-list__item-sub-title">RUT</span>
+										</span>
+										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
+									</div>
 								</div>
 							</div>
 						</div>
+						
 					</div>
 				</div>
 			</div>

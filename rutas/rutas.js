@@ -1,7 +1,6 @@
 const express =  require ('express');
 const router = express.Router();
 
-
 router.get('/',(req, res) => {
     res.render('index');
 });
@@ -16,6 +15,12 @@ router.get('/ventas',(req, res) => {
 });
 router.get('/inventario',(req, res) => {
     res.render('inventario');
+});
+router.get('/proveedores',(req, res) => {
+    res.render('proveedores');
+});
+router.get('/administrador',(req, res) => {
+    res.render('administrador');
 });
 
 module.exports = router;
