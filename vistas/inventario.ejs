@@ -7,12 +7,11 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Inventory</title>
+	<title>Inventario</title>
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/sweetalert2.css">
 	<link rel="stylesheet" href="css/material.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-	<!-- <link rel="stylesheet" href="css/material-design-iconic-font.min.css"> -->
 	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
 	<link rel="stylesheet" href="css/main.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -66,42 +65,12 @@
                         </a>
                         <ul class="full-width menu-principal sub-menu-options">
                             <li class="full-width">
-                                <a href="company.html" class="full-width">
-                                    <div class="navLateral-body-cl">
-                                        <i class="zmdi zmdi-balance"></i>
-                                    </div>
-                                    <div class="navLateral-body-cr">
-                                        COMPANY
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="full-width">
-                                <a href="providers.html" class="full-width">
+                                <a href="proveedores" class="full-width">
                                     <div class="navLateral-body-cl">
                                         <i class="zmdi zmdi-truck"></i>
                                     </div>
                                     <div class="navLateral-body-cr">
-                                        PROVIDERS
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="full-width">
-                                <a href="payments.html" class="full-width">
-                                    <div class="navLateral-body-cl">
-                                        <i class="zmdi zmdi-card"></i>
-                                    </div>
-                                    <div class="navLateral-body-cr">
-                                        PAYMENTS
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="full-width">
-                                <a href="categories.html" class="full-width">
-                                    <div class="navLateral-body-cl">
-                                        <i class="zmdi zmdi-label"></i>
-                                    </div>
-                                    <div class="navLateral-body-cr">
-                                        CATEGORIES
+                                        PROVEEDORES
                                     </div>
                                 </a>
                             </li>
@@ -120,22 +89,12 @@
                         </a>
                         <ul class="full-width menu-principal sub-menu-options">
                             <li class="full-width">
-                                <a href="admin.html" class="full-width">
+                                <a href="administrador" class="full-width">
                                     <div class="navLateral-body-cl">
                                         <i class="zmdi zmdi-account"></i>
                                     </div>
                                     <div class="navLateral-body-cr">
                                         ADMINISTRADORES
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="full-width">
-                                <a href="client.html" class="full-width">
-                                    <div class="navLateral-body-cl">
-                                        <i class="zmdi zmdi-accounts"></i>
-                                    </div>
-                                    <div class="navLateral-body-cr">
-                                        CLIENTES
                                     </div>
                                 </a>
                             </li>
@@ -175,7 +134,7 @@
                         </a>
                     </li>
                     <li class="full-width divider-menu-h"></li>
-                    
+
                 </ul>
             </nav>
         </div>
@@ -184,25 +143,25 @@
 	<section class="full-width pageContent">
 		<!-- navBar -->
 		<div class="full-width navBar">
-			<div class="full-width navBar-options">
-				<i class="zmdi zmdi-swap btn-menu" id="btn-menu"></i>	
-				<div class="mdl-tooltip" for="btn-menu">Hide / Show MENU</div>
-				<nav class="navBar-options-list">
-					<ul class="list-unstyle">
-						<li class="btn-exit" id="btn-exit">
-							<i class="zmdi zmdi-power"></i>
-							<div class="mdl-tooltip" for="btn-exit">LogOut</div>
-						</li>
-						<li class="text-condensedLight noLink" ><small>Nombre del usuario</small></li>
-						<li class="noLink">
-							<figure>
-								<img src="assets/img/avatar-male.png" alt="Avatar" class="img-responsive">
-							</figure>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</div>
+            <div class="full-width navBar-options">
+                <i class="zmdi zmdi-swap btn-menu" id="btn-menu"></i>
+                <div class="mdl-tooltip" for="btn-menu">Ocultar / Mostrar MENU</div>
+                <nav class="navBar-options-list">
+                    <ul class="list-unstyle">
+                        <li class="btn-exit" id="btn-exit">
+                            <i class="zmdi zmdi-power"></i>
+                            <div class="mdl-tooltip" for="btn-exit">cerrar sesion</div>
+                        </li>
+                        <li class="text-condensedLight noLink"><small>Nombre Usuario</small></li>
+                        <li class="noLink">
+                            <figure>
+                                <img src="./assets/img/avatar-male.png" alt="Avatar" class="img-responsive">
+                            </figure>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
 		<div class="full-width divider-menu-h"></div>
 		<div class="mdl-grid">
 			<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
