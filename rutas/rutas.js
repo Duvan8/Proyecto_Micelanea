@@ -1,4 +1,6 @@
 const express =  require ('express');
+const conexion = require ('../conexion/conexion');
+const controlador = require ('../controlador/controlador')
 const router = express.Router();
 
 router.get('/',(req, res) => {
