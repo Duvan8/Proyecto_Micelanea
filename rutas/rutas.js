@@ -24,5 +24,17 @@ router.get('/proveedores',(req, res) => {
 router.get('/administrador',(req, res) => {
     res.render('administrador');
 });
+router.get('/tiempo',(req, res) => {
+    res.render('tiempo');
+});
+router.get('/nomina',(req, res) => {
+    res.render('nomina');
+});
+router.get('/entrada',(req, res) => {
+    res.render('entrada');
+});
+router.get('/devolucion',(req, res) => {
+    res.render('devolucion');
+});
 
 module.exports = router;
