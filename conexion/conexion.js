@@ -1,14 +1,24 @@
-const mysql = require("mysql"); //HACE LA CONEXION CON LA BASE DE DATOS
-const Connection = require("mysql/lib/Connection");
-module.exports = () =>
-  mysql.createConnection(
-    {
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "bdmicelanea",
-    },
-    "single",console.log("conexion exitosa"),
-  );
+const mysql = require("mysql");
 
-module.exports = Connection;
+const conexion = mysql.createConnection({
+  host: "localhost",
+  database: "bdmiscelanea",
+  user: "root",
+  password: "",
+});
+conexion.connect(function (error) {
+  if (error) {
+    throw error;
+  } else {
+    console.log("CONEXION EXITOSA");
+  }
+});
+
+conexion.query("SELECT * FROM proveedores", function (error, results, fields) {
+  if (error) throw error;
+  results.forEach((result) => {
+    console.log(result);
+  });
+});
+
+module.exports = conexion;

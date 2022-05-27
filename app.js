@@ -1,12 +1,16 @@
 const express = require("express");
 const { engine } = require("express/lib/application");
-const { render } = require("express/lib/response");
+const { render, json } = require("express/lib/response");
 const morgan = require("morgan");
 const path = require("path");
 const app = express();
 
 
 app.use(express.static(path.join(__dirname,'public')));
+app.use(morgan('dev'));
+app.use(express.urlencoded({extended:false}));
+app.use(express(json));
+
 app.set('port',3000);
 app.set('view engine', 'ejs');
 app.set('views',path.join(__dirname,'vistas/'));
