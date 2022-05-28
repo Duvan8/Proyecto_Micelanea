@@ -21,9 +21,8 @@ router.get('/inventario',(req, res) => {
 router.get('/proveedores', controlador.proveedores);
 router.post('/proveedor', controlador.proveedor);
 
-router.get('/administrador',(req, res) => {
-    res.render('administrador');
-});
+router.get('/administrador', controlador.administrador);
+router.post('/inserusu', controlador.inserusu);
 
 router.get('/tiempo',(req, res) => {
     res.render('tiempo');

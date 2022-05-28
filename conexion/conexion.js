@@ -14,11 +14,11 @@ conexion.connect(function (error) {
   }
 });
 
-conexion.query("SELECT * FROM proveedores", function (error, results, fields) {
+/* conexion.query("SELECT * FROM proveedores", function (error, results, fields) {
   if (error) throw error;
   results.forEach((result) => {
     console.log(result);
   });
-});
+}); */
 
 module.exports = conexion;
