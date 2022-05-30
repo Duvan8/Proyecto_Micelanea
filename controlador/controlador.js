@@ -52,18 +52,43 @@ controlador.inserusu = async (req, res, next) => {
   const cel = req.body.cel;
   const mail = req.body.mail;
   const est = req.body.est;
-  const con = await bcryptjs.hash(pass,8);
+  const con = await bcryptjs.hash(pass, 8);
 
-  conexion.query("INSERT INTO usuarios SET ?", { doc_usu: doc, nom_usu: nom, apellido_usu: ape, rol: rol, fecha_nac: nac, celular: cel, correo: mail, estado: est, contraseña: con },(err) => {
-    if(err){
-      throw err;
-      console.log('Error en insertar usuarios');
+  conexion.query(
+    "INSERT INTO usuarios SET ?",
+    {
+      doc_usu: doc,
+      nom_usu: nom,
+      apellido_usu: ape,
+      rol: rol,
+      fecha_nac: nac,
+      celular: cel,
+      correo: mail,
+      estado: est,
+      contraseña: con,
+    },
+    (err) => {
+      if (err) {
+        throw err;
+        console.log("Error en insertar usuarios");
+      } else {
+        console.log("SE INSERTO CON EXITO EN USUARIOS");
+        res.redirect("/administrador");
+      }
     }
-    else{
-      console.log('SE INSERTO CON EXITO EN USUARIOS');
-      res.redirect('/administrador');
-    }
-  });
+  );
 };
+
+controlador.administrador = async(req, res, next) => {
+  conexion.query('SELECT * FROM usuarios', (err, resbd) => {
+      if (err) {
+          next(new Error(err))
+          console.log("Error en la consulta")
+      } else {
+          console.log(resbd)
+          res.render('administrador', { datos: resbd });
+      }
+  })
+}
 
 module.exports = controlador;

@@ -23,6 +23,7 @@ router.post('/proveedor', controlador.proveedor);
 
 router.get('/administrador', controlador.administrador);
 router.post('/inserusu', controlador.inserusu);
+router.post('/administrador', controlador.administrador);
 
 router.get('/tiempo',(req, res) => {
     res.render('tiempo');
