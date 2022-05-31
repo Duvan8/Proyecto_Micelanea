@@ -131,4 +131,94 @@ controlador.login = async(req, res, next) => {
   });
 };
 
+
+controlador.ventas = (req, res, next) => {
+  res.render("ventas");
+};
+//INSERTAR FACTURA
+controlador.ventas = async (req, res, next) => {
+  const cod = req.body.codpro;
+  const doc = req.body.docemple;
+  const codf = req.body.codfac;
+  const fecf = req.body.fechafac;
+  const canf = req.body.cantprod;
+  const valf = req.body.valorfac;
+
+
+  conexion.query(
+    "INSERT INTO facturacion SET ?",
+    {
+      codigo_p: cod,
+      doc_usu: doc,
+      codigo_fac: codf,
+      fecha_fac: fecf,
+      cantidad_fac: canf,
+      valor_fac: valf,
+    },
+    (err) => {
+      if (err) {
+        throw err;
+        console.log("Error en insertar usuarios");
+      } else {
+        console.log("SE INSERTO CON EXITO EN FACTURACION");
+        res.redirect("/ventas");
+      }
+    }
+  );
+};
+
+
+//CONSULTAR FACTURA
+// controller.consultarfactura=(req,res,next)=>{
+//   if(req.session.login){
+//   cnn.query('select * from facturacion',(err,resbd)=>{
+//       if(err){
+//           next(new Error(err))
+//           console.log("error en la consulta")
+
+//       }
+//       else{
+//           console.log(resbd)
+//           res.render('ventas',{datos:resbd})
+//       }
+//   })
+// }
+// else{
+//   res.redirect('/')
+// }
+// }
+
+//ACTUALIZAR FACTURA
+// controller.actualizarfactura=async(req,res,next)=>{
+//   const codpf=req.body.codpro;
+//   const docf=req.body.docemple;
+//   const codff=req.body.codfac;
+//   const fecf=req.body.fechafac;
+//   const canf=req.body.cantprod;
+//   const valf=req.body.valorfac;
+  
+//   cnn.query('UPDATE facturacion SET doc_usu="'+docf+'",codigo_fac="'+codff+'", fecha_fac="'+fecf+'",cantidad_fac="'+canf+', valor_fac="'+valf+'", WHERE codigo_p="'+codpf+'"', async(err,respbb)=>{
+//     if(err){
+//         next(new Error(err));
+//     }
+//     else{
+//         console.log("Actualizado")
+//         res.redirect('consulta')
+//       }});
+// }
+
+//BORRAR FACTURA
+// controller.borrarfactura=(req,res,next)=>{
+//   const codfe=req.body.dd;
+//   cnn.query('DELETE FROM facturacion WHERE codigo_p="'+codfe+'"', async(err,respbb)=>{
+//     if(err){
+//         next(new Error(err));
+//     }
+//     else{
+//         console.log("eliminado")
+//         res.redirect('consulta')
+//       }})
+
+// }
+
 module.exports = controlador;

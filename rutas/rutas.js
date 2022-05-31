@@ -13,9 +13,10 @@ router.get('/interfaz',(req, res) => {
 router.get('/productos',(req, res) => {
     res.render('productos');
 });
-router.get('/ventas',(req, res) => {
-    res.render('ventas');
-});
+
+router.get('/ventas', controlador.ventas);
+router.post('/ventas', controlador.ventas);
+
 router.get('/inventario',(req, res) => {
     res.render('inventario');
 });
