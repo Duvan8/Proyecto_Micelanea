@@ -1,9 +1,9 @@
-const bcryptjs = require("bcryptjs");
-const req = require("express/lib/request");
-const res = require("express/lib/response");
-const conexion = require("../conexion/conexion");
+const conexion = require('../conexion/conexion');
+const {render}=require('ejs');
+const bcryptjs=require('bcryptjs')
+const controlador={};
 //const cnn = connection();
-const controlador = {};
+
 
 controlador.index = (req, res, next) => {
   res.render("index");
@@ -79,16 +79,56 @@ controlador.inserusu = async (req, res, next) => {
   );
 };
 
-controlador.administrador = async(req, res, next) => {
-  conexion.query('SELECT * FROM usuarios', (err, resbd) => {
+controlador.administrador = async (req, res, next) => {
+  conexion.query("SELECT * FROM usuarios", (err, resbd) => {
+    if (err) {
+      next(new Error(err));
+      console.log("Error en la consulta");
+    } else {
+      console.log(resbd);
+      res.render("administrador", { datos: resbd });
+    }
+  });
+};
+
+controlador.login = async(req, res, next) => {
+  const usu = await req.body.nom;
+  const cla = await req.body.con;
+  const pass = await req.body.cla;
+  console.log(usu, cla);
+  conexion.query('SELECT * FROM usuarios WHERE nom_usu=?', [usu], async(err, results) => {
+      console.log(results);
       if (err) {
-          next(new Error(err))
-          console.log("Error en la consulta")
-      } else {
-          console.log(resbd)
-          res.render('administrador', { datos: resbd });
+          next(new Error("Error de consulta login", err));
       }
-  })
-}
+      //nos sirve para encontrar solo al usuario
+      if ((results != 0)) {
+          console.log("primer if prueba", (results[0].contraseña));
+          //este es para encontrar la contraseña
+          if ((bcryptjs.compare(cla, results[0].contraseña))) {
+              console.log("datos correctos segundo");
+              //res.redirect('consultas');
+              let rol = results[0].rol;
+              //req.session.login = true; //se genera la variable de sesion
+              console.log(rol);
+              rol = results[0].rol;
+              switch (rol) {
+                  case 'administrador':
+                      res.redirect('interfaz');
+                      break;
+                  case 'empleado':
+                      res.redirect('interfaz');
+                      break;
+              }
+          } else {
+              console.log("datos incorrectos segundo else");
+              res.redirect('/');
+          }
+      } else {
+          console.log("datos incorrectos");
+          res.redirect('/')
+      }
+  });
+};
 
 module.exports = controlador;

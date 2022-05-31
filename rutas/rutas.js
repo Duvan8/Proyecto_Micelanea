@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.get('/', controlador.index);
 
+router.post('/login',controlador.login);
+
 router.get('/interfaz',(req, res) => {
     res.render('interfaz');
 });
