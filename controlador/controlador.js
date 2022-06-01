@@ -357,8 +357,11 @@ controlador.devolucion = async (req, res, next) => {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module.exports = controlador;
 =======
+=======
+>>>>>>> d0f358be1a74f72c14d99048948bb81373ea0394
 
 controlador.ventas = (req, res, next) => {
   res.render("ventas");
@@ -449,5 +452,9 @@ controlador.ventas = async (req, res, next) => {
 
 // }
 
+<<<<<<< HEAD
+module.exports = controlador;
+>>>>>>> d0f358be1a74f72c14d99048948bb81373ea0394
+=======
 module.exports = controlador;
 >>>>>>> d0f358be1a74f72c14d99048948bb81373ea0394
