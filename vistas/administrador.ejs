@@ -19,6 +19,8 @@
 	<script src="js/sweetalert2.min.js"></script>
 	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/actuadmin.js"></script>
+	<script src="js/eliusu.js"></script>
 </head>
 
 <body>
@@ -269,17 +271,17 @@
 					<tbody>
 						<% datos.forEach(function (datos) { %>
 							<tr>
-								<td><input type="text" value="<%= datos.doc_usu%>" class="col-6"></td>
-								<td><input type="text" value="<%= datos.nom_usu%>" class="col-12"></td>
-								<td><input type="text" value="<%= datos.apellido_usu%>" class="col-12"></td>
-								<td><input type="text" value="<%= datos.contraseña%>" class="col-12"></td>
-								<td><input type="text" value="<%= datos.rol%>"></td>
-								<td><input type="text" value="<%= datos.fecha_nac%>" class="col-12"></td>
-								<td><input type="text" value="<%= datos.celular%>" class="col-12"></td>
-								<td><input type="text" value="<%= datos.correo%>" class="col-12"></td>
-								<td><input type="text" value="<%= datos.estado%>" class="col-12"></td>
-								<td><input type="submit" value="Actualizar" class="col-12"></td>
-								<td><input type="submit" value="Eliminar" class="col-12"></td>
+								<td><input type="text" value="<%= datos.doc_usu%>" name="doc" class="col-6 doc_usu"></td>
+								<td><input type="text" value="<%= datos.nom_usu%>" name="nom" class="col-12 nom_usu"></td>
+								<td><input type="text" value="<%= datos.apellido_usu%>" name="ape" class="col-12 ape"></td>
+								<td><input type="text" value="<%= datos.contraseña%>" name="pass" class="col-12 contraseña"></td>
+								<td><input type="text" value="<%= datos.rol%>" name="" class="rol"></td>
+								<td><input type="text" value="<%= datos.fecha_nac%>" name="nac" class="col-12 fecha"></td>
+								<td><input type="text" value="<%= datos.celular%>" name="cel" class="col-12 celular"></td>
+								<td><input type="text" value="<%= datos.correo%>" name="mail" class="col-12 mail"></td>
+								<td><input type="text" value="<%= datos.estado%>" name="est" class="col-12 estado"></td>
+								<td><input type="submit" value="Actualizar" name="btnact" class="col-12 btnact"></td>
+								<td><input type="submit" value="Eliminar" class="col-12 btneli"></td>
 							</tr>
 							<% }) %>
 					</tbody>
