@@ -13,9 +13,12 @@ router.get('/interfaz',(req, res) => {
 router.get('/productos',(req, res) => {
     res.render('productos');
 });
-
+//RUTA PARA VENTAS-FACTURACION :c
 router.get('/ventas', controlador.ventas);
 router.post('/ventas', controlador.ventas);
+router.post('/ventas', controlador.ventas);
+router.post('/actufac', controlador.actufac);
+router.post('/actufac', controlador.borrarfac);
 
 router.get('/inventario',(req, res) => {
     res.render('inventario');
@@ -49,10 +52,23 @@ router.get('/tiempo',(req, res) => {
 router.get('/nomina',(req, res) => {
     res.render('nomina');
 });
+// <<<<<<< HEAD
+//RUTAS PARA ENTRADA - PRODCUTOS :c
+router.get('/entrada', controlador.entrada);
+router.post('/entrada', controlador.insertent);
+router.post('/entrada', controlador.entrada);
+router.post('/entrada', controlador.actuent);
+router.post('/entrada', controlador.borrarent);
+
+router.get('/devolucion',(req, res) => {
+    res.render('devolucion');
+});
+// =======
 router.get('/entrada',(req, res) => {
     res.render('entrada');
 });
 
+// >>>>>>> 8d89c01c0165a579511a6820f8476673239f978e
 
 
 module.exports = router;

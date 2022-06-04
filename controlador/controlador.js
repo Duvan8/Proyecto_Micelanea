@@ -8,19 +8,29 @@ const controlador = {};
 controlador.index = (req, res, next) => {
   res.render("index");
 };
-
 controlador.proveedores = (req, res, next) => {
   res.render("proveedores");
 };
 controlador.administrador = (req, res, next) => {
   res.render("administrador");
 };
+// <<<<<<< HEAD
+controlador.ventas = (req, res, next) => {
+  res.render("ventas");
+};
+controlador.entrada = (req, res, next) => {
+  res.render("entrada");
+};
+
+
+// =======
 controlador.devolucion = (req, res, next) => {
   res.render("devolucion");
 };
 
 //CONTROLADORES DE PROVEEDORES
 //INSERTAR PROVEEDORES
+// >>>>>>> 8d89c01c0165a579511a6820f8476673239f978e
 controlador.proveedor = (req, res, next) => {
   const ped = req.body.nit;
   const nombre = req.body.nombre;
@@ -362,41 +372,101 @@ controlador.devolucion = async (req, res, next) => {
     }
   });
 };
+//En este estoy trabajando
+//FACTURACION - VENTAS
+// INSERTAR FACTURA
+controlador.ventas=(req ,res, next) => {
+  console.log("Jola pasa lfo?")
+    const c=req.body.co;
+    const d=req.body.do;
+    const co=req.body.cod;
+    const fe=req.body.fe;
+    const ca=req.body.ca;
+    const va=req.body.va;
+    console.log(c,d,co,fe,ca,va);
 
+<<<<<<< HEAD
 controlador.ventas = (req, res, next) => {
   res.render("ventas");
 };
 //INSERTAR FACTURA
-controlador.ventas = async (req, res, next) => {
-  const cod = req.body.codpro;
-  const doc = req.body.docemple;
-  const codf = req.body.codfac;
-  const fecf = req.body.fechafac;
-  const canf = req.body.cantprod;
-  const valf = req.body.valorfac;
+=======
+// <<<<<<< HEAD
+    conexion.query("INSERT INTO facturacion SET ?",{
+      codigo_p:c,doc_usu:d,codigo_fac:co,fecha_fac:fe,cantidad_fac:ca,valor_fac:va
+    }, 
+    (err)=>{
+        if(err){
+            next(new Error(err));
+        }
+        else{
+            res.redirect('/ventas');
+        }
+    })
+}
+// =======
+// <<<<<<< HEAD
+// <<<<<<< HEAD
+module.exports = controlador;
+// =======
+// =======
+// >>>>>>> d0f358be1a74f72c14d99048948bb81373ea0394
+// >>>>>>> 8d89c01c0165a579511a6820f8476673239f978e
 
+// CONSULTAR FACTURA
+>>>>>>> a07668964c59575e6ee7c087640ebfd6f9f9b7fc
+controlador.ventas = async (req, res, next) => {
+  conexion.query("SELECT * FROM facturacion", (err, resbd) => {
+    if (err) {
+      next(new Error(err));
+      console.log("Error en la consulta");
+    } else {
+      console.log(resbd);
+      res.render("ventas", { datos: resbd });
+    }
+  });
+};
+
+<<<<<<< HEAD
+=======
+//ACTUALIZAR FACTURA
+controlador.actufac = async (req, res) => {
+  const co = req.body.dd;
+  const doc = req.body.uu;
+  const cod = req.body.aa;
+  const fe = req.body.cc;
+  const can = req.body.rr;
+  const val = req.body.vv;
+
+  console.log("datos para consulta" + co + doc + cod + fe + can + val);
+
+>>>>>>> a07668964c59575e6ee7c087640ebfd6f9f9b7fc
   conexion.query(
-    "INSERT INTO facturacion SET ?",
-    {
-      codigo_p: cod,
-      doc_usu: doc,
-      codigo_fac: codf,
-      fecha_fac: fecf,
-      cantidad_fac: canf,
-      valor_fac: valf,
-    },
-    (err) => {
+    'UPDATE facturacion SET codigo_fac="' +
+      cod +
+      '",codigo_p="' +
+      co +
+      '", fecha_fac="' +
+      fe +
+      '", cantidad_fac="' +
+      can +
+      '", valor_fac="' +
+      val +
+      '"WHERE doc_usu="' +
+      doc +
+      '"',
+    async (err) => {
       if (err) {
+        console.log("error al actualizar facturas");
         throw err;
-        console.log("Error en insertar usuarios");
       } else {
-        console.log("SE INSERTO CON EXITO EN FACTURACION");
-        res.redirect("/ventas");
+        res.redirect("ventas");
       }
     }
   );
 };
 
+<<<<<<< HEAD
 //CONSULTAR FACTURA
 // controller.consultarfactura=(req,res,next)=>{
 //   if(req.session.login){
@@ -436,18 +506,114 @@ controlador.ventas = async (req, res, next) => {
 //       }});
 // }
 
+=======
+>>>>>>> a07668964c59575e6ee7c087640ebfd6f9f9b7fc
 //BORRAR FACTURA
-// controller.borrarfactura=(req,res,next)=>{
-//   const codfe=req.body.dd;
-//   cnn.query('DELETE FROM facturacion WHERE codigo_p="'+codfe+'"', async(err,respbb)=>{
-//     if(err){
-//         next(new Error(err));
-//     }
-//     else{
-//         console.log("eliminado")
-//         res.redirect('consulta')
-//       }})
+controlador.borrarfac=(req,res,next)=>{
+  const cod=req.body.dd;
+  conexion.query('DELETE FROM facturacion WHERE codigo_fac="'+cod+'"', async(err,respbb)=>{
+    if(err){
+        next(new Error(err));
+    }
+    else{
+        console.log("eliminado")
+        res.redirect('ventas')
+      }})
 
-// }
+}
 
+<<<<<<< HEAD
 module.exports = controlador;
+=======
+// <<<<<<< HEAD
+
+
+//ENTRADA
+//INSERTAR ENTRADA - PRODCUTO
+controlador.insertent=(req ,res, next) => {
+    const c=req.body.cod;
+    const ca=req.body.can;
+    const va=req.body.val;
+    const sa=req.body.vals;
+    console.log(c,ca,va,sa);
+
+    conexion.query("INSERT INTO entrada SET ?",{
+      codigo_p:c,cantidad_entr:ca,
+      valor_llegada:va,valor_salida:sa
+    }, 
+    (err)=>{
+        if(err){
+            next(new Error(err));
+        }
+        else{
+            res.redirect('/entrada');
+        }
+    })
+}
+
+//CONSULTAR ENTRADA
+controlador.entrada = async (req, res, next) => {
+  conexion.query("SELECT * FROM entrada", (err, resbd) => {
+    if (err) {
+      next(new Error(err));
+      console.log("Error en la consulta");
+    } else {
+      console.log(resbd);
+      res.render("entrada", { datos: resbd });
+    }
+  });
+};
+
+//ACTUALIZAR ENTRADA
+controlador.actuent = async (req, res) => {
+  const co = req.body.cc;
+  const ca = req.body.dd;
+  const va = req.body.va;
+  const sa = req.body.vls;
+
+  console.log("datos para consulta" + co + ca + va + lo);
+
+  conexion.query(
+    'UPDATE entrada SET codigo_p="' +
+      co +
+      '",cantidad_entr="' +
+      ca +
+      '", valor_llegada="' +
+      va +
+      '", valor_salida="' +
+      sa +
+      '"',
+    async (err) => {
+      if (err) {
+        console.log("error al actualizar entrada");
+        throw err;
+      } else {
+        res.redirect("entrada");
+      }
+    }
+  );
+};
+
+//BORRAR ENTRADDA?
+controlador.borrarent=(req,res,next)=>{
+  const co=req.body.dd;
+  conexion.query('DELETE FROM entraada WHERE codigo_p="'+co+'"', async(err,respbb)=>{
+    if(err){
+        next(new Error(err));
+    }
+    else{
+        console.log("eliminado")
+        res.redirect('entrada')
+      }})
+
+}
+module.exports = controlador;
+// =======
+// <<<<<<< HEAD
+module.exports = controlador;
+// >>>>>>> d0f358be1a74f72c14d99048948bb81373ea0394
+// =======
+module.exports = controlador;
+// >>>>>>> d0f358be1a74f72c14d99048948bb81373ea0394
+// >>>>>>> 8d89c01c0165a579511a6820f8476673239f978e
+>>>>>>> a07668964c59575e6ee7c087640ebfd6f9f9b7fc

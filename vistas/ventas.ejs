@@ -152,7 +152,7 @@
                     <ul class="list-unstyle">
                         <li class="btn-exit" id="btn-exit">
                             <i class="zmdi zmdi-power"></i>
-                            <div class="mdl-tooltip" for="btn-exit">cerrar sesion</div>
+                            <div class="mdl-tooltip" for="btn-exit">Cerrar sesion</div>
                         </li>
                         <li class="text-condensedLight noLink"><small>Nombre Usuario</small></li>
                         <li class="noLink">
@@ -184,48 +184,48 @@
 									    </div>
 									    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="text" name="codpro">
-												<label class="mdl-textfield__label" for="DNIProvider">Codigo de producto</label>
+												<input class="mdl-textfield__input" type="text" name="co">
+												<label class="mdl-textfield__label">Codigo de producto</label>
 											</div>
 									    </div>
 										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="text" name="docemple">
-												<label class="mdl-textfield__label" for="DNIProvider1">Documento de empleado</label>
+												<input class="mdl-textfield__input" type="text" name="do">
+												<label class="mdl-textfield__label">Documento de empleado</label>
 											</div>
 									    </div>
 									    <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="text" name="codfac">
-												<label class="mdl-textfield__label" for="DNIProvider1">Codigo de factura</label>
+												<input class="mdl-textfield__input" type="text" name="cod">
+												<label class="mdl-textfield__label">Codigo de factura</label>
 											</div>
 									    </div>
 									    <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="date" name="fechafac">
-												<label class="mdl-textfield__label" for="webProvider"></label>
+												<input class="mdl-textfield__input" type="date" name="fe">
+												<label class="mdl-textfield__label"></label>
 											</div>
 									    </div>
                                         <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="text" name="cantprod">
-												<label class="mdl-textfield__label" for="webProvider1">Cantidad de productos</label>
+												<input class="mdl-textfield__input" type="text" name="ca">
+												<label class="mdl-textfield__label">Cantidad de productos</label>
 											</div>
 									    </div>
 										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="text" name="valorfac">
-												<label class="mdl-textfield__label" for="webProvider1">Valor de factura</label>
+												<input class="mdl-textfield__input" type="text" name="va">
+												<label class="mdl-textfield__label">Valor de factura</label>
 											</div>
 									    </div>
 									</div>
 									<p class="text-center">
 										<button
 											class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary"
-											id="btn-addAdmin">
+											id="btn-addAdmin"><!--addProvider-->
 											<i class="zmdi zmdi-plus"></i>
 										</button>
-									<div class="mdl-tooltip" for="btn-addAdmin">Adicionar factura</div>
+									<div class="mdl-tooltip" for="btn-addAdmin"><!--addProvider-->Adicionar factura</div>
 									</p>
 								</form>
 							</div>
@@ -235,43 +235,39 @@
 			</div>
 
 			<div class="mdl-tabs__panel" id="tabListProvider">
-				<div class="container">
 					<table class="table table-bordered table-striped text-center mt-3">
 						<thead>
 							<tr class="bg-primary text-white">
 								<th>Codigo Producto</th>
-								<th>Nombre Producto</th>
-								<th>Cantidad. Unidad Producto</th>
-								<th>Valor de Producto</th>
-								<th>Iva de Producto</th>
+								<th>Documento Empleado</th>
+								<th>Codigo Factura</th>
+								<th>Fecha de Factura</th>
+								<th>Cantidad</th>
+								<th>Valor de Factura</th>
 								<th>Actualizar</th>
 								<th>Eliminar</th>
 							</tr>
 						</thead>
 						<tbody>
-							
-							<tr>
-								<td><input type="text" value="" class="c-1"></td>
-								<td><input type="text" value="" class="c-2"></td>
-								<td><input type="text" value="" class="c-3"></td>
-								<td><input type="text" value="" class="c-4"></td>
-								<td><input type="text" value="" class="c-4"></td>
-								<td>
-									<a href="/actualizar" class="btn btn-outline-info mt-4">Actualizar</a>
-								</td>
-								<td>
-									<a href="/eliminar" class="btn btn-outline-info mt-4">Eliminar</a>
-								</td>
-							</tr>
-							
+							<% datos.forEach(function (datos) {%>
+								<tr>
+									<td><input type="text" value="<%= datos.codigo_p%>" name="cod" class="col-6 cod"></td>
+									<td><input type="text" value="<%= datos.doc_usu%>" name="doc" class="col-12 doc"></td>
+									<td><input type="text" value="<%= datos.codigo_fac%>" name="cfac" class="col-12 cfac"></td>
+									<td><input type="text" value="<%= datos.fecha_fac%>" name="fec" class="col-12 fec"></td>
+									<td><input type="text" value="<%= datos.cantidad_fac%>" name="can" class="col-12 can"></td>
+									<td><input type="text" value="<%= datos.valor_fac%>" name="val" class="col-12 val"></td>
+									<td><input type="button" value="Actualizar" name="actualizar" id="btnact" class="btnact"></td>
+									<td><input type="button" value="Eliminar" name="eliminar" id="btndel" class="btndel"></td>
+								</tr>
+							<% }) %>
 						</tbody>
 					</table>
-				</div>
 				<div class="mdl-grid">
 					<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
 						<div class="full-width panel mdl-shadow--2dp">
 							<div class="full-width panel-tittle bg-success text-center tittles">
-								Lista de Facturas
+								Consulta de Facturas
 							</div>
 							<div class="full-width panel-content">
 								<form action="#">
@@ -292,9 +288,7 @@
 											<span>1. Numero de factura</span>
 											<span class="mdl-list__item-sub-title">precio</span>
 										</span>
-										<a href="/actualizar" class="btn btn-outline-info">Actualizar</a>
-										<a href="/consultar" class="btn btn-outline-info">Consultar</a>
-										<!-- <a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a> -->
+										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
 									</div>
 									<li class="full-width divider-menu-h"></li>
 									<div class="mdl-list__item mdl-list__item--two-line">
@@ -303,9 +297,7 @@
 											<span>2. Numero de factura</span>
 											<span class="mdl-list__item-sub-title">precio</span>
 										</span>
-										<a href="/actualizar" class="btn btn-outline-info">Actualizar</a>
-										<a href="/consultar" class="btn btn-outline-info">Consultar</a>
-										<!-- <a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a> -->
+										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
 									</div>
 									<li class="full-width divider-menu-h"></li>
 									<div class="mdl-list__item mdl-list__item--two-line">
@@ -314,7 +306,7 @@
 											<span>3. Numero de factura</span>
 											<span class="mdl-list__item-sub-title">precio</span>
 										</span>
-										<!-- <a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a> -->
+										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
 									</div>
 									<li class="full-width divider-menu-h"></li>
 									<div class="mdl-list__item mdl-list__item--two-line">

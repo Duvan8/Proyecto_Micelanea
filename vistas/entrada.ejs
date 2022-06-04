@@ -178,26 +178,26 @@
 									    </div>
 										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="number" pattern="-?[0-9- ]*(\.[0-9]+)?" id="BarCode">
-												<label class="mdl-textfield__label" for="BarCode">Codigo de Barras</label>
+												<input class="mdl-textfield__input" type="number" name="cod">
+												<label class="mdl-textfield__label">Codigo de producto</label>
 											</div>
 										</div>
 										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="text" pattern="-?[A-Za-z0-9áéíóúÁÉÍÓÚ ]*(\.[0-9]+)?" id="NameProduct">
-												<label class="mdl-textfield__label" for="NameProduct">Cantidad del Producto</label>
+												<input class="mdl-textfield__input" type="number" name="can">
+												<label class="mdl-textfield__label">Cantidad del Producto</label>
 											</div>
 										</div>
 										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="StrockProduct">
-												<label class="mdl-textfield__label" for="StrockProduct">valor llegada</label>
+												<input class="mdl-textfield__input" type="number" name="val">
+												<label class="mdl-textfield__label">Valor de Llegada</label>
 											</div>
 										</div>
 										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="text" pattern="-?[0-9.]*(\.[0-9]+)?" id="PriceProduct">
-												<label class="mdl-textfield__label" for="PriceProduct">Precio</label>
+												<input class="mdl-textfield__input" type="number" name="vals">
+												<label class="mdl-textfield__label">Valor de Salida</label>
 											</div>
 										</div>
 									</div>
@@ -213,7 +213,30 @@
 					</div>
 				</div>
 			</div>
-	
+                <table class="table table-bordered table-striped text-center mt-3">
+                    <thead>
+                        <tr class="bg-primary text-white">
+                            <th>Codigo Producto</th>
+                            <th>Cantidad de Entrada</th>
+                            <th>Valor de Llegada</th>
+                            <th>Valor de Salida</th>
+                            <th>Actualizar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% datos.forEach(function (datos) {%>
+                            <tr>
+                                <td><input type="text" value="<%= datos.codigo_p%>" name="cod" class="col-6 cod"></td>
+                                <td><input type="text" value="<%= datos.cantidad_entr%>" name="can" class="col-12 doc"></td>
+                                <td><input type="text" value="<%= datos.valor_llegada%>" name="val" class="col-12 cfac"></td>
+                                <td><input type="text" value="<%= datos.valor_salida%>" name="vals" class="col-12 fec"></td>
+                                <td><input type="button" value="Actualizar" name="actualizar" id="btnact" class="btnact"></td>
+                                <td><input type="button" value="Eliminar" name="eliminar" id="btndel" class="btndel"></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
 	</section>
 </body>
 </html>
