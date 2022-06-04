@@ -122,6 +122,8 @@ controlador.inserusu = async (req, res, next) => {
   const mail = req.body.mail;
   const est = req.body.est;
   const con = await bcryptjs.hash(pass, 8);
+  console.log("antes de encriptar", pass);
+  console.log("contraseña para insetar usuarios", con);
 
   conexion.query(
     "INSERT INTO usuarios SET ?",
@@ -134,7 +136,7 @@ controlador.inserusu = async (req, res, next) => {
       celular: cel,
       correo: mail,
       estado: est,
-      contraseña: con,
+      clave: con,
     },
     (err) => {
       if (err) {
@@ -175,7 +177,7 @@ controlador.actuadmin = async (req, res, next) => {
       cor +
       '",estado="' +
       est +
-      '",contraseña="' +
+      '",clave="' +
       pass +
       '" WHERE doc_usu="' +
       doc +
@@ -222,9 +224,9 @@ controlador.administrador = async (req, res, next) => {
 //CIERRA CONTROLADOR DE USUARIOS
 controlador.login = async (req, res, next) => {
   const usu = await req.body.nom;
-  const cla = await req.body.con;
-  const pass = await req.body.cla;
-  console.log(usu, cla);
+  const con = await req.body.con;
+  const pass = await bcryptjs.hash(con, 8);
+  console.log(usu, con);
   conexion.query(
     "SELECT * FROM usuarios WHERE nom_usu=?",
     [usu],
@@ -234,25 +236,30 @@ controlador.login = async (req, res, next) => {
       }
       //nos sirve para encontrar solo al usuario
       if (results != 0) {
-        console.log("primer if prueba", results[0].contraseña);
-        /* const comparacion = (bcryptjs.compare(cla, results[0].contraseña));
-          if(comparacion == true){
-            console.log("correcto");
+        bcryptjs.compare(con, results[0].clave).then((resp) => {
+          //res === true
+          if (resp === true) {
+            let rol = results[0].rol;
+            console.log(rol);
+            switch (rol) {
+              case "administrador":
+                res.redirect("interfaz");
+                break;
+              case "empleado":
+                res.redirect("interfaz");
+                break;
+            }
+          } else {
+            console.log("repsuesta incorrecta");
+            res.redirect("/")
           }
-          else{
-            console.log('incorrecto');
-          } */
-        /* if(bcryptjs.compareSync(cla, results[0].contraseña)){
-            console.log('contraseña incorrecta');
-          }
-          else{
-            console.log('contraseña correcta')
-          } */
-        if (bcryptjs.compare(cla, results[0].contraseña)) {
+        });
+
+        /* console.log("clave para comparar" + cla);
+        if (bcryptjs.compare(cla, results[0].clave)) {
           console.log("datos correctos segundo");
           let rol = results[0].rol;
           console.log(rol);
-          rol = results[0].rol;
           switch (rol) {
             case "administrador":
               res.redirect("interfaz");
@@ -264,7 +271,7 @@ controlador.login = async (req, res, next) => {
         } else {
           console.log("datos incorrectos segundo else");
           res.redirect("/");
-        }
+        } */
       } else {
         console.log("datos incorrectos");
         res.redirect("/");
@@ -356,13 +363,6 @@ controlador.devolucion = async (req, res, next) => {
   });
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-module.exports = controlador;
-=======
-=======
->>>>>>> d0f358be1a74f72c14d99048948bb81373ea0394
-
 controlador.ventas = (req, res, next) => {
   res.render("ventas");
 };
@@ -374,7 +374,6 @@ controlador.ventas = async (req, res, next) => {
   const fecf = req.body.fechafac;
   const canf = req.body.cantprod;
   const valf = req.body.valorfac;
-
 
   conexion.query(
     "INSERT INTO facturacion SET ?",
@@ -397,7 +396,6 @@ controlador.ventas = async (req, res, next) => {
     }
   );
 };
-
 
 //CONSULTAR FACTURA
 // controller.consultarfactura=(req,res,next)=>{
@@ -427,7 +425,7 @@ controlador.ventas = async (req, res, next) => {
 //   const fecf=req.body.fechafac;
 //   const canf=req.body.cantprod;
 //   const valf=req.body.valorfac;
-  
+
 //   cnn.query('UPDATE facturacion SET doc_usu="'+docf+'",codigo_fac="'+codff+'", fecha_fac="'+fecf+'",cantidad_fac="'+canf+', valor_fac="'+valf+'", WHERE codigo_p="'+codpf+'"', async(err,respbb)=>{
 //     if(err){
 //         next(new Error(err));
@@ -452,9 +450,4 @@ controlador.ventas = async (req, res, next) => {
 
 // }
 
-<<<<<<< HEAD
 module.exports = controlador;
->>>>>>> d0f358be1a74f72c14d99048948bb81373ea0394
-=======
-module.exports = controlador;
->>>>>>> d0f358be1a74f72c14d99048948bb81373ea0394
