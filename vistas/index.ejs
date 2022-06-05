@@ -5,20 +5,21 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ingresar - La Amistad</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 	<link rel="stylesheet" href="css/login.css">
-	<title>Ingresar - La Amistad</title>
+	<script src="js/login.js"></script>
 </head>
 <body>
-	<div class="center" >
+	<div class="center">
 		<h1>Miscelanea <p> La Amistad</h1>
-		<form action="/login" method="POST" class="animate__animated animate__fadeInUp">
+		<form action="/login" id="intro" method="POST" class="animate__animated animate__fadeInUp intro">
 			<div class="txt_field">
-				<input type="text" name="nom">
+				<input type="text" name="nom" id="usuario">
 				<label>Usuario</label>
 			</div>
 			<div class="txt_field">
-				<input type="password" name="con">
+				<input type="password" name="con" id="password">
 				<label>Contraseña</label>
 			</div>
 			<input type="submit" name="btnlogin" class="btnlogin" value="Ingresar">

@@ -22,7 +22,6 @@ controlador.entrada = (req, res, next) => {
   res.render("entrada");
 };
 
-
 // =======
 controlador.devolucion = (req, res, next) => {
   res.render("devolucion");
@@ -112,7 +111,6 @@ controlador.proveedores = async (req, res) => {
       next(new Error(err));
       console.log("Error en la consulta");
     } else {
-      console.log(resbd);
       res.render("proveedores", { datos: resbd });
     }
   });
@@ -226,7 +224,6 @@ controlador.administrador = async (req, res, next) => {
       next(new Error(err));
       console.log("Error en la consulta");
     } else {
-      console.log(resbd);
       res.render("administrador", { datos: resbd });
     }
   });
@@ -235,7 +232,6 @@ controlador.administrador = async (req, res, next) => {
 controlador.login = async (req, res, next) => {
   const usu = await req.body.nom;
   const con = await req.body.con;
-  const pass = await bcryptjs.hash(con, 8);
   console.log(usu, con);
   conexion.query(
     "SELECT * FROM usuarios WHERE nom_usu=?",
@@ -261,7 +257,7 @@ controlador.login = async (req, res, next) => {
             }
           } else {
             console.log("repsuesta incorrecta");
-            res.redirect("/")
+            res.redirect("/");
           }
         });
 
@@ -367,7 +363,6 @@ controlador.devolucion = async (req, res, next) => {
       next(new Error(err));
       console.log("Error en la consulta");
     } else {
-      console.log(resbd);
       res.render("devolucion", { datos: resbd });
     }
   });
@@ -375,60 +370,48 @@ controlador.devolucion = async (req, res, next) => {
 //En este estoy trabajando
 //FACTURACION - VENTAS
 // INSERTAR FACTURA
-controlador.ventas=(req ,res, next) => {
-  console.log("Jola pasa lfo?")
-    const c=req.body.co;
-    const d=req.body.do;
-    const co=req.body.cod;
-    const fe=req.body.fe;
-    const ca=req.body.ca;
-    const va=req.body.va;
-    console.log(c,d,co,fe,ca,va);
-
-<<<<<<< HEAD
 controlador.ventas = (req, res, next) => {
-  res.render("ventas");
+  const c = req.body.co;
+  const d = req.body.do;
+  const co = req.body.cod;
+  const fe = req.body.fe;
+  const ca = req.body.ca;
+  const va = req.body.va;
+
+  //INSERTAR FACTURA
+  conexion.query(
+    "INSERT INTO facturacion SET ?",
+    {
+      codigo_p: c,
+      doc_usu: d,
+      codigo_fac: co,
+      fecha_fac: fe,
+      cantidad_fac: ca,
+      valor_fac: va,
+    },
+    (err) => {
+      if (err) {
+        next(new Error(err));
+      } else {
+        res.redirect("/ventas");
+      }
+    }
+  );
 };
-//INSERTAR FACTURA
-=======
-// <<<<<<< HEAD
-    conexion.query("INSERT INTO facturacion SET ?",{
-      codigo_p:c,doc_usu:d,codigo_fac:co,fecha_fac:fe,cantidad_fac:ca,valor_fac:va
-    }, 
-    (err)=>{
-        if(err){
-            next(new Error(err));
-        }
-        else{
-            res.redirect('/ventas');
-        }
-    })
-}
-// =======
-// <<<<<<< HEAD
-// <<<<<<< HEAD
-module.exports = controlador;
-// =======
-// =======
-// >>>>>>> d0f358be1a74f72c14d99048948bb81373ea0394
-// >>>>>>> 8d89c01c0165a579511a6820f8476673239f978e
 
 // CONSULTAR FACTURA
->>>>>>> a07668964c59575e6ee7c087640ebfd6f9f9b7fc
+
 controlador.ventas = async (req, res, next) => {
   conexion.query("SELECT * FROM facturacion", (err, resbd) => {
     if (err) {
       next(new Error(err));
       console.log("Error en la consulta");
     } else {
-      console.log(resbd);
       res.render("ventas", { datos: resbd });
     }
   });
 };
 
-<<<<<<< HEAD
-=======
 //ACTUALIZAR FACTURA
 controlador.actufac = async (req, res) => {
   const co = req.body.dd;
@@ -438,9 +421,6 @@ controlador.actufac = async (req, res) => {
   const can = req.body.rr;
   const val = req.body.vv;
 
-  console.log("datos para consulta" + co + doc + cod + fe + can + val);
-
->>>>>>> a07668964c59575e6ee7c087640ebfd6f9f9b7fc
   conexion.query(
     'UPDATE facturacion SET codigo_fac="' +
       cod +
@@ -465,28 +445,6 @@ controlador.actufac = async (req, res) => {
     }
   );
 };
-
-<<<<<<< HEAD
-//CONSULTAR FACTURA
-// controller.consultarfactura=(req,res,next)=>{
-//   if(req.session.login){
-//   cnn.query('select * from facturacion',(err,resbd)=>{
-//       if(err){
-//           next(new Error(err))
-//           console.log("error en la consulta")
-
-//       }
-//       else{
-//           console.log(resbd)
-//           res.render('ventas',{datos:resbd})
-//       }
-//   })
-// }
-// else{
-//   res.redirect('/')
-// }
-// }
-
 //ACTUALIZAR FACTURA
 // controller.actualizarfactura=async(req,res,next)=>{
 //   const codpf=req.body.codpro;
@@ -506,50 +464,46 @@ controlador.actufac = async (req, res) => {
 //       }});
 // }
 
-=======
->>>>>>> a07668964c59575e6ee7c087640ebfd6f9f9b7fc
 //BORRAR FACTURA
-controlador.borrarfac=(req,res,next)=>{
-  const cod=req.body.dd;
-  conexion.query('DELETE FROM facturacion WHERE codigo_fac="'+cod+'"', async(err,respbb)=>{
-    if(err){
+controlador.borrarfac = (req, res, next) => {
+  const cod = req.body.dd;
+  conexion.query(
+    'DELETE FROM facturacion WHERE codigo_fac="' + cod + '"',
+    async (err, respbb) => {
+      if (err) {
         next(new Error(err));
+      } else {
+        console.log("eliminado");
+        res.redirect("ventas");
+      }
     }
-    else{
-        console.log("eliminado")
-        res.redirect('ventas')
-      }})
-
-}
-
-<<<<<<< HEAD
-module.exports = controlador;
-=======
-// <<<<<<< HEAD
-
-
+  );
+};
 //ENTRADA
 //INSERTAR ENTRADA - PRODCUTO
-controlador.insertent=(req ,res, next) => {
-    const c=req.body.cod;
-    const ca=req.body.can;
-    const va=req.body.val;
-    const sa=req.body.vals;
-    console.log(c,ca,va,sa);
+controlador.insertent = (req, res, next) => {
+  const c = req.body.cod;
+  const ca = req.body.can;
+  const va = req.body.val;
+  const sa = req.body.vals;
 
-    conexion.query("INSERT INTO entrada SET ?",{
-      codigo_p:c,cantidad_entr:ca,
-      valor_llegada:va,valor_salida:sa
-    }, 
-    (err)=>{
-        if(err){
-            next(new Error(err));
-        }
-        else{
-            res.redirect('/entrada');
-        }
-    })
-}
+  conexion.query(
+    "INSERT INTO entrada SET ?",
+    {
+      codigo_p: c,
+      cantidad_entr: ca,
+      valor_llegada: va,
+      valor_salida: sa,
+    },
+    (err) => {
+      if (err) {
+        next(new Error(err));
+      } else {
+        res.redirect("/entrada");
+      }
+    }
+  );
+};
 
 //CONSULTAR ENTRADA
 controlador.entrada = async (req, res, next) => {
@@ -558,7 +512,6 @@ controlador.entrada = async (req, res, next) => {
       next(new Error(err));
       console.log("Error en la consulta");
     } else {
-      console.log(resbd);
       res.render("entrada", { datos: resbd });
     }
   });
@@ -570,8 +523,6 @@ controlador.actuent = async (req, res) => {
   const ca = req.body.dd;
   const va = req.body.va;
   const sa = req.body.vls;
-
-  console.log("datos para consulta" + co + ca + va + lo);
 
   conexion.query(
     'UPDATE entrada SET codigo_p="' +
@@ -595,25 +546,18 @@ controlador.actuent = async (req, res) => {
 };
 
 //BORRAR ENTRADDA?
-controlador.borrarent=(req,res,next)=>{
-  const co=req.body.dd;
-  conexion.query('DELETE FROM entraada WHERE codigo_p="'+co+'"', async(err,respbb)=>{
-    if(err){
+controlador.borrarent = (req, res, next) => {
+  const co = req.body.dd;
+  conexion.query(
+    'DELETE FROM entraada WHERE codigo_p="' + co + '"',
+    async (err, respbb) => {
+      if (err) {
         next(new Error(err));
+      } else {
+        console.log("eliminado");
+        res.redirect("entrada");
+      }
     }
-    else{
-        console.log("eliminado")
-        res.redirect('entrada')
-      }})
-
-}
+  );
+};
 module.exports = controlador;
-// =======
-// <<<<<<< HEAD
-module.exports = controlador;
-// >>>>>>> d0f358be1a74f72c14d99048948bb81373ea0394
-// =======
-module.exports = controlador;
-// >>>>>>> d0f358be1a74f72c14d99048948bb81373ea0394
-// >>>>>>> 8d89c01c0165a579511a6820f8476673239f978e
->>>>>>> a07668964c59575e6ee7c087640ebfd6f9f9b7fc
