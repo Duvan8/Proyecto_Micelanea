@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/factura.js"></script>
+</head>
+
+<body>
+    <form action="/factura" method="post">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+            <div class="mdl-textfield__expandable-holder">
+                <input class="mdl-textfield__input" name="consul" type="text" id="searchProvider">
+                <input type="submit" class="busq" value="buscar">
+            </div>
+        </div>
+    </form>
+    <table class="table table-bordered table-striped text-center mt-3">
+        <thead>
+            <tr class="bg-primary text-white">
+                <th>Codigo Producto</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Valor</th>
+                <th>Iva</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% datos.forEach(function (datos) {%>
+                <tr>
+                    <td><input type="text" value="<%= datos.codigo_p%>" name="cod" class="col-6 cod"></td>
+                    <td><input type="text" value="<%= datos.nombre_prod%>" name="doc" class="col-12 doc"></td>
+                    <td><input type="text" value="<%= datos.cantidad_und_prod%>" name="cfac" class="col-12 cfac"></td>
+                    <td><input type="text" value="<%= datos.valor_prod%>" name="fec" class="col-12 fec"></td>
+                    <td><input type="text" value="<%= datos.iva_prod%>" name="can" class="col-12 can"></td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+</body>
+
+</html>

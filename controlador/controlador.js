@@ -369,6 +369,10 @@ controlador.devolucion = async (req, res, next) => {
 };
 //En este estoy trabajando
 //FACTURACION - VENTAS
+
+controlador.prubfact = (req, res, next) => {
+  res.render("prubfact");
+};
 // INSERTAR FACTURA
 controlador.ventas = (req, res, next) => {
   const c = req.body.co;
@@ -394,6 +398,22 @@ controlador.ventas = (req, res, next) => {
         next(new Error(err));
       } else {
         res.redirect("/ventas");
+      }
+    }
+  );
+};
+
+//CONSULTA INDIVIDUAL
+controlador.prubfact = async (req, res, next) => {
+  const fact = req.body.bb;
+  conexion.query(
+    'SELECT * FROM productos WHERE codigo_p ="' + fact + '" ',
+    (err, resbd) => {
+      if (err) {
+        next(new Error(err));
+        console.log("Error en la consulta");
+      } else {
+        res.render("prubfact", { datos: resbd });
       }
     }
   );
