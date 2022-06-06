@@ -27,7 +27,6 @@ controlador.entrada = (req, res, next) => {
   res.render("entrada");
 };
 
-
 // =======
 controlador.devolucion = (req, res, next) => {
   res.render("devolucion");
@@ -117,7 +116,6 @@ controlador.proveedores = async (req, res) => {
       next(new Error(err));
       console.log("Error en la consulta");
     } else {
-      console.log(resbd);
       res.render("proveedores", { datos: resbd });
     }
   });
@@ -137,6 +135,8 @@ controlador.inserusu = async (req, res, next) => {
   const mail = req.body.mail;
   const est = req.body.est;
   const con = await bcryptjs.hash(pass, 8);
+  console.log("antes de encriptar", pass);
+  console.log("contraseña para insetar usuarios", con);
 
   conexion.query(
     "INSERT INTO usuarios SET ?",
@@ -149,7 +149,7 @@ controlador.inserusu = async (req, res, next) => {
       celular: cel,
       correo: mail,
       estado: est,
-      contraseña: con,
+      clave: con,
     },
     (err) => {
       if (err) {
@@ -190,7 +190,7 @@ controlador.actuadmin = async (req, res, next) => {
       cor +
       '",estado="' +
       est +
-      '",contraseña="' +
+      '",clave="' +
       pass +
       '" WHERE doc_usu="' +
       doc +
@@ -229,7 +229,6 @@ controlador.administrador = async (req, res, next) => {
       next(new Error(err));
       console.log("Error en la consulta");
     } else {
-      console.log(resbd);
       res.render("administrador", { datos: resbd });
     }
   });
@@ -237,9 +236,8 @@ controlador.administrador = async (req, res, next) => {
 //CIERRA CONTROLADOR DE USUARIOS
 controlador.login = async (req, res, next) => {
   const usu = await req.body.nom;
-  const cla = await req.body.con;
-  const pass = await req.body.cla;
-  console.log(usu, cla);
+  const con = await req.body.con;
+  console.log(usu, con);
   conexion.query(
     "SELECT * FROM usuarios WHERE nom_usu=?",
     [usu],
@@ -249,25 +247,30 @@ controlador.login = async (req, res, next) => {
       }
       //nos sirve para encontrar solo al usuario
       if (results != 0) {
-        console.log("primer if prueba", results[0].contraseña);
-        /* const comparacion = (bcryptjs.compare(cla, results[0].contraseña));
-          if(comparacion == true){
-            console.log("correcto");
+        bcryptjs.compare(con, results[0].clave).then((resp) => {
+          //res === true
+          if (resp === true) {
+            let rol = results[0].rol;
+            console.log(rol);
+            switch (rol) {
+              case "administrador":
+                res.redirect("interfaz");
+                break;
+              case "empleado":
+                res.redirect("interfaz");
+                break;
+            }
+          } else {
+            console.log("repsuesta incorrecta");
+            res.redirect("/");
           }
-          else{
-            console.log('incorrecto');
-          } */
-        /* if(bcryptjs.compareSync(cla, results[0].contraseña)){
-            console.log('contraseña incorrecta');
-          }
-          else{
-            console.log('contraseña correcta')
-          } */
-        if (bcryptjs.compare(cla, results[0].contraseña)) {
+        });
+
+        /* console.log("clave para comparar" + cla);
+        if (bcryptjs.compare(cla, results[0].clave)) {
           console.log("datos correctos segundo");
           let rol = results[0].rol;
           console.log(rol);
-          rol = results[0].rol;
           switch (rol) {
             case "administrador":
               res.redirect("interfaz");
@@ -279,7 +282,7 @@ controlador.login = async (req, res, next) => {
         } else {
           console.log("datos incorrectos segundo else");
           res.redirect("/");
-        }
+        } */
       } else {
         console.log("datos incorrectos");
         res.redirect("/");
@@ -365,7 +368,6 @@ controlador.devolucion = async (req, res, next) => {
       next(new Error(err));
       console.log("Error en la consulta");
     } else {
-      console.log(resbd);
       res.render("devolucion", { datos: resbd });
     }
   });
@@ -376,6 +378,7 @@ controlador.devolucion = async (req, res, next) => {
 
 //En este estoy trabajando - JULIAN
 //FACTURACION - VENTAS
+<<<<<<< HEAD
 // INSERTAR FACTURA
 controlador.factura = (req, res, next) => {
   const ped = req.body.co;
@@ -395,6 +398,31 @@ controlador.factura = (req, res, next) => {
       fecha_fac: cel,
       cantidad_fac: id,
       valor_fac: val,
+=======
+
+controlador.prubfact = (req, res, next) => {
+  res.render("prubfact");
+};
+// INSERTAR FACTURA
+controlador.ventas = (req, res, next) => {
+  const c = req.body.co;
+  const d = req.body.do;
+  const co = req.body.cod;
+  const fe = req.body.fe;
+  const ca = req.body.ca;
+  const va = req.body.va;
+
+  //INSERTAR FACTURA
+  conexion.query(
+    "INSERT INTO facturacion SET ?",
+    {
+      codigo_p: c,
+      doc_usu: d,
+      codigo_fac: co,
+      fecha_fac: fe,
+      cantidad_fac: ca,
+      valor_fac: va,
+>>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
     },
     (err) => {
       if (err) {
@@ -405,15 +433,34 @@ controlador.factura = (req, res, next) => {
     }
   );
 };
+<<<<<<< HEAD
+=======
+
+//CONSULTA INDIVIDUAL
+controlador.prubfact = async (req, res, next) => {
+  const fact = req.body.bb;
+  conexion.query(
+    'SELECT * FROM productos WHERE codigo_p ="' + fact + '" ',
+    (err, resbd) => {
+      if (err) {
+        next(new Error(err));
+        console.log("Error en la consulta");
+      } else {
+        res.render("prubfact", { datos: resbd });
+      }
+    }
+  );
+};
+>>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
 
 // CONSULTAR FACTURA
+
 controlador.ventas = async (req, res, next) => {
   conexion.query("SELECT * FROM facturacion", (err, resbd) => {
     if (err) {
       next(new Error(err));
       console.log("Error en la consulta");
     } else {
-      console.log(resbd);
       res.render("ventas", { datos: resbd });
     }
   });
@@ -427,8 +474,6 @@ controlador.actufac = async (req, res) => {
   const fe = req.body.cc;
   const can = req.body.rr;
   const val = req.body.vv;
-
-  console.log("datos para consulta" + co + doc + cod + fe + can + val);
 
   conexion.query(
     'UPDATE facturacion SET codigo_fac="' +
@@ -454,14 +499,39 @@ controlador.actufac = async (req, res) => {
     }
   );
 };
+//ACTUALIZAR FACTURA
+// controller.actualizarfactura=async(req,res,next)=>{
+//   const codpf=req.body.codpro;
+//   const docf=req.body.docemple;
+//   const codff=req.body.codfac;
+//   const fecf=req.body.fechafac;
+//   const canf=req.body.cantprod;
+//   const valf=req.body.valorfac;
+
+//   cnn.query('UPDATE facturacion SET doc_usu="'+docf+'",codigo_fac="'+codff+'", fecha_fac="'+fecf+'",cantidad_fac="'+canf+', valor_fac="'+valf+'", WHERE codigo_p="'+codpf+'"', async(err,respbb)=>{
+//     if(err){
+//         next(new Error(err));
+//     }
+//     else{
+//         console.log("Actualizado")
+//         res.redirect('consulta')
+//       }});
+// }
 
 //BORRAR FACTURA
-controlador.borrarfac=(req,res,next)=>{
-  const cod=req.body.dd;
-  conexion.query('DELETE FROM facturacion WHERE codigo_fac="'+cod+'"', async(err,respbb)=>{
-    if(err){
+controlador.borrarfac = (req, res, next) => {
+  const cod = req.body.dd;
+  conexion.query(
+    'DELETE FROM facturacion WHERE codigo_fac="' + cod + '"',
+    async (err, respbb) => {
+      if (err) {
         next(new Error(err));
+      } else {
+        console.log("eliminado");
+        res.redirect("ventas");
+      }
     }
+<<<<<<< HEAD
     else{
         console.log("eliminado")
         res.redirect('ventas')
@@ -490,14 +560,32 @@ controlador.inserentra = (req, res, next) => {
   const va = req.body.val;
   const val = req.body.vals;
   console.log(co, ca, va, val);
+=======
+  );
+};
+//ENTRADA
+//INSERTAR ENTRADA - PRODCUTO
+controlador.insertent = (req, res, next) => {
+  const c = req.body.cod;
+  const ca = req.body.can;
+  const va = req.body.val;
+  const sa = req.body.vals;
+>>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
 
   conexion.query(
     "INSERT INTO entrada SET ?",
     {
+<<<<<<< HEAD
       codigo_p: co,
       cantidad_entr: ca,
       valor_llegada: va,
       valor_salida: val,
+=======
+      codigo_p: c,
+      cantidad_entr: ca,
+      valor_llegada: va,
+      valor_salida: sa,
+>>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
     },
     (err) => {
       if (err) {
@@ -516,7 +604,6 @@ controlador.entrada = async (req, res, next) => {
       next(new Error(err));
       console.log("Error en la consulta");
     } else {
-      console.log(resbd);
       res.render("entrada", { datos: resbd });
     }
   });
@@ -529,8 +616,6 @@ controlador.actuent = async (req, res) => {
   const ca = req.body.dd;
   const va = req.body.va;
   const sa = req.body.vls;
-
-  console.log("datos para consulta" + co + ca + va + lo);
 
   conexion.query(
     'UPDATE entrada SET codigo_p="' +
@@ -554,17 +639,22 @@ controlador.actuent = async (req, res) => {
 };
 
 //BORRAR ENTRADDA?
-controlador.borrarent=(req,res,next)=>{
-  const co=req.body.dd;
-  conexion.query('DELETE FROM entraada WHERE codigo_p="'+co+'"', async(err,respbb)=>{
-    if(err){
+controlador.borrarent = (req, res, next) => {
+  const co = req.body.dd;
+  conexion.query(
+    'DELETE FROM entraada WHERE codigo_p="' + co + '"',
+    async (err, respbb) => {
+      if (err) {
         next(new Error(err));
+      } else {
+        console.log("eliminado");
+        res.redirect("entrada");
+      }
     }
-    else{
-        console.log("eliminado")
-        res.redirect('entrada')
-      }})
-
-}
+  );
+};
 module.exports = controlador;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
