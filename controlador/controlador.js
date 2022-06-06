@@ -5,6 +5,11 @@ const req = require("express/lib/request");
 const controlador = {};
 //const cnn = connection();
 
+//PDF
+const PDF = require("pdfkit");
+const fs = require("fs");
+//PDF FINISH
+
 controlador.index = (req, res, next) => {
   res.render("index");
 };
@@ -365,40 +370,41 @@ controlador.devolucion = async (req, res, next) => {
     }
   });
 };
-//En este estoy trabajando
+
+
+
+
+//En este estoy trabajando - JULIAN
 //FACTURACION - VENTAS
 // INSERTAR FACTURA
-controlador.ventas=(req ,res, next) => {
-  console.log("Jola pasa lfo?")
-    const c=req.body.co;
-    const d=req.body.do;
-    const co=req.body.cod;
-    const fe=req.body.fe;
-    const ca=req.body.ca;
-    const va=req.body.va;
-    console.log(c,d,co,fe,ca,va);
+controlador.factura = (req, res, next) => {
+  const ped = req.body.co;
+  const nombre = req.body.do;
+  const dir = req.body.cod;
+  const cel = req.body.fe;
+  const id = req.body.ca;
+  const val = req.body.va;
+  console.log(ped, nombre, dir, cel, id,val);
 
-// <<<<<<< HEAD
-    conexion.query("INSERT INTO facturacion SET ?",{
-      codigo_p:c,doc_usu:d,codigo_fac:co,fecha_fac:fe,cantidad_fac:ca,valor_fac:va
-    }, 
-    (err)=>{
-        if(err){
-            next(new Error(err));
-        }
-        else{
-            res.redirect('/ventas');
-        }
-    })
-}
-// =======
-// <<<<<<< HEAD
-// <<<<<<< HEAD
-module.exports = controlador;
-// =======
-// =======
-// >>>>>>> d0f358be1a74f72c14d99048948bb81373ea0394
-// >>>>>>> 8d89c01c0165a579511a6820f8476673239f978e
+  conexion.query(
+    "INSERT INTO facturacion SET ?",
+    {
+      codigo_p: ped,
+      doc_usu: nombre,
+      codigo_fac: dir,
+      fecha_fac: cel,
+      cantidad_fac: id,
+      valor_fac: val,
+    },
+    (err) => {
+      if (err) {
+        next(new Error(err));
+      } else {
+        res.redirect("/ventas");
+      }
+    }
+  );
+};
 
 // CONSULTAR FACTURA
 controlador.ventas = async (req, res, next) => {
@@ -463,33 +469,47 @@ controlador.borrarfac=(req,res,next)=>{
 
 }
 
-// <<<<<<< HEAD
+//GENERAR FACTURA
+controlador.facturapedido = async (req, res) =>{
+  const doc = new PDF();
+
+  doc.text('Hola mundo, estoy realizando una pruba para los pdf', 30, 30);
+
+  doc.pipe(fs.createReadStream('ejemplo.pdf'));
+
+  doc.end();
+}
+//FIN FACTURA
 
 
 //ENTRADA
 //INSERTAR ENTRADA - PRODCUTO
-controlador.insertent=(req ,res, next) => {
-    const c=req.body.cod;
-    const ca=req.body.can;
-    const va=req.body.val;
-    const sa=req.body.vals;
-    console.log(c,ca,va,sa);
+controlador.inserentra = (req, res, next) => {
+  const co = req.body.cod;
+  const ca = req.body.can;
+  const va = req.body.val;
+  const val = req.body.vals;
+  console.log(co, ca, va, val);
 
-    conexion.query("INSERT INTO entrada SET ?",{
-      codigo_p:c,cantidad_entr:ca,
-      valor_llegada:va,valor_salida:sa
-    }, 
-    (err)=>{
-        if(err){
-            next(new Error(err));
-        }
-        else{
-            res.redirect('/entrada');
-        }
-    })
-}
+  conexion.query(
+    "INSERT INTO entrada SET ?",
+    {
+      codigo_p: co,
+      cantidad_entr: ca,
+      valor_llegada: va,
+      valor_salida: val,
+    },
+    (err) => {
+      if (err) {
+        next(new Error(err));
+      } else {
+        res.redirect("/entrada");
+      }
+    }
+  );
+};
 
-//CONSULTAR ENTRADA
+// //CONSULTAR ENTRADA
 controlador.entrada = async (req, res, next) => {
   conexion.query("SELECT * FROM entrada", (err, resbd) => {
     if (err) {
@@ -501,6 +521,7 @@ controlador.entrada = async (req, res, next) => {
     }
   });
 };
+
 
 //ACTUALIZAR ENTRADA
 controlador.actuent = async (req, res) => {
@@ -546,11 +567,4 @@ controlador.borrarent=(req,res,next)=>{
 
 }
 module.exports = controlador;
-// =======
-// <<<<<<< HEAD
-module.exports = controlador;
-// >>>>>>> d0f358be1a74f72c14d99048948bb81373ea0394
-// =======
-module.exports = controlador;
-// >>>>>>> d0f358be1a74f72c14d99048948bb81373ea0394
-// >>>>>>> 8d89c01c0165a579511a6820f8476673239f978e
+
