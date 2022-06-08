@@ -67,12 +67,12 @@
                         </a>
                         <ul class="full-width menu-principal sub-menu-options">
                             <li class="full-width">
-                                <a href="proveedores" class="full-width">
+                                <a href="entrada" class="full-width">
                                     <div class="navLateral-body-cl">
                                         <i class="zmdi zmdi-truck"></i>
                                     </div>
                                     <div class="navLateral-body-cr">
-                                        PROVEEDORES
+                                        ENTRADA
                                     </div>
                                 </a>
                             </li>
@@ -136,7 +136,17 @@
                         </a>
                     </li>
                     <li class="full-width divider-menu-h"></li>
-
+					<li class="full-width">
+                        <a href="ganancias" class="full-width">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-store"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                GANANCIAS
+                            </div>
+                        </a>
+                    </li>
+					<li class="full-width divider-menu-h"></li>
                 </ul>
             </nav>
         </div>
@@ -177,7 +187,7 @@
 								NUEVA FACTURA
 							</div>
 							<div class="full-width panel-content">
-								<form action="/ventas" method="POST">
+								<form action="/factura" method="POST">
 									<div class="mdl-grid">
 										<div class="mdl-cell mdl-cell--12-col">
 									        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; GENERAR FACTURA</legend><br>
@@ -281,12 +291,13 @@
 										</div>
 									</div>
 								</form>
+								<% datos.forEach(function (datos) {%>
 								<div class="mdl-list">
 									<div class="mdl-list__item mdl-list__item--two-line">
 										<span class="mdl-list__item-primary-content">
 											<i class="zmdi zmdi-truck mdl-list__item-avatar"></i>
-											<span>1. Numero de factura</span>
-											<span class="mdl-list__item-sub-title">precio</span>
+											<span>1. <%= datos.codigo_fac%></span>
+											<span class="mdl-list__item-sub-title">PRECIO: $<%= datos.valor_fac%></span>
 										</span>
 										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
 									</div>
@@ -294,8 +305,8 @@
 									<div class="mdl-list__item mdl-list__item--two-line">
 										<span class="mdl-list__item-primary-content">
 											<i class="zmdi zmdi-truck mdl-list__item-avatar"></i>
-											<span>2. Numero de factura</span>
-											<span class="mdl-list__item-sub-title">precio</span>
+											<span>2. <%= datos.codigo_fac%></span>
+											<span class="mdl-list__item-sub-title">PRECIO: $<%= datos.valor_fac%></span>
 										</span>
 										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
 									</div>
@@ -303,8 +314,8 @@
 									<div class="mdl-list__item mdl-list__item--two-line">
 										<span class="mdl-list__item-primary-content">
 											<i class="zmdi zmdi-truck mdl-list__item-avatar"></i>
-											<span>3. Numero de factura</span>
-											<span class="mdl-list__item-sub-title">precio</span>
+											<span>3. <%= datos.codigo_fac%></span>
+											<span class="mdl-list__item-sub-title">PRECIO: $<%= datos.valor_fac%></span>
 										</span>
 										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
 									</div>
@@ -345,6 +356,7 @@
 										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
 									</div>
 								</div>
+								<% }) %>
 							</div>
 						</div>
 						

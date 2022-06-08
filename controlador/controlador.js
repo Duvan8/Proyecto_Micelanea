@@ -5,6 +5,11 @@ const req = require("express/lib/request");
 const controlador = {};
 //const cnn = connection();
 
+//PDF
+const PDF = require("pdfkit");
+const fs = require("fs");
+//PDF FINISH
+
 controlador.index = (req, res, next) => {
   res.render("index");
 };
@@ -367,8 +372,33 @@ controlador.devolucion = async (req, res, next) => {
     }
   });
 };
-//En este estoy trabajando
+
+
+
+
+//En este estoy trabajando - JULIAN
 //FACTURACION - VENTAS
+<<<<<<< HEAD
+// INSERTAR FACTURA
+controlador.factura = (req, res, next) => {
+  const ped = req.body.co;
+  const nombre = req.body.do;
+  const dir = req.body.cod;
+  const cel = req.body.fe;
+  const id = req.body.ca;
+  const val = req.body.va;
+  console.log(ped, nombre, dir, cel, id,val);
+
+  conexion.query(
+    "INSERT INTO facturacion SET ?",
+    {
+      codigo_p: ped,
+      doc_usu: nombre,
+      codigo_fac: dir,
+      fecha_fac: cel,
+      cantidad_fac: id,
+      valor_fac: val,
+=======
 
 controlador.prubfact = (req, res, next) => {
   res.render("prubfact");
@@ -392,6 +422,7 @@ controlador.ventas = (req, res, next) => {
       fecha_fac: fe,
       cantidad_fac: ca,
       valor_fac: va,
+>>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
     },
     (err) => {
       if (err) {
@@ -402,6 +433,8 @@ controlador.ventas = (req, res, next) => {
     }
   );
 };
+<<<<<<< HEAD
+=======
 
 //CONSULTA INDIVIDUAL
 controlador.prubfact = async (req, res, next) => {
@@ -418,6 +451,7 @@ controlador.prubfact = async (req, res, next) => {
     }
   );
 };
+>>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
 
 // CONSULTAR FACTURA
 
@@ -497,6 +531,36 @@ controlador.borrarfac = (req, res, next) => {
         res.redirect("ventas");
       }
     }
+<<<<<<< HEAD
+    else{
+        console.log("eliminado")
+        res.redirect('ventas')
+      }})
+
+}
+
+//GENERAR FACTURA
+controlador.facturapedido = async (req, res) =>{
+  const doc = new PDF();
+
+  doc.text('Hola mundo, estoy realizando una pruba para los pdf', 30, 30);
+
+  doc.pipe(fs.createReadStream('ejemplo.pdf'));
+
+  doc.end();
+}
+//FIN FACTURA
+
+
+//ENTRADA
+//INSERTAR ENTRADA - PRODCUTO
+controlador.inserentra = (req, res, next) => {
+  const co = req.body.cod;
+  const ca = req.body.can;
+  const va = req.body.val;
+  const val = req.body.vals;
+  console.log(co, ca, va, val);
+=======
   );
 };
 //ENTRADA
@@ -506,14 +570,22 @@ controlador.insertent = (req, res, next) => {
   const ca = req.body.can;
   const va = req.body.val;
   const sa = req.body.vals;
+>>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
 
   conexion.query(
     "INSERT INTO entrada SET ?",
     {
+<<<<<<< HEAD
+      codigo_p: co,
+      cantidad_entr: ca,
+      valor_llegada: va,
+      valor_salida: val,
+=======
       codigo_p: c,
       cantidad_entr: ca,
       valor_llegada: va,
       valor_salida: sa,
+>>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
     },
     (err) => {
       if (err) {
@@ -525,7 +597,7 @@ controlador.insertent = (req, res, next) => {
   );
 };
 
-//CONSULTAR ENTRADA
+// //CONSULTAR ENTRADA
 controlador.entrada = async (req, res, next) => {
   conexion.query("SELECT * FROM entrada", (err, resbd) => {
     if (err) {
@@ -536,6 +608,7 @@ controlador.entrada = async (req, res, next) => {
     }
   });
 };
+
 
 //ACTUALIZAR ENTRADA
 controlador.actuent = async (req, res) => {
@@ -581,3 +654,7 @@ controlador.borrarent = (req, res, next) => {
   );
 };
 module.exports = controlador;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
