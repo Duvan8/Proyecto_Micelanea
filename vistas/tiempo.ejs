@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,13 +11,17 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
 	<link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')</script>
-	<script src="js/material.min.js" ></script>
-	<script src="js/sweetalert2.min.js" ></script>
-	<script src="js/jquery.mCustomScrollbar.concat.min.js" ></script>
-	<script src="js/main.js" ></script>
+	<script src="js/material.min.js"></script>
+	<script src="js/sweetalert2.min.js"></script>
+	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="js/main.js"></script>
+    <script src="js/elitiempo.js"></script>
+	<script src=""></script>
 </head>
+
 <body>
 	<!-- navLateral -->
 	<section class="full-width navLateral">
@@ -159,57 +164,174 @@
             </div>
         </div>
 		<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-			<div class="mdl-tabs__panel is-active" id="tabNewProduct">
+            <div class="mdl-tabs__tab-bar">
+				<a href="#tabNewtiempo" class="mdl-tabs__tab is-active">NUEVO</a>
+				<a href="#tabListiempo" class="mdl-tabs__tab">LISTA</a>
+			</div>
+			<div class="mdl-tabs__panel is-active" id="tabNewtiempo">
 				<div class="mdl-grid">
 					<div class="mdl-cell mdl-cell--12-col">
 						<div class="full-width panel mdl-shadow--2dp">
 							<div class="full-width panel-tittle bg-primary text-center tittles">
-								TIEMPO
+								Nuevo Tiempo
 							</div>
 							<div class="full-width panel-content">
-								<form>
+								<form action="/insertartiempo" method="POST">
 									<div class="mdl-grid">
 										<div class="mdl-cell mdl-cell--12-col">
-									        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; INFORMACION BASICA</legend><br>
+									        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; Informacion Tiempo Trabajado</legend><br>
 									    </div>
+                                        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
+											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+												<input class="mdl-textfield__input" type="number" name="id_ti" pattern="-?[0-9]*(\.[0-9]+)?" id="discountProduct">
+												<label class="mdl-textfield__label" for="discountProduct">ID Tiempo</label>
+											</div>	
+										</div>
 										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="number" pattern="-?[0-9- ]*(\.[0-9]+)?" id="BarCode">
+												<input class="mdl-textfield__input" type="number" name="doc_t" pattern="-?[0-9- ]*(\.[0-9]+)?" id="BarCode">
 												<label class="mdl-textfield__label" for="BarCode">Documento del Usuario</label>
 											</div>
 										</div>
 										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="text" pattern="-?[A-Za-z0-9áéíóúÁÉÍÓÚ ]*(\.[0-9]+)?" id="NameProduct">
+												<input class="mdl-textfield__input" type="text" name="hr_en" pattern="-?[A-Za-z0-9áéíóúÁÉÍÓÚ ]*(\.[0-9]+)?" id="NameProduct">
 												<label class="mdl-textfield__label" for="NameProduct">Hora de entrada</label>
 											</div>
 										</div>
 										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="StrockProduct">
+												<input class="mdl-textfield__input" type="text" name="hr_sa" pattern="-?[0-9]*(\.[0-9]+)?" id="StrockProduct">
 												<label class="mdl-textfield__label" for="StrockProduct">Hora de salida</label>
 											</div>
 										</div>
 										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="text" pattern="-?[0-9.]*(\.[0-9]+)?" id="PriceProduct">
+												<input class="mdl-textfield__input" type="number" name="hr_tra" pattern="-?[0-9.]*(\.[0-9]+)?" id="PriceProduct">
 												<label class="mdl-textfield__label" for="PriceProduct">Horas trabajadas</label>
 											</div>
 										</div>
 										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="discountProduct">
+												<input class="mdl-textfield__input" type="number" name="hr_ex" pattern="-?[0-9]*(\.[0-9]+)?" id="discountProduct">
 												<label class="mdl-textfield__label" for="discountProduct">Horas Extras</label>
 											</div>	
 										</div>
 									</div>
 									<p class="text-center">
-										<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addProduct">
+										<button 
+                                            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" 
+                                            id="btn-addTiempo">
 											<i class="zmdi zmdi-plus"></i>
 										</button>
-										<div class="mdl-tooltip" for="btn-addProduct">Adicionar Tiempo</div>
+										<div class="mdl-tooltip" for="btn-addTiempo">Adicionar Tiempo</div>
 									</p>
 								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> 
+            <div class="mdl-tabs__panel" id="tabListiempo">
+				<table class="table table-striped-columns">
+					<thead>
+						<tr>
+                            <th>Id</th>
+							<th>Documento</th>
+							<th>Entrada</th>
+							<th>Salida</th>
+							<th>Trabajas</th>
+							<th>Extras</th>
+							<th>Actualizar</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+							<tr>
+								<td><input type="text" value="" name="doc" class="col-6 doc_usu"></td>
+								<td><input type="text" value="" name="nom" class="col-12 nom_usu"></td>
+								<td><input type="text" value="" name="ape" class="col-12 ape"></td>
+								<td><input type="text" value="" name="pass" class="col-12 contraseña"></td>
+								<td><input type="text" value="" name="" class="rol"></td>
+								<td><input type="text" value="" name="nac" class="col-12 fecha"></td>
+								<td><input type="submit" value="Actualizar" name="btnact" class="col-12 btnact"></td>
+								<td><input type="submit" value="Eliminar" class="col-12 btneli"></td>
+							</tr>
+							
+					</tbody>
+				</table>
+				<div class="mdl-grid">
+					<div
+						class="mdl-cell mdl-cell--4-col-phone mdl-cell--9-col-tablet mdl-cell--9-col-desktop mdl-cell--2-offset-desktop">
+						<div class="full-width panel mdl-shadow--2dp">
+							<div class="full-width panel-tittle bg-success text-center tittles">
+								Lita de Administradores
+							</div>
+							<div class="full-width panel-content">
+								<form>
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+										<label class="mdl-button mdl-js-button mdl-button--icon" for="searchAdmin">
+											<i class="zmdi zmdi-search"></i>
+										</label>
+										<div class="mdl-textfield__expandable-holder">
+											<input class="mdl-textfield__input" type="text" id="searchAdmin">
+											<label class="mdl-textfield__label"></label>
+										</div>
+									</div>
+								</form>
+								<div class="mdl-list">
+									
+									<div class="mdl-list__item mdl-list__item--two-line">
+										<span class="mdl-list__item-primary-content">
+											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
+											<span>1. nombre del Administrador</span>
+											<span class="mdl-list__item-sub-title">RUT</span>
+										</span>
+										<a class="mdl-list__item-secondary-action" href="#!"><i
+												class="zmdi zmdi-more"></i></a>
+									</div>
+									<li class="full-width divider-menu-h"></li>
+									<div class="mdl-list__item mdl-list__item--two-line">
+										<span class="mdl-list__item-primary-content">
+											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
+											<span>2. nombre del Administrador</span>
+											<span class="mdl-list__item-sub-title">RUT</span>
+										</span>
+										<a class="mdl-list__item-secondary-action" href="#!"><i
+												class="zmdi zmdi-more"></i></a>
+									</div>
+									<li class="full-width divider-menu-h"></li>
+									<div class="mdl-list__item mdl-list__item--two-line">
+										<span class="mdl-list__item-primary-content">
+											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
+											<span>3. nombre del Administrador</span>
+											<span class="mdl-list__item-sub-title">RUT</span>
+										</span>
+										<a class="mdl-list__item-secondary-action" href="#!"><i
+												class="zmdi zmdi-more"></i></a>
+									</div>
+									<li class="full-width divider-menu-h"></li>
+									<div class="mdl-list__item mdl-list__item--two-line">
+										<span class="mdl-list__item-primary-content">
+											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
+											<span>4. nombre del Administrador</span>
+											<span class="mdl-list__item-sub-title">RUT</span>
+										</span>
+										<a class="mdl-list__item-secondary-action" href="#!"><i
+												class="zmdi zmdi-more"></i></a>
+									</div>
+									<li class="full-width divider-menu-h"></li>
+									<div class="mdl-list__item mdl-list__item--two-line">
+										<span class="mdl-list__item-primary-content">
+											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
+											<span>5. nombre del Administrador</span>
+											<span class="mdl-list__item-sub-title">RUT</span>
+										</span>
+										<a class="mdl-list__item-secondary-action" href="#!"><i
+												class="zmdi zmdi-more"></i></a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

@@ -73,16 +73,16 @@ controlador.actuprov = async (req, res) => {
 
   conexion.query(
     'UPDATE proveedores SET nombre_prov="' +
-      nom +
-      '",id_prov="' +
-      id +
-      '", direccion_prov="' +
-      dir +
-      '", telefono_prov="' +
-      tel +
-      '"WHERE pedido_prov="' +
-      ped +
-      '"',
+    nom +
+    '",id_prov="' +
+    id +
+    '", direccion_prov="' +
+    dir +
+    '", telefono_prov="' +
+    tel +
+    '"WHERE pedido_prov="' +
+    ped +
+    '"',
     async (err) => {
       if (err) {
         console.log("error al actualizar proveedores");
@@ -177,24 +177,24 @@ controlador.actuadmin = async (req, res, next) => {
 
   conexion.query(
     'UPDATE usuarios SET nom_usu="' +
-      usu +
-      '",apellido_usu="' +
-      ape +
-      '", rol="' +
-      rol +
-      '", fecha_nac="' +
-      fec +
-      '",celular="' +
-      cel +
-      '",correo="' +
-      cor +
-      '",estado="' +
-      est +
-      '",clave="' +
-      pass +
-      '" WHERE doc_usu="' +
-      doc +
-      '"',
+    usu +
+    '",apellido_usu="' +
+    ape +
+    '", rol="' +
+    rol +
+    '", fecha_nac="' +
+    fec +
+    '",celular="' +
+    cel +
+    '",correo="' +
+    cor +
+    '",estado="' +
+    est +
+    '",clave="' +
+    pass +
+    '" WHERE doc_usu="' +
+    doc +
+    '"',
     async (err) => {
       if (err) {
         console.log("error al actualizar usuarios");
@@ -326,16 +326,16 @@ controlador.actudev = async (req, res, next) => {
 
   conexion.query(
     'UPDATE devoluciones SET nombre_dev="' +
-      nom +
-      '", cantidad_dev="' +
-      can +
-      '", motivo_dev="' +
-      mov +
-      '", fecha_dev="' +
-      fec +
-      '" WHERE id_prov="' +
-      id +
-      '"',
+    nom +
+    '", cantidad_dev="' +
+    can +
+    '", motivo_dev="' +
+    mov +
+    '", fecha_dev="' +
+    fec +
+    '" WHERE id_prov="' +
+    id +
+    '"',
     async (err) => {
       if (err) {
         console.log("error al actualizar devoluciones");
@@ -378,7 +378,6 @@ controlador.devolucion = async (req, res, next) => {
 
 //En este estoy trabajando - JULIAN
 //FACTURACION - VENTAS
-<<<<<<< HEAD
 // INSERTAR FACTURA
 controlador.factura = (req, res, next) => {
   const ped = req.body.co;
@@ -387,7 +386,7 @@ controlador.factura = (req, res, next) => {
   const cel = req.body.fe;
   const id = req.body.ca;
   const val = req.body.va;
-  console.log(ped, nombre, dir, cel, id,val);
+  console.log(ped, nombre, dir, cel, id, val);
 
   conexion.query(
     "INSERT INTO facturacion SET ?",
@@ -398,7 +397,7 @@ controlador.factura = (req, res, next) => {
       fecha_fac: cel,
       cantidad_fac: id,
       valor_fac: val,
-=======
+    })};
 
 controlador.prubfact = (req, res, next) => {
   res.render("prubfact");
@@ -422,7 +421,6 @@ controlador.ventas = (req, res, next) => {
       fecha_fac: fe,
       cantidad_fac: ca,
       valor_fac: va,
->>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
     },
     (err) => {
       if (err) {
@@ -433,8 +431,7 @@ controlador.ventas = (req, res, next) => {
     }
   );
 };
-<<<<<<< HEAD
-=======
+
 
 //CONSULTA INDIVIDUAL
 controlador.prubfact = async (req, res, next) => {
@@ -451,7 +448,6 @@ controlador.prubfact = async (req, res, next) => {
     }
   );
 };
->>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
 
 // CONSULTAR FACTURA
 
@@ -477,18 +473,18 @@ controlador.actufac = async (req, res) => {
 
   conexion.query(
     'UPDATE facturacion SET codigo_fac="' +
-      cod +
-      '",codigo_p="' +
-      co +
-      '", fecha_fac="' +
-      fe +
-      '", cantidad_fac="' +
-      can +
-      '", valor_fac="' +
-      val +
-      '"WHERE doc_usu="' +
-      doc +
-      '"',
+    cod +
+    '",codigo_p="' +
+    co +
+    '", fecha_fac="' +
+    fe +
+    '", cantidad_fac="' +
+    can +
+    '", valor_fac="' +
+    val +
+    '"WHERE doc_usu="' +
+    doc +
+    '"',
     async (err) => {
       if (err) {
         console.log("error al actualizar facturas");
@@ -531,16 +527,16 @@ controlador.borrarfac = (req, res, next) => {
         res.redirect("ventas");
       }
     }
-<<<<<<< HEAD
-    else{
-        console.log("eliminado")
+    /* else {
+      console.log("eliminado")
         res.redirect('ventas')
-      }})
-
+    } */
+    )
+  
 }
 
 //GENERAR FACTURA
-controlador.facturapedido = async (req, res) =>{
+controlador.facturapedido = async (req, res) => {
   const doc = new PDF();
 
   doc.text('Hola mundo, estoy realizando una pruba para los pdf', 30, 30);
@@ -560,8 +556,6 @@ controlador.inserentra = (req, res, next) => {
   const va = req.body.val;
   const val = req.body.vals;
   console.log(co, ca, va, val);
-=======
-  );
 };
 //ENTRADA
 //INSERTAR ENTRADA - PRODCUTO
@@ -570,22 +564,19 @@ controlador.insertent = (req, res, next) => {
   const ca = req.body.can;
   const va = req.body.val;
   const sa = req.body.vals;
->>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
+
 
   conexion.query(
     "INSERT INTO entrada SET ?",
     {
-<<<<<<< HEAD
       codigo_p: co,
       cantidad_entr: ca,
       valor_llegada: va,
       valor_salida: val,
-=======
       codigo_p: c,
       cantidad_entr: ca,
       valor_llegada: va,
       valor_salida: sa,
->>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
     },
     (err) => {
       if (err) {
@@ -619,14 +610,14 @@ controlador.actuent = async (req, res) => {
 
   conexion.query(
     'UPDATE entrada SET codigo_p="' +
-      co +
-      '",cantidad_entr="' +
-      ca +
-      '", valor_llegada="' +
-      va +
-      '", valor_salida="' +
-      sa +
-      '"',
+    co +
+    '",cantidad_entr="' +
+    ca +
+    '", valor_llegada="' +
+    va +
+    '", valor_salida="' +
+    sa +
+    '"',
     async (err) => {
       if (err) {
         console.log("error al actualizar entrada");
@@ -653,8 +644,196 @@ controlador.borrarent = (req, res, next) => {
     }
   );
 };
-module.exports = controlador;
-<<<<<<< HEAD
 
-=======
->>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
+//Tiempo
+//Insertar tiempo
+controlador.insertartiempo = async (req, res, next) => {
+  const doc_t = req.body.doc_t;
+  const hr_en = req.body.hr_en;
+  const hr_sa = req.body.hr_sa;
+  const hr_tra = req.body.hr_tra;
+  const hr_ex = req.body.hr_ex;
+  const id_ti = req.body.id_ti;
+
+  conexion.query(
+    "INSERT INTO tiempo SET ?",
+    {
+      doc_usu: doc_t,
+      hora_entrada: hr_en,
+      hora_salida: hr_sa,
+      horas_trabajadas: hr_tra,
+      horas_extras: hr_ex,
+      id_tiempo: id_ti,
+    },
+    (err) => {
+      if (err) {
+        throw err;
+        console.log("Error en insertar tiempo");
+      } else {
+        console.log("Se inserto en la tabla tiempo");
+        res.redirect("/tiempo");
+      }
+    }
+  );
+};
+
+//Consultar tiempo
+controlador.tiempo = async (req, res, next) => {
+  conexion.query("SELECT * FROM tiempo", (err, resbd) => {
+    if (err) {
+      next(new Error(err));
+      console.log("Error en la consulta");
+    } else {
+      res.render("tiempo", { datos: resbd });
+    }
+  });
+};
+
+//Eliminar tiempo
+controlador.elitiempo = async (req, res) => {
+  const doc = req.body.dd;
+  conexion.query(
+    'DELETE FROM tiempo WHERE id_tiempo="' + doc + '"',
+    async (err) => {
+      if (err) {
+        console.log("error al eliminar en tiempo");
+        throw err;
+      } else {
+        console.log("tiempo eliminado");
+        res.redirect("tiempo");
+      }
+    }
+  );
+};
+
+
+//Nomina
+controlador.nomina = async (req, res, next) => {
+  const idn_n = req.body.idn_n;
+  const doc_n = req.body.doc_n;
+  const vhr_n = req.body.vhr_n;
+  const vhre_n = req.body.vhre_n;
+  const vhrn_n = req.body.vhrn_n;
+  const vhrf_n = req.body.vhrf_n;
+  const vbo_n = req.body.vbo_n;
+  const pg_n = req.body.pg_n;
+  const mes_n = req.body.mes_n;
+
+  conexion.query(
+    "INSERT INTO nomina SET ?",
+    {
+      id_nomina: idn_n,
+      doc_usu: doc_n,
+      valor_hora: vhr_n,
+      extra: vhre_n,
+      nocturna: vhrn_n,
+      festiva: vhrf_n,
+      bonificacion: vbo_n,
+      pago: pg_n,
+      mes_pagado: mes_n,
+    },
+    (err) => {
+      if (err) {
+        throw err;
+        console.log("Error en insertar nomina");
+      } else {
+        console.log("Se inserto en la tabla nomina");
+        res.redirect("/nomina");
+      }
+    }
+  );
+};
+
+//Consultar nomina
+controlador.consultarnomina = async (req, res) => {
+  conexion.query('SELECT * FROM nomina', (err, resbd) => {
+    if (err) {
+      next(new Error(err))
+      console.log("Error en la consulta")
+    } else {
+      console.log(resbd)
+      res.render('nomina', { datos: resbd });
+    }
+  });
+};
+
+//Eliminar Nomina
+controlador.elinomina = async (req, res) => {
+  const doc = req.body.dd;
+  conexion.query(
+    'DELETE FROM nomina WHERE id_nomina="' + doc + '"',
+    async (err) => {
+      if (err) {
+        console.log("error al eliminar en nomina");
+        throw err;
+      } else {
+        console.log("nomina eliminado");
+        res.redirect("nomina");
+      }
+    }
+  );
+};
+
+
+//Productos
+controlador.producto = async (req, res, next) => {
+  const id_pro = req.body.id_pro;
+  const cod_pro = req.body.cod_pro;
+  const nom_pro = req.body.nom_pro;
+  const can_pro = req.body.can_pro;
+  const prc_pro = req.body.prc_pro;
+  const iva_pro = req.body.iva_pro;
+
+  conexion.query(
+    "INSERT INTO productos SET ?",
+    {
+      id_producto: id_pro,
+      codigo_p: cod_pro,
+      nombre_prod: nom_pro,
+      cantidad_und_prod: can_pro,
+      valor_prod: prc_pro,
+      iva_prod: iva_pro,
+    },
+    (err) => {
+      if (err) {
+        throw err;
+        console.log("Error en insertar producto");
+      } else {
+        console.log("Se inserto en la tabla produtos");
+        res.redirect("/productos");
+      }
+    }
+  );
+};
+
+//Consultar productos
+controlador.cproductos = async (req, res, next) => {
+  conexion.query('SELECT * FROM productos', (err, resbd) => {
+    if (err) {
+      next(new Error(err))
+      console.log("Error en la consulta")
+    } else {
+      console.log(resbd)
+      res.render('productos', { datos: resbd });
+    }
+  })
+}
+
+//Eliminar productos
+controlador.eliproductos = async (req, res) => {
+  const doc = req.body.dd;
+  conexion.query(
+    'DELETE FROM productos WHERE id_tiempo="' + doc + '"',
+    async (err) => {
+      if (err) {
+        console.log("error al eliminar en productos");
+        throw err;
+      } else {
+        console.log("producto eliminado");
+        res.redirect("productos");
+      }
+    }
+  );
+};
+
+module.exports = controlador;
