@@ -422,7 +422,7 @@ controlador.ventas = (req, res, next) => {
       fecha_fac: fe,
       cantidad_fac: ca,
       valor_fac: va,
->>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
+
     },
     (err) => {
       if (err) {
@@ -433,8 +433,7 @@ controlador.ventas = (req, res, next) => {
     }
   );
 };
-<<<<<<< HEAD
-=======
+
 
 //CONSULTA INDIVIDUAL
 controlador.prubfact = async (req, res, next) => {
@@ -531,11 +530,12 @@ controlador.borrarfac = (req, res, next) => {
         res.redirect("ventas");
       }
     }
-<<<<<<< HEAD
     else{
         console.log("eliminado")
         res.redirect('ventas')
-      }})
+      }
+    }
+    )
 
 }
 
@@ -560,8 +560,6 @@ controlador.inserentra = (req, res, next) => {
   const va = req.body.val;
   const val = req.body.vals;
   console.log(co, ca, va, val);
-=======
-  );
 };
 //ENTRADA
 //INSERTAR ENTRADA - PRODCUTO
@@ -570,22 +568,14 @@ controlador.insertent = (req, res, next) => {
   const ca = req.body.can;
   const va = req.body.val;
   const sa = req.body.vals;
->>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
 
   conexion.query(
     "INSERT INTO entrada SET ?",
     {
-<<<<<<< HEAD
       codigo_p: co,
       cantidad_entr: ca,
       valor_llegada: va,
       valor_salida: val,
-=======
-      codigo_p: c,
-      cantidad_entr: ca,
-      valor_llegada: va,
-      valor_salida: sa,
->>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
     },
     (err) => {
       if (err) {
@@ -654,7 +644,3 @@ controlador.borrarent = (req, res, next) => {
   );
 };
 module.exports = controlador;
-<<<<<<< HEAD
-
-=======
->>>>>>> 7ec9bd9b7030cb3522e89399d2ac4fe9cb0ecdfd
