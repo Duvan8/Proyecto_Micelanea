@@ -17,7 +17,7 @@ router.get('/productos',(req, res) => {
 router.get('/ventas', controlador.ventas);
 router.get('/prubfact', controlador.prubfact);
 //router.post('/prubfact', controlador.prubfact);
-router.post('/factura', controlador.prubfact);
+router.post('/prubfact', controlador.prubfact);
 router.post('/ventas', controlador.ventas);
 router.post('/ventas', controlador.ventas);
 router.post('/actufac', controlador.actufac);

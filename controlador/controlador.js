@@ -405,7 +405,7 @@ controlador.ventas = (req, res, next) => {
 
 //CONSULTA INDIVIDUAL
 controlador.prubfact = async (req, res, next) => {
-  const fact = req.body.bb;
+  const fact = req.body.cod;
   conexion.query(
     'SELECT * FROM productos WHERE codigo_p ="' + fact + '" ',
     (err, resbd) => {

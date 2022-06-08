@@ -10,10 +10,10 @@
 </head>
 
 <body>
-    <form action="/factura" method="post">
+    <form action="/prubfact" method="post">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
             <div class="mdl-textfield__expandable-holder">
-                <input class="mdl-textfield__input" name="consul" type="text" id="searchProvider">
+                <input class="mdl-textfield__input cod" name="cod" type="text" id="searchProvider">
                 <input type="submit" class="busq" value="buscar">
             </div>
         </div>
@@ -32,10 +32,10 @@
             <% datos.forEach(function (datos) {%>
                 <tr>
                     <td><input type="text" value="<%= datos.codigo_p%>" name="cod" class="col-6 cod"></td>
-                    <td><input type="text" value="<%= datos.nombre_prod%>" name="doc" class="col-12 doc"></td>
-                    <td><input type="text" value="<%= datos.cantidad_und_prod%>" name="cfac" class="col-12 cfac"></td>
-                    <td><input type="text" value="<%= datos.valor_prod%>" name="fec" class="col-12 fec"></td>
-                    <td><input type="text" value="<%= datos.iva_prod%>" name="can" class="col-12 can"></td>
+                    <td><input type="text" value="<%= datos.doc_usu%>" name="doc" class="col-12 doc"></td>
+                    <td><input type="text" value="<%= datos.codigo_fac%>" name="cfac" class="col-12 cfac"></td>
+                    <td><input type="text" value="<%= datos.fecha_fac%>" name="fec" class="col-12 fec"></td>
+                    <td><input type="text" value="<%= datos.cantidad_fac%>" name="can" class="col-12 can"></td>
                 </tr>
                 <% }) %>
         </tbody>
