@@ -11,18 +11,6 @@ router.get('/interfaz',(req, res) => {
     res.render('interfaz');
 });
 
-//RUTA PARA VENTAS-FACTURACION :c
-router.get('/ventas', controlador.ventas);
-router.get('/prubfact', controlador.prubfact);
-//router.post('/prubfact', controlador.prubfact);
-router.post('/prubfact', controlador.prubfact);
-router.post('/ventas', controlador.ventas);
-router.post('/ventas', controlador.ventas);
-router.post('/actufac', controlador.actufac);
-router.post('/actufac', controlador.borrarfac);
-//CIERRE VENTAS
-
-
 router.get('/inventario',(req, res) => {
     res.render('inventario');
 });
@@ -36,23 +24,27 @@ router.get('/ganancias',(req, res) => {
 //     res.render('entrada');
 // });
 
-//RUTA PARA VENTAS-FACTURACION :c
-router.get('/ventas', controlador.ventas); //Esta me trae datos
-router.post('/ventas', controlador.ventas)
-router.post('/factura', controlador.factura);
-router.post('/actufac', controlador.actufac);
-router.post('/borrarfac', controlador.borrarfac);
-//CIERRA RUTAS VENTAS
 
 //FACTURA
 router.get('/get-factura-ventas/:id', controlador.facturapedido);
 //FACTURA
 
+//RUTA PARA VENTAS-FACTURACION :c
+router.get('/ventas', controlador.ventas);
+router.get('/prubfact', controlador.prubfact);
+router.post('/factura', controlador.factura)
+router.post('/actualizarfactura', controlador.actualizarfactura)
+router.post('/prubfact', controlador.prubfact);
+router.post('/borrarfac', controlador.borrarfac);
+router.post('/ventas', controlador.ventas)
+//CIERRE VENTAS
+
 //RUTA PARA ENTRADA-PRODUCTOS
 router.get('/entrada', controlador.entrada);
-router.post('/entrada', controlador.inserentra);
-router.post('/entrada', controlador.actuent);
-router.post('/entrada', controlador.borrarent);
+router.post('/insertent', controlador.insertent);
+router.post('/consentrada', controlador.consentrada);
+router.post('/actuent', controlador.actuent);
+router.post('/borrarent', controlador.borrarent);
 //CIERRE RUTAS ENTRADA
 
 //RUTAS DE PROVEEDORES

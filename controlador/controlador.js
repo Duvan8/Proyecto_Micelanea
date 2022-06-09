@@ -376,34 +376,9 @@ controlador.devolucion = async (req, res, next) => {
 
 
 
-//En este estoy trabajando - JULIAN
-//FACTURACION - VENTAS
+//JULIAN
 // INSERTAR FACTURA
 controlador.factura = (req, res, next) => {
-  const ped = req.body.co;
-  const nombre = req.body.do;
-  const dir = req.body.cod;
-  const cel = req.body.fe;
-  const id = req.body.ca;
-  const val = req.body.va;
-  console.log(ped, nombre, dir, cel, id, val);
-
-  conexion.query(
-    "INSERT INTO facturacion SET ?",
-    {
-      codigo_p: ped,
-      doc_usu: nombre,
-      codigo_fac: dir,
-      fecha_fac: cel,
-      cantidad_fac: id,
-      valor_fac: val,
-    })};
-
-controlador.prubfact = (req, res, next) => {
-  res.render("prubfact");
-};
-// INSERTAR FACTURA
-controlador.ventas = (req, res, next) => {
   const c = req.body.co;
   const d = req.body.do;
   const co = req.body.cod;
@@ -411,7 +386,6 @@ controlador.ventas = (req, res, next) => {
   const ca = req.body.ca;
   const va = req.body.va;
 
-  //INSERTAR FACTURA
   conexion.query(
     "INSERT INTO facturacion SET ?",
     {
@@ -421,10 +395,6 @@ controlador.ventas = (req, res, next) => {
       fecha_fac: fe,
       cantidad_fac: ca,
       valor_fac: va,
-<<<<<<< HEAD
-
-=======
->>>>>>> 10ee7e3736e4412b6e003e16757f5ff2f41b780b
     },
     (err) => {
       if (err) {
@@ -436,6 +406,12 @@ controlador.ventas = (req, res, next) => {
   );
 };
 
+
+//Duvan
+controlador.prubfact = (req, res, next) => {
+  res.render("prubfact");
+};
+//Duvan
 
 //CONSULTA INDIVIDUAL
 controlador.prubfact = async (req, res, next) => {
@@ -453,8 +429,8 @@ controlador.prubfact = async (req, res, next) => {
   );
 };
 
-// CONSULTAR FACTURA
 
+// CONSULTAR FACTURA
 controlador.ventas = async (req, res, next) => {
   conexion.query("SELECT * FROM facturacion", (err, resbd) => {
     if (err) {
@@ -467,56 +443,23 @@ controlador.ventas = async (req, res, next) => {
 };
 
 //ACTUALIZAR FACTURA
-controlador.actufac = async (req, res) => {
-  const co = req.body.dd;
-  const doc = req.body.uu;
-  const cod = req.body.aa;
-  const fe = req.body.cc;
-  const can = req.body.rr;
-  const val = req.body.vv;
+controlador.actualizarfactura=async(req,res,next)=>{
+  const codpf=req.body.codpro;
+  const docf=req.body.docemple;
+  const codff=req.body.codfac;
+  const fecf=req.body.fechafac;
+  const canf=req.body.cantprod;
+  const valf=req.body.valorfac;
 
-  conexion.query(
-    'UPDATE facturacion SET codigo_fac="' +
-    cod +
-    '",codigo_p="' +
-    co +
-    '", fecha_fac="' +
-    fe +
-    '", cantidad_fac="' +
-    can +
-    '", valor_fac="' +
-    val +
-    '"WHERE doc_usu="' +
-    doc +
-    '"',
-    async (err) => {
-      if (err) {
-        console.log("error al actualizar facturas");
-        throw err;
-      } else {
-        res.redirect("ventas");
-      }
+  conexion.query('UPDATE facturacion SET doc_usu="'+docf+'",codigo_fac="'+codff+'", fecha_fac="'+fecf+'",cantidad_fac="'+canf+', valor_fac="'+valf+'", WHERE codigo_p="'+codpf+'"', async(err,respbb)=>{
+    if(err){
+        next(new Error(err));
     }
-  );
-};
-//ACTUALIZAR FACTURA
-// controller.actualizarfactura=async(req,res,next)=>{
-//   const codpf=req.body.codpro;
-//   const docf=req.body.docemple;
-//   const codff=req.body.codfac;
-//   const fecf=req.body.fechafac;
-//   const canf=req.body.cantprod;
-//   const valf=req.body.valorfac;
-
-//   cnn.query('UPDATE facturacion SET doc_usu="'+docf+'",codigo_fac="'+codff+'", fecha_fac="'+fecf+'",cantidad_fac="'+canf+', valor_fac="'+valf+'", WHERE codigo_p="'+codpf+'"', async(err,respbb)=>{
-//     if(err){
-//         next(new Error(err));
-//     }
-//     else{
-//         console.log("Actualizado")
-//         res.redirect('consulta')
-//       }});
-// }
+    else{
+        console.log("Actualizado")
+        res.redirect('consulta')
+      }});
+}
 
 //BORRAR FACTURA
 controlador.borrarfac = (req, res, next) => {
@@ -531,25 +474,11 @@ controlador.borrarfac = (req, res, next) => {
         res.redirect("ventas");
       }
     }
-<<<<<<< HEAD
-    else{
-        console.log("eliminado")
-        res.redirect('ventas')
-      }
-    }
-    )
-
-=======
-    /* else {
-      console.log("eliminado")
-        res.redirect('ventas')
-    } */
-    )
-  
->>>>>>> 10ee7e3736e4412b6e003e16757f5ff2f41b780b
+  )
 }
 
-//GENERAR FACTURA
+
+//GENERAR FACTURA PDFS
 controlador.facturapedido = async (req, res) => {
   const doc = new PDF();
 
@@ -559,18 +488,9 @@ controlador.facturapedido = async (req, res) => {
 
   doc.end();
 }
-//FIN FACTURA
+//FIN FACTURA PDFS
 
 
-//ENTRADA
-//INSERTAR ENTRADA - PRODCUTO
-controlador.inserentra = (req, res, next) => {
-  const co = req.body.cod;
-  const ca = req.body.can;
-  const va = req.body.val;
-  const val = req.body.vals;
-  console.log(co, ca, va, val);
-};
 //ENTRADA
 //INSERTAR ENTRADA - PRODCUTO
 controlador.insertent = (req, res, next) => {
@@ -578,25 +498,14 @@ controlador.insertent = (req, res, next) => {
   const ca = req.body.can;
   const va = req.body.val;
   const sa = req.body.vals;
-<<<<<<< HEAD
-=======
-
->>>>>>> 10ee7e3736e4412b6e003e16757f5ff2f41b780b
 
   conexion.query(
     "INSERT INTO entrada SET ?",
     {
-      codigo_p: co,
-      cantidad_entr: ca,
-      valor_llegada: va,
-      valor_salida: val,
-<<<<<<< HEAD
-=======
       codigo_p: c,
       cantidad_entr: ca,
       valor_llegada: va,
       valor_salida: sa,
->>>>>>> 10ee7e3736e4412b6e003e16757f5ff2f41b780b
     },
     (err) => {
       if (err) {
@@ -609,7 +518,7 @@ controlador.insertent = (req, res, next) => {
 };
 
 // //CONSULTAR ENTRADA
-controlador.entrada = async (req, res, next) => {
+controlador.consentrada = async (req, res, next) => {
   conexion.query("SELECT * FROM entrada", (err, resbd) => {
     if (err) {
       next(new Error(err));
@@ -664,9 +573,8 @@ controlador.borrarent = (req, res, next) => {
     }
   );
 };
-<<<<<<< HEAD
+
 module.exports = controlador;
-=======
 
 //Tiempo
 //Insertar tiempo
@@ -860,4 +768,4 @@ controlador.eliproductos = async (req, res) => {
 };
 
 module.exports = controlador;
->>>>>>> 10ee7e3736e4412b6e003e16757f5ff2f41b780b
+
