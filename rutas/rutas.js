@@ -33,7 +33,7 @@ router.get('/get-factura-ventas/:id', controlador.facturapedido);
 router.get('/ventas', controlador.ventas);
 router.get('/prubfact', controlador.prubfact);
 router.post('/factura', controlador.factura)
-router.post('/actualizarfactura', controlador.actualizarfactura)
+router.post('/actualizarfac', controlador.actualizarfac)
 router.post('/prubfact', controlador.prubfact);
 router.post('/borrarfac', controlador.borrarfac);
 router.post('/ventas', controlador.ventas)

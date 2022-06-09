@@ -443,22 +443,31 @@ controlador.ventas = async (req, res, next) => {
 };
 
 //ACTUALIZAR FACTURA
-controlador.actualizarfactura=async(req,res,next)=>{
-  const codpf=req.body.codpro;
-  const docf=req.body.docemple;
-  const codff=req.body.codfac;
-  const fecf=req.body.fechafac;
-  const canf=req.body.cantprod;
-  const valf=req.body.valorfac;
+controlador.actualizarfac = async (req, res, next) => {
+  const codpf = req.body.dd;
+  const docf = req.body.uu;
+  const codff = req.body.aa;
+  const fecf = req.body.cc;
+  const canf = req.body.rr;
+  const valf = req.body.vv;
+  console.log(codpf, docf, codff, fecf, canf, valf);
 
-  conexion.query('UPDATE facturacion SET doc_usu="'+docf+'",codigo_fac="'+codff+'", fecha_fac="'+fecf+'",cantidad_fac="'+canf+', valor_fac="'+valf+'", WHERE codigo_p="'+codpf+'"', async(err,respbb)=>{
-    if(err){
-        next(new Error(err));
-    }
-    else{
+  conexion.query('UPDATE facturacion SET doc_usu="' + docf +
+    '",codigo_fac="' + codff +
+    '", fecha_fac="' + fecf +
+    '",cantidad_fac="' + canf +
+    '", valor_fac="' + valf +
+    '", WHERE codigo_p="' + codpf + '"',
+    async (err) => {
+      if (err) {
+        console.log("Error en actualizar factura." + err)
+        throw err;
+      }
+      else {
         console.log("Actualizado")
-        res.redirect('consulta')
-      }});
+        res.redirect("/ventas")
+      }
+    });
 }
 
 //BORRAR FACTURA
