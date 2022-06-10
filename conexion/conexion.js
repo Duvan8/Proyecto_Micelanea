@@ -35,4 +35,25 @@ conexion.query("SELECT * FROM entrada", function (error, results, fields) {
   });
 }); 
 
+conexion.query("SELECT * FROM tiempo", function (error, results, fields) {
+  if (error) throw error;
+  results.forEach((result) => {
+    console.log(result);
+  });
+}); 
+
+conexion.query("SELECT * FROM nomina", function (error, results, fields) {
+  if (error) throw error;
+  results.forEach((result) => {
+    console.log(result);
+  });
+}); 
+
+conexion.query("SELECT * FROM productos", function (error, results, fields) {
+  if (error) throw error;
+  results.forEach((result) => {
+    console.log(result);
+  });
+});  
+
 module.exports = conexion;

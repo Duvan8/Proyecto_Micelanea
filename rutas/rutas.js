@@ -87,33 +87,27 @@ router.get('/entrada',(req, res) => {
     res.render('entrada');
 });
 
-//TIEMPO
-router.get('/tiempo',(req, res) => {
-    res.render('tiempo');
-});
 
+//BRAYAN
+//TIEMPO CRUD COMPLETO
 router.get('/tiempo', controlador.tiempo);
 router.post('/insertartiempo', controlador.insertartiempo);
 router.post('/tiempo', controlador.tiempo);
+router.post('/actutiempo', controlador.actutiempo);
+router.post('/elitiempo', controlador.elitiempo);
 
-//NOMINA
-router.get('/nomina',(req, res) => {
-    res.render('nomina');
-});
-
+//NOMINA CRUD COMPLETO
 router.get('/nomina', controlador.nomina);
-router.post('/insernomina', controlador.nomina);
-router.post('/nomina', controlador.consultarnomina);
+router.post('/insernomina', controlador.innomina);
+router.post('/nomina', controlador.nomina);
+router.post('/actunomina', controlador.actunomina);
+router.post('/elinomina', controlador.elinomina);
 
-
-//PRODUCTOS
-router.get('/productos',(req, res) => {
-    res.render('productos');
-});
-
-router.get('/productos', controlador.producto);
-router.post('/inserproducto', controlador.producto);
-router.post('/productos', controlador.cproductos);
-
+//PRODUCTOS CRUD COMPLETO
+router.get('/productos', controlador.productos);
+router.post('/inserproducto', controlador.insproducto);
+router.post('/productos', controlador.productos);
+router.post('/actuproductos', controlador.actuproductos);
+router.post('/eliproductos', controlador.eliproductos);
 
 module.exports = router;
