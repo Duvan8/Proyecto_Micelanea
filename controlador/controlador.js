@@ -471,7 +471,7 @@ controlador.actualizarfac = async (req, res, next) => {
 }
 
 //BORRAR FACTURA
-controlador.borrarfac = (req, res, next) => {
+controlador.eliminarfac = (req, res, next) => {
   const cod = req.body.dd;
   conexion.query(
     'DELETE FROM facturacion WHERE codigo_fac="' + cod + '"',
@@ -502,7 +502,7 @@ controlador.facturapedido = async (req, res) => {
 
 //ENTRADA
 //INSERTAR ENTRADA - PRODCUTO
-controlador.insertent = (req, res, next) => {
+controlador.insentrada = (req, res, next) => {
   const c = req.body.cod;
   const ca = req.body.can;
   const va = req.body.val;
@@ -527,7 +527,7 @@ controlador.insertent = (req, res, next) => {
 };
 
 // //CONSULTAR ENTRADA
-controlador.consentrada = async (req, res, next) => {
+controlador.entrada = async (req, res, next) => {
   conexion.query("SELECT * FROM entrada", (err, resbd) => {
     if (err) {
       next(new Error(err));
@@ -539,8 +539,8 @@ controlador.consentrada = async (req, res, next) => {
 };
 
 
-//ACTUALIZAR ENTRADA
-controlador.actuent = async (req, res) => {
+// //ACTUALIZAR ENTRADA
+controlador.actentrada = async (req, res) => {
   const co = req.body.cc;
   const ca = req.body.dd;
   const va = req.body.va;
@@ -568,10 +568,10 @@ controlador.actuent = async (req, res) => {
 };
 
 //BORRAR ENTRADDA?
-controlador.borrarent = (req, res, next) => {
+controlador.eliminarent = (req, res, next) => {
   const co = req.body.dd;
   conexion.query(
-    'DELETE FROM entraada WHERE codigo_p="' + co + '"',
+    'DELETE FROM entrada WHERE codigo_p="' + co + '"',
     async (err, respbb) => {
       if (err) {
         next(new Error(err));

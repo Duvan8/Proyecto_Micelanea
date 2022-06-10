@@ -20,9 +20,9 @@ router.get('/devolucion',(req, res) => {
 router.get('/ganancias',(req, res) => {
     res.render('ganancias');
 });
-// router.get('/entrada',(req, res) => {
-//     res.render('entrada');
-// });
+router.get('/entrada',(req, res) => {
+    res.render('entrada');
+});
 
 
 //FACTURA
@@ -35,16 +35,16 @@ router.get('/prubfact', controlador.prubfact);
 router.post('/factura', controlador.factura)
 router.post('/actualizarfac', controlador.actualizarfac)
 router.post('/prubfact', controlador.prubfact);
-router.post('/borrarfac', controlador.borrarfac);
+router.post('/eliminarfac', controlador.eliminarfac);
 router.post('/ventas', controlador.ventas)
 //CIERRE VENTAS
 
 //RUTA PARA ENTRADA-PRODUCTOS
 router.get('/entrada', controlador.entrada);
-router.post('/insertent', controlador.insertent);
-router.post('/consentrada', controlador.consentrada);
-router.post('/actuent', controlador.actuent);
-router.post('/borrarent', controlador.borrarent);
+router.post('/insentrada', controlador.insentrada);
+router.post('/entrada', controlador.entrada);
+router.post('/actentrada', controlador.actentrada);
+router.post('/eliminarent', controlador.eliminarent);
 //CIERRE RUTAS ENTRADA
 
 //RUTAS DE PROVEEDORES
@@ -72,19 +72,8 @@ router.post('/eliusu', controlador.eliusu);
 // CIERRA RUTAS DE USUARIOS
 
 
-//RUTAS PARA ENTRADA - PRODCUTOS :c
-router.get('/entrada', controlador.entrada);
-router.post('/entrada', controlador.insertent);
-router.post('/entrada', controlador.entrada);
-router.post('/entrada', controlador.actuent);
-router.post('/entrada', controlador.borrarent);
-//CIERRE ENTRADA
 router.get('/devolucion',(req, res) => {
     res.render('devolucion');
-});
-
-router.get('/entrada',(req, res) => {
-    res.render('entrada');
 });
 
 //TIEMPO
