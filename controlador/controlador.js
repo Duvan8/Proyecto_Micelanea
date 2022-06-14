@@ -73,16 +73,16 @@ controlador.actuprov = async (req, res) => {
 
   conexion.query(
     'UPDATE proveedores SET nombre_prov="' +
-    nom +
-    '",id_prov="' +
-    id +
-    '", direccion_prov="' +
-    dir +
-    '", telefono_prov="' +
-    tel +
-    '"WHERE pedido_prov="' +
-    ped +
-    '"',
+      nom +
+      '",id_prov="' +
+      id +
+      '", direccion_prov="' +
+      dir +
+      '", telefono_prov="' +
+      tel +
+      '"WHERE pedido_prov="' +
+      ped +
+      '"',
     async (err) => {
       if (err) {
         console.log("error al actualizar proveedores");
@@ -177,24 +177,24 @@ controlador.actuadmin = async (req, res, next) => {
 
   conexion.query(
     'UPDATE usuarios SET nom_usu="' +
-    usu +
-    '",apellido_usu="' +
-    ape +
-    '", rol="' +
-    rol +
-    '", fecha_nac="' +
-    fec +
-    '",celular="' +
-    cel +
-    '",correo="' +
-    cor +
-    '",estado="' +
-    est +
-    '",clave="' +
-    pass +
-    '" WHERE doc_usu="' +
-    doc +
-    '"',
+      usu +
+      '",apellido_usu="' +
+      ape +
+      '", rol="' +
+      rol +
+      '", fecha_nac="' +
+      fec +
+      '",celular="' +
+      cel +
+      '",correo="' +
+      cor +
+      '",estado="' +
+      est +
+      '",clave="' +
+      pass +
+      '" WHERE doc_usu="' +
+      doc +
+      '"',
     async (err) => {
       if (err) {
         console.log("error al actualizar usuarios");
@@ -234,6 +234,7 @@ controlador.administrador = async (req, res, next) => {
   });
 };
 //CIERRA CONTROLADOR DE USUARIOS
+
 controlador.login = async (req, res, next) => {
   const usu = await req.body.nom;
   const con = await req.body.con;
@@ -250,8 +251,11 @@ controlador.login = async (req, res, next) => {
         bcryptjs.compare(con, results[0].clave).then((resp) => {
           //res === true
           if (resp === true) {
+            /* let docu = results[0].doc_usu; */
+            req.session.Login = true;
+            const doc = (req.session.docu = results[0].doc_usu);
             let rol = results[0].rol;
-            console.log(rol);
+            console.log(rol, doc);
             switch (rol) {
               case "administrador":
                 res.redirect("interfaz");
@@ -265,24 +269,6 @@ controlador.login = async (req, res, next) => {
             res.redirect("/");
           }
         });
-
-        /* console.log("clave para comparar" + cla);
-        if (bcryptjs.compare(cla, results[0].clave)) {
-          console.log("datos correctos segundo");
-          let rol = results[0].rol;
-          console.log(rol);
-          switch (rol) {
-            case "administrador":
-              res.redirect("interfaz");
-              break;
-            case "empleado":
-              res.redirect("interfaz");
-              break;
-          }
-        } else {
-          console.log("datos incorrectos segundo else");
-          res.redirect("/");
-        } */
       } else {
         console.log("datos incorrectos");
         res.redirect("/");
@@ -326,16 +312,16 @@ controlador.actudev = async (req, res, next) => {
 
   conexion.query(
     'UPDATE devoluciones SET nombre_dev="' +
-    nom +
-    '", cantidad_dev="' +
-    can +
-    '", motivo_dev="' +
-    mov +
-    '", fecha_dev="' +
-    fec +
-    '" WHERE id_prov="' +
-    id +
-    '"',
+      nom +
+      '", cantidad_dev="' +
+      can +
+      '", motivo_dev="' +
+      mov +
+      '", fecha_dev="' +
+      fec +
+      '" WHERE id_prov="' +
+      id +
+      '"',
     async (err) => {
       if (err) {
         console.log("error al actualizar devoluciones");
@@ -373,9 +359,6 @@ controlador.devolucion = async (req, res, next) => {
   });
 };
 
-
-
-
 //En este estoy trabajando - JULIAN
 //FACTURACION - VENTAS
 // INSERTAR FACTURA
@@ -388,16 +371,15 @@ controlador.factura = (req, res, next) => {
   const val = req.body.va;
   console.log(ped, nombre, dir, cel, id, val);
 
-  conexion.query(
-    "INSERT INTO facturacion SET ?",
-    {
-      codigo_p: ped,
-      doc_usu: nombre,
-      codigo_fac: dir,
-      fecha_fac: cel,
-      cantidad_fac: id,
-      valor_fac: val,
-    })};
+  conexion.query("INSERT INTO facturacion SET ?", {
+    codigo_p: ped,
+    doc_usu: nombre,
+    codigo_fac: dir,
+    fecha_fac: cel,
+    cantidad_fac: id,
+    valor_fac: val,
+  });
+};
 
 controlador.prubfact = (req, res, next) => {
   res.render("prubfact");
@@ -421,10 +403,6 @@ controlador.ventas = (req, res, next) => {
       fecha_fac: fe,
       cantidad_fac: ca,
       valor_fac: va,
-<<<<<<< HEAD
-
-=======
->>>>>>> 10ee7e3736e4412b6e003e16757f5ff2f41b780b
     },
     (err) => {
       if (err) {
@@ -436,10 +414,10 @@ controlador.ventas = (req, res, next) => {
   );
 };
 
-
 //CONSULTA INDIVIDUAL
 controlador.prubfact = async (req, res, next) => {
   const fact = req.body.cod;
+  var a = 0;
   conexion.query(
     'SELECT * FROM productos WHERE codigo_p ="' + fact + '" ',
     (err, resbd) => {
@@ -452,6 +430,141 @@ controlador.prubfact = async (req, res, next) => {
     }
   );
 };
+controlador.valor = async (req, res, next) => {
+  res.render("valor");
+};
+controlador.pagar = async (req, res, next) => {
+  var b = 5000;
+  const fac = req.body.ll;
+  conexion.query(
+    "UPDATE facturacion SET codigo_fac = '" +
+      fac +
+      "' WHERE codigo_fac = '" +
+      b +
+      "'",
+    (err) => {
+      if (err) {
+        console.log("error al pagar");
+        throw err;
+      } else {
+        res.redirect("/ventas");
+      }
+    }
+  );
+};
+controlador.valor = async (req, res, next) => {
+  b = 5000;
+  conexion.query(
+    "SELECT * FROM detalle_fac INNER JOIN productos ON (detalle_fac.codigo_p=productos.codigo_p) INNER JOIN facturacion ON (facturacion.codigo_fac=detalle_fac.codigo_fac) WHERE facturacion.codigo_fac = '" +
+      b +
+      "'",
+    (err, resbd) => {
+      if (err) {
+        throw err;
+      } else {
+        res.render("valor", { venta: resbd });
+      }
+    }
+  );
+};
+controlador.nuevaventa = async (req, res, next) => {
+  var a = 5000;
+  var b = 0;
+  const doc = req.session.docu;
+  console.log(doc);
+  conexion.query(
+    "INSERT INTO facturacion SET ?",
+    {
+      codigo_fac: a,
+      doc_usu: doc,
+      valor_fac: b,
+    },
+    (err) => {
+      if (err) {
+        throw err;
+      }
+      {
+        res.redirect("/prubfact");
+      }
+    }
+  );
+};
+
+controlador.carrito = async (req, res, next) => {
+  const cod = req.body.cc;
+  const can = req.body.aa;
+  const val = req.body.mm;
+  const inv = req.body.ii;
+
+  console.log(cod, can, val, inv);
+
+  let a = 0;
+  let b = 5000;
+
+  conexion.query(
+    "INSERT INTO detalle_fac SET?",
+    {
+      codigo_del: a,
+      cantidad: can,
+      codigo_p: cod,
+      codigo_fac: b,
+      valor_p: inv,
+    },
+    (err, resbd) => {
+      conexion.query(
+        'UPDATE facturacion SET  valor_fac=valor_fac+"' +
+          val +
+          '" WHERE codigo_fac="' +
+          b +
+          '"',
+        async (err, respbb) => {
+          if (err) {
+            next(new Error(err));
+          } else {
+            console.log("prubfact");
+          }
+        }
+      );
+
+      if (err) {
+        next(new Error(err));
+      } else {
+      }
+    }
+  );
+};
+
+controlador.delcarrito = async (req, res, next) => {
+  let b = 5000;
+  const val = req.body.vv;
+  conexion.query(
+    'UPDATE facturacion SET  valor_fac=valor_fac-"' +
+      val +
+      '" WHERE codigo_fac="' +
+      b +
+      '"',
+    async (err) => {
+      if (err) {
+        throw err;
+      } else {
+        console.log("error al desactulizar valor");
+      }
+      cod = req.body.cc;
+      conexion.query(
+        'DELETE FROM detalle_fac WHERE codigo_p ="' + cod + '"',
+        async (err) => {
+          if (err) {
+            throw err;
+          } else {
+            res.redirect("valor");
+          }
+        }
+      );
+    }
+  );
+};
+
+
 
 // CONSULTAR FACTURA
 
@@ -477,18 +590,18 @@ controlador.actufac = async (req, res) => {
 
   conexion.query(
     'UPDATE facturacion SET codigo_fac="' +
-    cod +
-    '",codigo_p="' +
-    co +
-    '", fecha_fac="' +
-    fe +
-    '", cantidad_fac="' +
-    can +
-    '", valor_fac="' +
-    val +
-    '"WHERE doc_usu="' +
-    doc +
-    '"',
+      cod +
+      '",codigo_p="' +
+      co +
+      '", fecha_fac="' +
+      fe +
+      '", cantidad_fac="' +
+      can +
+      '", valor_fac="' +
+      val +
+      '"WHERE doc_usu="' +
+      doc +
+      '"',
     async (err) => {
       if (err) {
         console.log("error al actualizar facturas");
@@ -500,23 +613,6 @@ controlador.actufac = async (req, res) => {
   );
 };
 //ACTUALIZAR FACTURA
-// controller.actualizarfactura=async(req,res,next)=>{
-//   const codpf=req.body.codpro;
-//   const docf=req.body.docemple;
-//   const codff=req.body.codfac;
-//   const fecf=req.body.fechafac;
-//   const canf=req.body.cantprod;
-//   const valf=req.body.valorfac;
-
-//   cnn.query('UPDATE facturacion SET doc_usu="'+docf+'",codigo_fac="'+codff+'", fecha_fac="'+fecf+'",cantidad_fac="'+canf+', valor_fac="'+valf+'", WHERE codigo_p="'+codpf+'"', async(err,respbb)=>{
-//     if(err){
-//         next(new Error(err));
-//     }
-//     else{
-//         console.log("Actualizado")
-//         res.redirect('consulta')
-//       }});
-// }
 
 //BORRAR FACTURA
 controlador.borrarfac = (req, res, next) => {
@@ -531,36 +627,20 @@ controlador.borrarfac = (req, res, next) => {
         res.redirect("ventas");
       }
     }
-<<<<<<< HEAD
-    else{
-        console.log("eliminado")
-        res.redirect('ventas')
-      }
-    }
-    )
-
-=======
-    /* else {
-      console.log("eliminado")
-        res.redirect('ventas')
-    } */
-    )
-  
->>>>>>> 10ee7e3736e4412b6e003e16757f5ff2f41b780b
-}
+  );
+};
 
 //GENERAR FACTURA
 controlador.facturapedido = async (req, res) => {
   const doc = new PDF();
 
-  doc.text('Hola mundo, estoy realizando una pruba para los pdf', 30, 30);
+  doc.text("Hola mundo, estoy realizando una pruba para los pdf", 30, 30);
 
-  doc.pipe(fs.createReadStream('ejemplo.pdf'));
+  doc.pipe(fs.createReadStream("ejemplo.pdf"));
 
   doc.end();
-}
+};
 //FIN FACTURA
-
 
 //ENTRADA
 //INSERTAR ENTRADA - PRODCUTO
@@ -578,10 +658,6 @@ controlador.insertent = (req, res, next) => {
   const ca = req.body.can;
   const va = req.body.val;
   const sa = req.body.vals;
-<<<<<<< HEAD
-=======
-
->>>>>>> 10ee7e3736e4412b6e003e16757f5ff2f41b780b
 
   conexion.query(
     "INSERT INTO entrada SET ?",
@@ -590,13 +666,6 @@ controlador.insertent = (req, res, next) => {
       cantidad_entr: ca,
       valor_llegada: va,
       valor_salida: val,
-<<<<<<< HEAD
-=======
-      codigo_p: c,
-      cantidad_entr: ca,
-      valor_llegada: va,
-      valor_salida: sa,
->>>>>>> 10ee7e3736e4412b6e003e16757f5ff2f41b780b
     },
     (err) => {
       if (err) {
@@ -620,7 +689,6 @@ controlador.entrada = async (req, res, next) => {
   });
 };
 
-
 //ACTUALIZAR ENTRADA
 controlador.actuent = async (req, res) => {
   const co = req.body.cc;
@@ -630,14 +698,14 @@ controlador.actuent = async (req, res) => {
 
   conexion.query(
     'UPDATE entrada SET codigo_p="' +
-    co +
-    '",cantidad_entr="' +
-    ca +
-    '", valor_llegada="' +
-    va +
-    '", valor_salida="' +
-    sa +
-    '"',
+      co +
+      '",cantidad_entr="' +
+      ca +
+      '", valor_llegada="' +
+      va +
+      '", valor_salida="' +
+      sa +
+      '"',
     async (err) => {
       if (err) {
         console.log("error al actualizar entrada");
@@ -664,9 +732,6 @@ controlador.borrarent = (req, res, next) => {
     }
   );
 };
-<<<<<<< HEAD
-module.exports = controlador;
-=======
 
 //Tiempo
 //Insertar tiempo
@@ -729,7 +794,6 @@ controlador.elitiempo = async (req, res) => {
   );
 };
 
-
 //Nomina
 controlador.nomina = async (req, res, next) => {
   const idn_n = req.body.idn_n;
@@ -769,13 +833,13 @@ controlador.nomina = async (req, res, next) => {
 
 //Consultar nomina
 controlador.consultarnomina = async (req, res) => {
-  conexion.query('SELECT * FROM nomina', (err, resbd) => {
+  conexion.query("SELECT * FROM nomina", (err, resbd) => {
     if (err) {
-      next(new Error(err))
-      console.log("Error en la consulta")
+      next(new Error(err));
+      console.log("Error en la consulta");
     } else {
-      console.log(resbd)
-      res.render('nomina', { datos: resbd });
+      console.log(resbd);
+      res.render("nomina", { datos: resbd });
     }
   });
 };
@@ -796,7 +860,6 @@ controlador.elinomina = async (req, res) => {
     }
   );
 };
-
 
 //Productos
 controlador.producto = async (req, res, next) => {
@@ -831,16 +894,16 @@ controlador.producto = async (req, res, next) => {
 
 //Consultar productos
 controlador.cproductos = async (req, res, next) => {
-  conexion.query('SELECT * FROM productos', (err, resbd) => {
+  conexion.query("SELECT * FROM productos", (err, resbd) => {
     if (err) {
-      next(new Error(err))
-      console.log("Error en la consulta")
+      next(new Error(err));
+      console.log("Error en la consulta");
     } else {
-      console.log(resbd)
-      res.render('productos', { datos: resbd });
+      console.log(resbd);
+      res.render("productos", { datos: resbd });
     }
-  })
-}
+  });
+};
 
 //Eliminar productos
 controlador.eliproductos = async (req, res) => {
@@ -860,4 +923,3 @@ controlador.eliproductos = async (req, res) => {
 };
 
 module.exports = controlador;
->>>>>>> 10ee7e3736e4412b6e003e16757f5ff2f41b780b

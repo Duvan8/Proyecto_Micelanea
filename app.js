@@ -4,27 +4,13 @@ const { render, json } = require("express/lib/response");
 const morgan = require("morgan");
 const path = require("path");
 const app = express();
+const session = require('express-session'); 
 
-//PDF VENTAS-FACTURA
-// const PdfPrinter = require ("pdfmake");
-// const fs = require("fs");
-// const fonts = require("./fonts");
-// const style = require("./style");
-// const {content} = require("./pdfContent");
-
-// let docDefinition = {
-//     content: content,
-//     style: style
-// };
-
-// const printer = new PdfPrinter(fonts);
-
-// let pdfDoc = printer.createPdfKitDocument(docDefinition);
-// pdfDoc.pipe(fs.createReadStream("pdfs/pdfTest.pdf"));
-// pdfDoc.end();
-//TERMINA PDF VENTAS-PAQUETE DESISTALADO*?
-
-
+app.use(session({
+    secret: '123',
+    resave: true,
+    saveUninitialized: true 
+}))
 
 app.use(express.static(path.join(__dirname,'public')));
 app.use(morgan('dev'));
