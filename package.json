@@ -16,9 +16,14 @@
     "material-design-iconic-font": "^2.2.0",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
+<<<<<<< HEAD
     "path": "^0.12.7",
     "pdfkit": "^0.13.0",
     "session": "^0.1.0"
+=======
+    "pdfkit": "^0.13.0",
+    "path": "^0.12.7"
+>>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
   },
   "devDependencies": {
     "bcryptjs": "^2.4.3",

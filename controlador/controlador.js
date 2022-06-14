@@ -359,6 +359,7 @@ controlador.devolucion = async (req, res, next) => {
   });
 };
 
+<<<<<<< HEAD
 //En este estoy trabajando - JULIAN
 //FACTURACION - VENTAS
 // INSERTAR FACTURA
@@ -386,6 +387,14 @@ controlador.prubfact = (req, res, next) => {
 };
 // INSERTAR FACTURA
 controlador.ventas = (req, res, next) => {
+=======
+
+
+
+//JULIAN
+// INSERTAR FACTURA
+controlador.factura = (req, res, next) => {
+>>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
   const c = req.body.co;
   const d = req.body.do;
   const co = req.body.cod;
@@ -393,7 +402,6 @@ controlador.ventas = (req, res, next) => {
   const ca = req.body.ca;
   const va = req.body.va;
 
-  //INSERTAR FACTURA
   conexion.query(
     "INSERT INTO facturacion SET ?",
     {
@@ -414,6 +422,16 @@ controlador.ventas = (req, res, next) => {
   );
 };
 
+<<<<<<< HEAD
+=======
+
+//Duvan
+controlador.prubfact = (req, res, next) => {
+  res.render("prubfact");
+};
+//Duvan
+
+>>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
 //CONSULTA INDIVIDUAL
 controlador.prubfact = async (req, res, next) => {
   const fact = req.body.cod;
@@ -566,8 +584,8 @@ controlador.delcarrito = async (req, res, next) => {
 
 
 
-// CONSULTAR FACTURA
 
+// CONSULTAR FACTURA
 controlador.ventas = async (req, res, next) => {
   conexion.query("SELECT * FROM facturacion", (err, resbd) => {
     if (err) {
@@ -580,14 +598,16 @@ controlador.ventas = async (req, res, next) => {
 };
 
 //ACTUALIZAR FACTURA
-controlador.actufac = async (req, res) => {
-  const co = req.body.dd;
-  const doc = req.body.uu;
-  const cod = req.body.aa;
-  const fe = req.body.cc;
-  const can = req.body.rr;
-  const val = req.body.vv;
+controlador.actualizarfac = async (req, res, next) => {
+  const codpf = req.body.dd;
+  const docf = req.body.uu;
+  const codff = req.body.aa;
+  const fecf = req.body.cc;
+  const canf = req.body.rr;
+  const valf = req.body.vv;
+  console.log(codpf, docf, codff, fecf, canf, valf);
 
+<<<<<<< HEAD
   conexion.query(
     'UPDATE facturacion SET codigo_fac="' +
       cod +
@@ -602,20 +622,35 @@ controlador.actufac = async (req, res) => {
       '"WHERE doc_usu="' +
       doc +
       '"',
+=======
+  conexion.query('UPDATE facturacion SET doc_usu="' + docf +
+    '",codigo_fac="' + codff +
+    '", fecha_fac="' + fecf +
+    '",cantidad_fac="' + canf +
+    '", valor_fac="' + valf +
+    '", WHERE codigo_p="' + codpf + '"',
+>>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
     async (err) => {
       if (err) {
-        console.log("error al actualizar facturas");
+        console.log("Error en actualizar factura." + err)
         throw err;
-      } else {
-        res.redirect("ventas");
       }
+<<<<<<< HEAD
     }
   );
 };
 //ACTUALIZAR FACTURA
+=======
+      else {
+        console.log("Actualizado")
+        res.redirect("/ventas")
+      }
+    });
+}
+>>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
 
 //BORRAR FACTURA
-controlador.borrarfac = (req, res, next) => {
+controlador.eliminarfac = (req, res, next) => {
   const cod = req.body.dd;
   conexion.query(
     'DELETE FROM facturacion WHERE codigo_fac="' + cod + '"',
@@ -627,10 +662,16 @@ controlador.borrarfac = (req, res, next) => {
         res.redirect("ventas");
       }
     }
+<<<<<<< HEAD
   );
 };
+=======
+  )
+}
+>>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
 
-//GENERAR FACTURA
+
+//GENERAR FACTURA PDFS
 controlador.facturapedido = async (req, res) => {
   const doc = new PDF();
 
@@ -639,21 +680,17 @@ controlador.facturapedido = async (req, res) => {
   doc.pipe(fs.createReadStream("ejemplo.pdf"));
 
   doc.end();
+<<<<<<< HEAD
 };
 //FIN FACTURA
+=======
+}
+//FIN FACTURA PDFS
+>>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
 
 //ENTRADA
 //INSERTAR ENTRADA - PRODCUTO
-controlador.inserentra = (req, res, next) => {
-  const co = req.body.cod;
-  const ca = req.body.can;
-  const va = req.body.val;
-  const val = req.body.vals;
-  console.log(co, ca, va, val);
-};
-//ENTRADA
-//INSERTAR ENTRADA - PRODCUTO
-controlador.insertent = (req, res, next) => {
+controlador.insentrada = (req, res, next) => {
   const c = req.body.cod;
   const ca = req.body.can;
   const va = req.body.val;
@@ -662,10 +699,17 @@ controlador.insertent = (req, res, next) => {
   conexion.query(
     "INSERT INTO entrada SET ?",
     {
+<<<<<<< HEAD
       codigo_p: co,
       cantidad_entr: ca,
       valor_llegada: va,
       valor_salida: val,
+=======
+      codigo_p: c,
+      cantidad_entr: ca,
+      valor_llegada: va,
+      valor_salida: sa,
+>>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
     },
     (err) => {
       if (err) {
@@ -689,8 +733,14 @@ controlador.entrada = async (req, res, next) => {
   });
 };
 
+<<<<<<< HEAD
 //ACTUALIZAR ENTRADA
 controlador.actuent = async (req, res) => {
+=======
+
+// //ACTUALIZAR ENTRADA
+controlador.actentrada = async (req, res) => {
+>>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
   const co = req.body.cc;
   const ca = req.body.dd;
   const va = req.body.va;
@@ -718,10 +768,10 @@ controlador.actuent = async (req, res) => {
 };
 
 //BORRAR ENTRADDA?
-controlador.borrarent = (req, res, next) => {
+controlador.eliminarent = (req, res, next) => {
   const co = req.body.dd;
   conexion.query(
-    'DELETE FROM entraada WHERE codigo_p="' + co + '"',
+    'DELETE FROM entrada WHERE codigo_p="' + co + '"',
     async (err, respbb) => {
       if (err) {
         next(new Error(err));
@@ -733,6 +783,8 @@ controlador.borrarent = (req, res, next) => {
   );
 };
 
+
+//BRAYAN
 //Tiempo
 //Insertar tiempo
 controlador.insertartiempo = async (req, res, next) => {
@@ -743,23 +795,58 @@ controlador.insertartiempo = async (req, res, next) => {
   const hr_ex = req.body.hr_ex;
   const id_ti = req.body.id_ti;
 
+conexion.query(
+  "INSERT INTO tiempo SET ?",
+  {
+    doc_usu: doc_t,
+    hora_entrada: hr_en,
+    hora_salida: hr_sa,
+    horas_trabajadas: hr_tra,
+    horas_extras: hr_ex,
+    id_tiempo: id_ti,
+  },
+  (err) => {
+    if (err) {
+      throw err;
+      console.log("Error en insertar tiempo");
+    } else {
+      console.log("Se inserto en la tabla tiempo");
+      res.redirect("/tiempo");
+    }
+  }
+);
+};
+
+//Actualizar tiempo
+controlador.actutiempo = async (req, res, next) => {
+  const idtt = req.body.itt;
+  const docu = req.body.dcc;
+  const hoen = req.body.hee;
+  const hosa = req.body.hss;
+  const hotr = req.body.htt;
+  const hoex = req.body.hxx;
+
   conexion.query(
-    "INSERT INTO tiempo SET ?",
-    {
-      doc_usu: doc_t,
-      hora_entrada: hr_en,
-      hora_salida: hr_sa,
-      horas_trabajadas: hr_tra,
-      horas_extras: hr_ex,
-      id_tiempo: id_ti,
-    },
-    (err) => {
+    'UPDATE tiempo SET doc_usu="' +
+    docu +
+    '", hora_entrada="' +
+    hoen +
+    '", hora_salida="' +
+    hosa +
+    '", horas_trabajadas="' +
+    hotr +
+    '", horas_extras="' +
+    hoex +
+    '" WHERE id_tiempo="' +
+    idtt +
+    '"',
+    async (err) => {
       if (err) {
+        console.log("error al actualizar tiempo");
         throw err;
-        console.log("Error en insertar tiempo");
       } else {
-        console.log("Se inserto en la tabla tiempo");
-        res.redirect("/tiempo");
+        console.log("actualizado");
+        res.redirect("tiempo");
       }
     }
   );
@@ -779,9 +866,9 @@ controlador.tiempo = async (req, res, next) => {
 
 //Eliminar tiempo
 controlador.elitiempo = async (req, res) => {
-  const doc = req.body.dd;
+  const idt = req.body.ddt;
   conexion.query(
-    'DELETE FROM tiempo WHERE id_tiempo="' + doc + '"',
+    'DELETE FROM tiempo WHERE id_tiempo="' + idt + '"',
     async (err) => {
       if (err) {
         console.log("error al eliminar en tiempo");
@@ -795,7 +882,7 @@ controlador.elitiempo = async (req, res) => {
 };
 
 //Nomina
-controlador.nomina = async (req, res, next) => {
+controlador.innomina = async (req, res, next) => {
   const idn_n = req.body.idn_n;
   const doc_n = req.body.doc_n;
   const vhr_n = req.body.vhr_n;
@@ -806,32 +893,77 @@ controlador.nomina = async (req, res, next) => {
   const pg_n = req.body.pg_n;
   const mes_n = req.body.mes_n;
 
+conexion.query(
+  "INSERT INTO nomina SET ?",
+  {
+    id_nomina: idn_n,
+    doc_usu: doc_n,
+    valor_hora: vhr_n,
+    extra: vhre_n,
+    nocturna: vhrn_n,
+    festiva: vhrf_n,
+    bonificacion: vbo_n,
+    pago: pg_n,
+    mes_pagado: mes_n,
+  },
+  (err) => {
+    if (err) {
+      throw err;
+      console.log("Error en insertar nomina");
+    } else {
+      console.log("Se inserto en la tabla nomina");
+      res.redirect("/nomina");
+    }
+  }
+);
+};
+
+//Actualizar nomina
+controlador.actunomina = async (req, res, next) => {
+  const idttt = req.body.iii;
+  const docuu = req.body.ddd;
+  const hoenn = req.body.hhh;
+  const hosaa = req.body.xxx;
+  const hotrr = req.body.nnn;
+  const hoexx = req.body.fff;
+  const hossa = req.body.bbb;
+  const hottr = req.body.ppp;
+  const hoeex = req.body.mmm;
+
   conexion.query(
-    "INSERT INTO nomina SET ?",
-    {
-      id_nomina: idn_n,
-      doc_usu: doc_n,
-      valor_hora: vhr_n,
-      extra: vhre_n,
-      nocturna: vhrn_n,
-      festiva: vhrf_n,
-      bonificacion: vbo_n,
-      pago: pg_n,
-      mes_pagado: mes_n,
-    },
-    (err) => {
+    'UPDATE nomina SET doc_usu="' +
+    docuu +
+    '", valor_hora="' +
+    hoenn +
+    '", extra="' +
+    hosaa +
+    '", nocturna="' +
+    hotrr +
+    '", festiva="' +
+    hoexx +
+    '", bonificacion="' +
+    hossa +
+    '", pago="' +
+    hottr +
+    '", mes_pagado="' +
+    hoeex +
+    '" WHERE id_nomina="' +
+    idttt +
+    '"',
+    async (err) => {
       if (err) {
+        console.log("error al actualizar nomina");
         throw err;
-        console.log("Error en insertar nomina");
       } else {
-        console.log("Se inserto en la tabla nomina");
-        res.redirect("/nomina");
+        console.log("actualizado");
+        res.redirect("nomina");
       }
     }
   );
 };
 
 //Consultar nomina
+<<<<<<< HEAD
 controlador.consultarnomina = async (req, res) => {
   conexion.query("SELECT * FROM nomina", (err, resbd) => {
     if (err) {
@@ -841,14 +973,25 @@ controlador.consultarnomina = async (req, res) => {
       console.log(resbd);
       res.render("nomina", { datos: resbd });
     }
+=======
+controlador.nomina = async(req, res) => {
+  conexion.query('SELECT * FROM nomina', (err, resbd) => {
+      if (err) {
+          next(new Error(err))
+          console.log("Error en la consulta")
+      } else {
+          console.log(resbd)
+          res.render('nomina', { datos: resbd });
+      }
+>>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
   });
 };
 
 //Eliminar Nomina
 controlador.elinomina = async (req, res) => {
-  const doc = req.body.dd;
+  const dnn = req.body.dn;
   conexion.query(
-    'DELETE FROM nomina WHERE id_nomina="' + doc + '"',
+    'DELETE FROM nomina WHERE id_nomina="' + dnn + '"',
     async (err) => {
       if (err) {
         console.log("error al eliminar en nomina");
@@ -862,7 +1005,7 @@ controlador.elinomina = async (req, res) => {
 };
 
 //Productos
-controlador.producto = async (req, res, next) => {
+controlador.insproducto = async (req, res, next) => {
   const id_pro = req.body.id_pro;
   const cod_pro = req.body.cod_pro;
   const nom_pro = req.body.nom_pro;
@@ -870,29 +1013,65 @@ controlador.producto = async (req, res, next) => {
   const prc_pro = req.body.prc_pro;
   const iva_pro = req.body.iva_pro;
 
+conexion.query(
+  "INSERT INTO productos SET ?",
+  {
+    id_producto: id_pro,
+    codigo_p: cod_pro,
+    nombre_prod: nom_pro,
+    cantidad_und_prod: can_pro,
+    valor_prod: prc_pro,
+    iva_prod: iva_pro,
+  },
+  (err) => {
+    if (err) {
+      throw err;
+      console.log("Error en insertar producto");
+    } else {
+      console.log("Se inserto en la tabla produtos");
+      res.redirect("/productos");
+    }
+  }
+);
+};
+
+//Actualizar productos
+controlador.actuproductos = async (req, res, next) => {
+  const idttp = req.body.ddp;
+  const docup = req.body.uup;
+  const hoenp = req.body.aap;
+  const hosap = req.body.ccp;
+  const hotrp = req.body.rrp;
+  const hoexp = req.body.ffp;
+
   conexion.query(
-    "INSERT INTO productos SET ?",
-    {
-      id_producto: id_pro,
-      codigo_p: cod_pro,
-      nombre_prod: nom_pro,
-      cantidad_und_prod: can_pro,
-      valor_prod: prc_pro,
-      iva_prod: iva_pro,
-    },
-    (err) => {
+    'UPDATE productos SET codigo_p="' +
+    docup +
+    '", nombre_prod="' +
+    hoenp +
+    '", cantidad_und_prod="' +
+    hosap +
+    '", valor_prod="' +
+    hotrp +
+    '", iva_prod="' +
+    hoexp +
+    '" WHERE id_producto="' +
+    idttp +
+    '"',
+    async (err) => {
       if (err) {
+        console.log("error al actualizar producto");
         throw err;
-        console.log("Error en insertar producto");
       } else {
-        console.log("Se inserto en la tabla produtos");
-        res.redirect("/productos");
+        console.log("actualizado");
+        res.redirect("productos");
       }
     }
   );
 };
 
 //Consultar productos
+<<<<<<< HEAD
 controlador.cproductos = async (req, res, next) => {
   conexion.query("SELECT * FROM productos", (err, resbd) => {
     if (err) {
@@ -904,12 +1083,25 @@ controlador.cproductos = async (req, res, next) => {
     }
   });
 };
+=======
+controlador.productos = async(req, res, next) => {
+  conexion.query('SELECT * FROM productos', (err, resbd) => {
+      if (err) {
+          next(new Error(err))
+          console.log("Error en la consulta")
+      } else {
+          console.log(resbd)
+          res.render('productos', { datos: resbd });
+      }
+  })
+}
+>>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
 
 //Eliminar productos
 controlador.eliproductos = async (req, res) => {
-  const doc = req.body.dd;
+  const dft = req.body.dts;
   conexion.query(
-    'DELETE FROM productos WHERE id_tiempo="' + doc + '"',
+    'DELETE FROM productos WHERE id_producto="' + dft + '"',
     async (err) => {
       if (err) {
         console.log("error al eliminar en productos");
@@ -923,3 +1115,7 @@ controlador.eliproductos = async (req, res) => {
 };
 
 module.exports = controlador;
+<<<<<<< HEAD
+=======
+module.exports = controlador;
+>>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08

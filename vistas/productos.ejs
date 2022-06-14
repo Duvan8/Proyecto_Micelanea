@@ -18,6 +18,7 @@
 	<script src="js/jquery.mCustomScrollbar.concat.min.js" ></script>
 	<script src="js/main.js" ></script>
 	<script src="js/eliproductos.js"></script>
+	<script src="js/actuproductos.js"></script>
 </head>
 <body>
 	<!-- navLateral -->
@@ -232,7 +233,6 @@
 					<thead>
 						<tr>
                             <th>Id</th>
-							<th>Documento</th>
 							<th>codigo</th>
 							<th>Nombre Producto</th>
 							<th>Cantidad</th>
@@ -243,19 +243,18 @@
 						</tr>
 					</thead>
 					 <tbody>
-						
+						<% datos.forEach(function (datos) { %>
 							<tr>
-								<td><input type="text" value="" name="doc" class="col-6 doc_usu"></td>
-								<td><input type="text" value="" name="nom" class="col-12 nom_usu"></td>
-								<td><input type="text" value="" name="ape" class="col-12 ape"></td>
-								<td><input type="text" value="" name="pass" class="col-12 contraseña"></td>
-								<td><input type="text" value="" name="" class="rol"></td>
-								<td><input type="text" value="" name="nac" class="col-12 fecha"></td>
-                                <td><input type="text" value="" name="nac" class="col-12 fecha"></td>
+								<td><input type="text" value="<%= datos.id_producto%>" name="idp" class="col-12 id_p" readonly></td>
+								<td><input type="text" value="<%= datos.codigo_p%>" name="codp" class="col-12 c_p"></td>
+								<td><input type="text" value="<%= datos.nombre_prod%>" name="nomp" class="col-12 nom_p"></td>
+								<td><input type="text" value="<%= datos.cantidad_und_prod%>" name="canp" class="col-12 can_p"></td>
+								<td><input type="text" value="<%= datos.valor_prod%>" name="vlp" class="col-12 vl_p"></td>
+								<td><input type="text" value="<%= datos.iva_prod%>" name="ivap" class="col-12 iva_p"></td>
 								<td><input type="submit" value="Actualizar" name="btnact" class="col-12 btnact"></td>
 								<td><input type="submit" value="Eliminar" class="col-12 btneli"></td>
 							</tr>
-							
+							<% }) %>
 					</tbody>
 				</table>
 				<div class="mdl-grid">
