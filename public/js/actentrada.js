@@ -1,7 +1,5 @@
 $(document).ready(function(){
     $('.btnzar').on('click',function(){
-        
-        
         let btn=$('.btnzar').index(this);
         let codigo=$('.cod').eq(btn);
         let cantidad=$('.can').eq(btn);
