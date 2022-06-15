@@ -20,10 +20,6 @@ router.get('/devolucion',(req, res) => {
 router.get('/ganancias',(req, res) => {
     res.render('ganancias');
 });
-router.get('/entrada',(req, res) => {
-    res.render('entrada');
-});
-
 
 //FACTURA
 router.get('/get-factura-ventas/:id', controlador.facturapedido);
@@ -76,17 +72,11 @@ router.get('/devolucion',(req, res) => {
     res.render('devolucion');
 });
 
-<<<<<<< HEAD
 //TIEMPO
 router.get('/tiempo',(req, res) => {
     res.render('tiempo');
 });
-=======
-router.get('/entrada',(req, res) => {
-    res.render('entrada');
-});
 
->>>>>>> f54d32440e79b15a16c5e78bb969c48a23796408
 
 //BRAYAN
 //TIEMPO CRUD COMPLETO
