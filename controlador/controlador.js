@@ -6,8 +6,8 @@ const controlador = {};
 //const cnn = connection();
 
 //PDF
-const PDF = require("pdfkit");
-const fs = require("fs");
+/* const PDF = require("pdfkit");
+const fs = require("fs"); */
 //PDF FINISH
 
 controlador.index = (req, res, next) => {
@@ -15,6 +15,9 @@ controlador.index = (req, res, next) => {
 };
 controlador.proveedores = (req, res, next) => {
   res.render("proveedores");
+};
+controlador.productos = (req, res, next) => {
+  res.render("productos");
 };
 controlador.administrador = (req, res, next) => {
   res.render("administrador");
@@ -25,6 +28,9 @@ controlador.ventas = (req, res, next) => {
 };
 controlador.entrada = (req, res, next) => {
   res.render("entrada");
+};
+controlador.tiempo = (req, res, next) => {
+  res.render("tiempo");
 };
 
 // =======
@@ -359,7 +365,6 @@ controlador.devolucion = async (req, res, next) => {
   });
 };
 
-<<<<<<< HEAD
 //En este estoy trabajando - JULIAN
 //FACTURACION - VENTAS
 // INSERTAR FACTURA
@@ -386,15 +391,9 @@ controlador.prubfact = (req, res, next) => {
   res.render("prubfact");
 };
 // INSERTAR FACTURA
-controlador.ventas = (req, res, next) => {
-=======
-
-
-
 //JULIAN
 // INSERTAR FACTURA
 controlador.factura = (req, res, next) => {
->>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
   const c = req.body.co;
   const d = req.body.do;
   const co = req.body.cod;
@@ -422,20 +421,9 @@ controlador.factura = (req, res, next) => {
   );
 };
 
-<<<<<<< HEAD
-=======
-
-//Duvan
-controlador.prubfact = (req, res, next) => {
-  res.render("prubfact");
-};
-//Duvan
-
->>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
 //CONSULTA INDIVIDUAL
 controlador.prubfact = async (req, res, next) => {
   const fact = req.body.cod;
-  var a = 0;
   conexion.query(
     'SELECT * FROM productos WHERE codigo_p ="' + fact + '" ',
     (err, resbd) => {
@@ -454,6 +442,9 @@ controlador.valor = async (req, res, next) => {
 controlador.pagar = async (req, res, next) => {
   var b = 5000;
   const fac = req.body.ll;
+  const cod = req.body.cc;
+  const can = req.body.aa;
+
   conexion.query(
     "UPDATE facturacion SET codigo_fac = '" +
       fac +
@@ -470,6 +461,7 @@ controlador.pagar = async (req, res, next) => {
     }
   );
 };
+
 controlador.valor = async (req, res, next) => {
   b = 5000;
   conexion.query(
@@ -539,6 +531,20 @@ controlador.carrito = async (req, res, next) => {
           if (err) {
             next(new Error(err));
           } else {
+            conexion.query(
+              "UPDATE productos SET cantidad_und_prod=cantidad_und_prod-'" +
+                can +
+                "' WHERE codigo_p='" +
+                cod +
+                "'",
+              (err) => {
+                if (err) {
+                  throw err;
+                } else {
+                  res.redirect("prubfact");
+                }
+              }
+            );
             console.log("prubfact");
           }
         }
@@ -555,6 +561,8 @@ controlador.carrito = async (req, res, next) => {
 controlador.delcarrito = async (req, res, next) => {
   let b = 5000;
   const val = req.body.vv;
+  const cod = req.body.cc;
+  const can = req.body.aa;
   conexion.query(
     'UPDATE facturacion SET  valor_fac=valor_fac-"' +
       val +
@@ -567,23 +575,33 @@ controlador.delcarrito = async (req, res, next) => {
       } else {
         console.log("error al desactulizar valor");
       }
-      cod = req.body.cc;
       conexion.query(
-        'DELETE FROM detalle_fac WHERE codigo_p ="' + cod + '"',
+        "UPDATE productos SET cantidad_und_prod=cantidad_und_prod+'" +
+          can +
+          "' WHERE codigo_p='" +
+          cod +
+          "'",
         async (err) => {
           if (err) {
             throw err;
           } else {
-            res.redirect("valor");
+            console.log("actulizo exitosamente")
           }
+          conexion.query(
+            'DELETE FROM detalle_fac WHERE codigo_p ="' + cod + '"',
+            async (err) => {
+              if (err) {
+                throw err;
+              } else {
+                res.redirect("valor");
+              }
+            }
+          );
         }
       );
     }
   );
 };
-
-
-
 
 // CONSULTAR FACTURA
 controlador.ventas = async (req, res, next) => {
@@ -596,58 +614,6 @@ controlador.ventas = async (req, res, next) => {
     }
   });
 };
-
-//ACTUALIZAR FACTURA
-controlador.actualizarfac = async (req, res, next) => {
-  const codpf = req.body.dd;
-  const docf = req.body.uu;
-  const codff = req.body.aa;
-  const fecf = req.body.cc;
-  const canf = req.body.rr;
-  const valf = req.body.vv;
-  console.log(codpf, docf, codff, fecf, canf, valf);
-
-<<<<<<< HEAD
-  conexion.query(
-    'UPDATE facturacion SET codigo_fac="' +
-      cod +
-      '",codigo_p="' +
-      co +
-      '", fecha_fac="' +
-      fe +
-      '", cantidad_fac="' +
-      can +
-      '", valor_fac="' +
-      val +
-      '"WHERE doc_usu="' +
-      doc +
-      '"',
-=======
-  conexion.query('UPDATE facturacion SET doc_usu="' + docf +
-    '",codigo_fac="' + codff +
-    '", fecha_fac="' + fecf +
-    '",cantidad_fac="' + canf +
-    '", valor_fac="' + valf +
-    '", WHERE codigo_p="' + codpf + '"',
->>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
-    async (err) => {
-      if (err) {
-        console.log("Error en actualizar factura." + err)
-        throw err;
-      }
-<<<<<<< HEAD
-    }
-  );
-};
-//ACTUALIZAR FACTURA
-=======
-      else {
-        console.log("Actualizado")
-        res.redirect("/ventas")
-      }
-    });
-}
->>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
 
 //BORRAR FACTURA
 controlador.eliminarfac = (req, res, next) => {
@@ -662,14 +628,8 @@ controlador.eliminarfac = (req, res, next) => {
         res.redirect("ventas");
       }
     }
-<<<<<<< HEAD
   );
 };
-=======
-  )
-}
->>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
-
 
 //GENERAR FACTURA PDFS
 controlador.facturapedido = async (req, res) => {
@@ -680,13 +640,10 @@ controlador.facturapedido = async (req, res) => {
   doc.pipe(fs.createReadStream("ejemplo.pdf"));
 
   doc.end();
-<<<<<<< HEAD
 };
 //FIN FACTURA
-=======
-}
+
 //FIN FACTURA PDFS
->>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
 
 //ENTRADA
 //INSERTAR ENTRADA - PRODCUTO
@@ -699,17 +656,15 @@ controlador.insentrada = (req, res, next) => {
   conexion.query(
     "INSERT INTO entrada SET ?",
     {
-<<<<<<< HEAD
       codigo_p: co,
       cantidad_entr: ca,
       valor_llegada: va,
       valor_salida: val,
-=======
+
       codigo_p: c,
       cantidad_entr: ca,
       valor_llegada: va,
       valor_salida: sa,
->>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
     },
     (err) => {
       if (err) {
@@ -733,14 +688,8 @@ controlador.entrada = async (req, res, next) => {
   });
 };
 
-<<<<<<< HEAD
-//ACTUALIZAR ENTRADA
-controlador.actuent = async (req, res) => {
-=======
-
 // //ACTUALIZAR ENTRADA
 controlador.actentrada = async (req, res) => {
->>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
   const co = req.body.cc;
   const ca = req.body.dd;
   const va = req.body.va;
@@ -783,7 +732,6 @@ controlador.eliminarent = (req, res, next) => {
   );
 };
 
-
 //BRAYAN
 //Tiempo
 //Insertar tiempo
@@ -795,26 +743,26 @@ controlador.insertartiempo = async (req, res, next) => {
   const hr_ex = req.body.hr_ex;
   const id_ti = req.body.id_ti;
 
-conexion.query(
-  "INSERT INTO tiempo SET ?",
-  {
-    doc_usu: doc_t,
-    hora_entrada: hr_en,
-    hora_salida: hr_sa,
-    horas_trabajadas: hr_tra,
-    horas_extras: hr_ex,
-    id_tiempo: id_ti,
-  },
-  (err) => {
-    if (err) {
-      throw err;
-      console.log("Error en insertar tiempo");
-    } else {
-      console.log("Se inserto en la tabla tiempo");
-      res.redirect("/tiempo");
+  conexion.query(
+    "INSERT INTO tiempo SET ?",
+    {
+      doc_usu: doc_t,
+      hora_entrada: hr_en,
+      hora_salida: hr_sa,
+      horas_trabajadas: hr_tra,
+      horas_extras: hr_ex,
+      id_tiempo: id_ti,
+    },
+    (err) => {
+      if (err) {
+        throw err;
+        console.log("Error en insertar tiempo");
+      } else {
+        console.log("Se inserto en la tabla tiempo");
+        res.redirect("/tiempo");
+      }
     }
-  }
-);
+  );
 };
 
 //Actualizar tiempo
@@ -828,18 +776,18 @@ controlador.actutiempo = async (req, res, next) => {
 
   conexion.query(
     'UPDATE tiempo SET doc_usu="' +
-    docu +
-    '", hora_entrada="' +
-    hoen +
-    '", hora_salida="' +
-    hosa +
-    '", horas_trabajadas="' +
-    hotr +
-    '", horas_extras="' +
-    hoex +
-    '" WHERE id_tiempo="' +
-    idtt +
-    '"',
+      docu +
+      '", hora_entrada="' +
+      hoen +
+      '", hora_salida="' +
+      hosa +
+      '", horas_trabajadas="' +
+      hotr +
+      '", horas_extras="' +
+      hoex +
+      '" WHERE id_tiempo="' +
+      idtt +
+      '"',
     async (err) => {
       if (err) {
         console.log("error al actualizar tiempo");
@@ -893,29 +841,29 @@ controlador.innomina = async (req, res, next) => {
   const pg_n = req.body.pg_n;
   const mes_n = req.body.mes_n;
 
-conexion.query(
-  "INSERT INTO nomina SET ?",
-  {
-    id_nomina: idn_n,
-    doc_usu: doc_n,
-    valor_hora: vhr_n,
-    extra: vhre_n,
-    nocturna: vhrn_n,
-    festiva: vhrf_n,
-    bonificacion: vbo_n,
-    pago: pg_n,
-    mes_pagado: mes_n,
-  },
-  (err) => {
-    if (err) {
-      throw err;
-      console.log("Error en insertar nomina");
-    } else {
-      console.log("Se inserto en la tabla nomina");
-      res.redirect("/nomina");
+  conexion.query(
+    "INSERT INTO nomina SET ?",
+    {
+      id_nomina: idn_n,
+      doc_usu: doc_n,
+      valor_hora: vhr_n,
+      extra: vhre_n,
+      nocturna: vhrn_n,
+      festiva: vhrf_n,
+      bonificacion: vbo_n,
+      pago: pg_n,
+      mes_pagado: mes_n,
+    },
+    (err) => {
+      if (err) {
+        throw err;
+        console.log("Error en insertar nomina");
+      } else {
+        console.log("Se inserto en la tabla nomina");
+        res.redirect("/nomina");
+      }
     }
-  }
-);
+  );
 };
 
 //Actualizar nomina
@@ -932,24 +880,24 @@ controlador.actunomina = async (req, res, next) => {
 
   conexion.query(
     'UPDATE nomina SET doc_usu="' +
-    docuu +
-    '", valor_hora="' +
-    hoenn +
-    '", extra="' +
-    hosaa +
-    '", nocturna="' +
-    hotrr +
-    '", festiva="' +
-    hoexx +
-    '", bonificacion="' +
-    hossa +
-    '", pago="' +
-    hottr +
-    '", mes_pagado="' +
-    hoeex +
-    '" WHERE id_nomina="' +
-    idttt +
-    '"',
+      docuu +
+      '", valor_hora="' +
+      hoenn +
+      '", extra="' +
+      hosaa +
+      '", nocturna="' +
+      hotrr +
+      '", festiva="' +
+      hoexx +
+      '", bonificacion="' +
+      hossa +
+      '", pago="' +
+      hottr +
+      '", mes_pagado="' +
+      hoeex +
+      '" WHERE id_nomina="' +
+      idttt +
+      '"',
     async (err) => {
       if (err) {
         console.log("error al actualizar nomina");
@@ -963,7 +911,7 @@ controlador.actunomina = async (req, res, next) => {
 };
 
 //Consultar nomina
-<<<<<<< HEAD
+
 controlador.consultarnomina = async (req, res) => {
   conexion.query("SELECT * FROM nomina", (err, resbd) => {
     if (err) {
@@ -973,17 +921,17 @@ controlador.consultarnomina = async (req, res) => {
       console.log(resbd);
       res.render("nomina", { datos: resbd });
     }
-=======
-controlador.nomina = async(req, res) => {
-  conexion.query('SELECT * FROM nomina', (err, resbd) => {
-      if (err) {
-          next(new Error(err))
-          console.log("Error en la consulta")
-      } else {
-          console.log(resbd)
-          res.render('nomina', { datos: resbd });
-      }
->>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
+  });
+};
+controlador.nomina = async (req, res) => {
+  conexion.query("SELECT * FROM nomina", (err, resbd) => {
+    if (err) {
+      next(new Error(err));
+      console.log("Error en la consulta");
+    } else {
+      console.log(resbd);
+      res.render("nomina", { datos: resbd });
+    }
   });
 };
 
@@ -1013,26 +961,26 @@ controlador.insproducto = async (req, res, next) => {
   const prc_pro = req.body.prc_pro;
   const iva_pro = req.body.iva_pro;
 
-conexion.query(
-  "INSERT INTO productos SET ?",
-  {
-    id_producto: id_pro,
-    codigo_p: cod_pro,
-    nombre_prod: nom_pro,
-    cantidad_und_prod: can_pro,
-    valor_prod: prc_pro,
-    iva_prod: iva_pro,
-  },
-  (err) => {
-    if (err) {
-      throw err;
-      console.log("Error en insertar producto");
-    } else {
-      console.log("Se inserto en la tabla produtos");
-      res.redirect("/productos");
+  conexion.query(
+    "INSERT INTO productos SET ?",
+    {
+      id_producto: id_pro,
+      codigo_p: cod_pro,
+      nombre_prod: nom_pro,
+      cantidad_und_prod: can_pro,
+      valor_prod: prc_pro,
+      iva_prod: iva_pro,
+    },
+    (err) => {
+      if (err) {
+        throw err;
+        console.log("Error en insertar producto");
+      } else {
+        console.log("Se inserto en la tabla produtos");
+        res.redirect("/productos");
+      }
     }
-  }
-);
+  );
 };
 
 //Actualizar productos
@@ -1046,18 +994,18 @@ controlador.actuproductos = async (req, res, next) => {
 
   conexion.query(
     'UPDATE productos SET codigo_p="' +
-    docup +
-    '", nombre_prod="' +
-    hoenp +
-    '", cantidad_und_prod="' +
-    hosap +
-    '", valor_prod="' +
-    hotrp +
-    '", iva_prod="' +
-    hoexp +
-    '" WHERE id_producto="' +
-    idttp +
-    '"',
+      docup +
+      '", nombre_prod="' +
+      hoenp +
+      '", cantidad_und_prod="' +
+      hosap +
+      '", valor_prod="' +
+      hotrp +
+      '", iva_prod="' +
+      hoexp +
+      '" WHERE id_producto="' +
+      idttp +
+      '"',
     async (err) => {
       if (err) {
         console.log("error al actualizar producto");
@@ -1071,7 +1019,7 @@ controlador.actuproductos = async (req, res, next) => {
 };
 
 //Consultar productos
-<<<<<<< HEAD
+
 controlador.cproductos = async (req, res, next) => {
   conexion.query("SELECT * FROM productos", (err, resbd) => {
     if (err) {
@@ -1083,19 +1031,18 @@ controlador.cproductos = async (req, res, next) => {
     }
   });
 };
-=======
-controlador.productos = async(req, res, next) => {
-  conexion.query('SELECT * FROM productos', (err, resbd) => {
-      if (err) {
-          next(new Error(err))
-          console.log("Error en la consulta")
-      } else {
-          console.log(resbd)
-          res.render('productos', { datos: resbd });
-      }
-  })
-}
->>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08
+
+controlador.productos = async (req, res, next) => {
+  conexion.query("SELECT * FROM productos", (err, resbd) => {
+    if (err) {
+      next(new Error(err));
+      console.log("Error en la consulta");
+    } else {
+      console.log(resbd);
+      res.render("productos", { datos: resbd });
+    }
+  });
+};
 
 //Eliminar productos
 controlador.eliproductos = async (req, res) => {
@@ -1115,7 +1062,3 @@ controlador.eliproductos = async (req, res) => {
 };
 
 module.exports = controlador;
-<<<<<<< HEAD
-=======
-module.exports = controlador;
->>>>>>> 21e3203ed2bf82f598b000ce938f0e66a6370c08

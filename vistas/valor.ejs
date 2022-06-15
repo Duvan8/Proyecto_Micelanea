@@ -184,7 +184,7 @@
                                 <%= venta.nombre_prod%>
                             </td>
                             <td>
-                                <%= venta.cantidad%>
+                                <input type="text" value="<%= venta.cantidad%>" class="cant">
                             </td>
                             <td>
                                 <input type="text" class="valor" value="<%= venta.valor_p%>">
@@ -195,9 +195,7 @@
                                     <i class="zmdi zmdi-delete"></i>
                                 </button></td>
                         </tr>
-
                         <% }) %>
-
                 </tbody>
             </table>
         </div>
@@ -209,7 +207,7 @@
             id="btn-addAdmin">
             <i class="zmdi zmdi-card text-center"></i>
         </button>
-        
+
     </section>
 </body>
 
