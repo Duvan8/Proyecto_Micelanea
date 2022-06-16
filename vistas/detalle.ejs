@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ventas</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/sweetalert2.css">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')</script>
+    <script src="js/eliminarfac.js"></script>
+    <script src="js/detallefac.js"></script>
+    <script src="js/material.min.js"></script>
+    <script src="js/sweetalert2.min.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <!-- navLateral -->
+    <section class="full-width navLateral">
+        <div class="full-width navLateral-bg btn-menu"></div>
+        <div class="full-width navLateral-body">
+            <div class="full-width navLateral-body-logo text-center tittles">
+                <i class="zmdi zmdi-close btn-menu"></i> Inventario
+            </div>
+            <figure class="full-width navLateral-body-tittle-menu">
+                <div>
+                    <img src="assets/img/avatar-male.png" alt="Avatar" class="img-responsive">
+                </div>
+                <figcaption>
+                    <span>
+                        Nombre del Administrador<br>
+                        <small>Administrador</small>
+                    </span>
+                </figcaption>
+            </figure>
+            <nav class="full-width">
+                <ul class="full-width list-unstyle menu-principal">
+                    <li class="full-width">
+                        <a href="interfaz" class="full-width">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-view-dashboard"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                INICIO
+                            </div>
+                        </a>
+                    </li>
+                    <li class="full-width divider-menu-h"></li>
+                    <li class="full-width">
+                        <a href="#!" class="full-width btn-subMenu">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-case"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                ADMINISTRACION
+                            </div>
+                            <span class="zmdi zmdi-chevron-left"></span>
+                        </a>
+                        <ul class="full-width menu-principal sub-menu-options">
+                            <li class="full-width">
+                                <a href="entrada" class="full-width">
+                                    <div class="navLateral-body-cl">
+                                        <i class="zmdi zmdi-truck"></i>
+                                    </div>
+                                    <div class="navLateral-body-cr">
+                                        ENTRADA
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="full-width divider-menu-h"></li>
+                    <li class="full-width">
+                        <a href="#!" class="full-width btn-subMenu">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-face"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                USUARIOS
+                            </div>
+                            <span class="zmdi zmdi-chevron-left"></span>
+                        </a>
+                        <ul class="full-width menu-principal sub-menu-options">
+                            <li class="full-width">
+                                <a href="administrador" class="full-width">
+                                    <div class="navLateral-body-cl">
+                                        <i class="zmdi zmdi-account"></i>
+                                    </div>
+                                    <div class="navLateral-body-cr">
+                                        ADMINISTRADORES
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="full-width divider-menu-h"></li>
+                    <li class="full-width">
+                        <a href="productos" class="full-width">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-washing-machine"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                PRODUCTOS
+                            </div>
+                        </a>
+                    </li>
+                    <li class="full-width divider-menu-h"></li>
+                    <li class="full-width">
+                        <a href="ventas" class="full-width">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-shopping-cart"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                VENTAS
+                            </div>
+                        </a>
+                    </li>
+                    <li class="full-width divider-menu-h"></li>
+                    <li class="full-width">
+                        <a href="inventario" class="full-width">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-store"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                INVENTARIO
+                            </div>
+                        </a>
+                    </li>
+                    <li class="full-width divider-menu-h"></li>
+                    <li class="full-width">
+                        <a href="ganancias" class="full-width">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-store"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                GANANCIAS
+                            </div>
+                        </a>
+                    </li>
+                    <li class="full-width divider-menu-h"></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <!-- pageContent -->
+    <section class="full-width pageContent">
+        <div class="mdl-tabs__panel" id="tabListDetalle">
+            <table class="table table-bordered table-striped text-center mt-3">
+                <thead>
+                    <tr class="bg-primary text-white">
+                        <th></th>
+                        <th>nombre</th>
+                        <th>cantidad</th>
+                        <th>valor producto</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% datos.forEach(function (datos) {%>
+                        <tr>
+                            <td>
+                                <%= datos.codigo_del%>
+                            </td>
+                            <td>
+                                <%= datos.cantidad%>
+                            </td>
+                            <td>
+                                <%= datos.codigo_p%>
+                            </td>
+                            <td>
+                                <%= datos.codigo_fac%>
+                            </td>
+                            <td>
+                                <%= datos.valor_p%>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+
+</html>

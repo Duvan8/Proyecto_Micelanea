@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $('.btndel').on('click',function(){
         let btn=$('.btndel').index(this);
-        let cod=$('.cfac').eq(btn);
+        let cod=$('.codf').eq(btn);
 
         let d=cod.val();
         alert("Datos eliminados Exitosamente");

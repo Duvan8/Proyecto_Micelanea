@@ -177,45 +177,15 @@
                                 NUEVA DEVOLUCION
                             </div>
                             <div class="full-width panel-content">
-                                <form method="post" action="/inserdev">
+                                <form method="post" action="/devolucion">
                                     <div class="mdl-grid">
-                                        <div class="mdl-cell mdl-cell--12-col">
-                                            <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i>
-                                                &nbsp; INFORMACION BASICA</legend><br>
-                                        </div>
                                         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="number" name="nit">
-                                                <label class="mdl-textfield__label" for="BarCode">NIT del
-                                                    Proveedor</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="text" name="nombre">
-                                                <label class="mdl-textfield__label" for="NameProduct">Nombre de la
-                                                    devolucion</label>
-                                            </div>
-                                        </div>
-                                        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="number" name="cantidad">
-                                                <label class="mdl-textfield__label" for="StrockProduct">Cantidad</label>
-                                            </div>
-                                        </div>
-                                        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="date" name="fecha">
-                                                <label class="mdl-textfield__label" for="StrockProduct">fecha de la
-                                                    devolucion</label>
-                                            </div>
-                                        </div>
-                                        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
-                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="text" name="motivo">
-                                                <label class="mdl-textfield__label" for="PriceProduct">Motivo de la
-                                                    devolucion</label>
+                                                <input class="mdl-textfield__input fac" name="cod" type="text"
+                                                    id="searchProvider">
+                                                <!-- <input class="mdl-textfield__input" type="number" name="cod"> -->
+                                                <label class="mdl-textfield__label" for="BarCode">codigo del
+                                                    producto</label>
                                             </div>
                                         </div>
                                     </div>
@@ -232,38 +202,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="mdl-tabs__panel" id="tabListProvider">
-                <table class="table table-striped-columns">
-                    <thead>
-                        <tr>
-                            <th>NIT</th>
-                            <th>Nombre</th>
-                            <th>Cantidad</th>
-                            <th>Motivo</th>
-                            <th>Fecha</th>
-                            <th>Actualizar</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% datos.forEach(function (datos) { %>
-                            <tr>
-                                <td><input type="text" value="<%= datos.id_prov%>" name="doc" class="col-6 id">
-                                </td>
-                                <td><input type="text" value="<%= datos.nombre_dev%>" name="nom" class="col-12 nom">
-                                </td>
-                                <td><input type="text" value="<%= datos.cantidad_dev%>" name="ape" class="col-12 cant">
-                                </td>
-                                <td><input type="text" value="<%= datos.motivo_dev%>" name="pass"
-                                        class="col-12 motivo"></td>
-                                <td><input type="text" value="<%= datos.fecha_dev%>" name="" class="fecha"></td>
-                                <td><input type="submit" value="Actualizar" name="btnact" class="col-12 btnact"></td>
-                                <td><input type="submit" value="Eliminar" class="col-12 btneli"></td>
-                            </tr>
-                            <% }) %>
-                    </tbody>
-                </table>
             </div>
         </div>
     </section>

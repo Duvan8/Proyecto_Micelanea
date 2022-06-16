@@ -3,7 +3,6 @@ html {
   -ms-text-size-adjust: 100%; /* 2 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
-
 /**
  * Remove default margin.
  */
@@ -82,6 +81,10 @@ a {
   background-color: transparent;
 }
 
+.det{
+  text-decoration: none;
+  text-decoration-color: none;
+}
 /**
  * Improve readability of focused elements when they are also in an
  * active/hover state.

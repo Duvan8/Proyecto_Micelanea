@@ -13,6 +13,8 @@ router.get("/interfaz", (req, res) => {
 //duvan
 router.get("/prubfact", controlador.prubfact);
 router.get("/valor", controlador.valor);
+router.get("/detalle", controlador.detalle);
+router.post("/detalle", controlador.detalle);
 router.post("/prubfact", controlador.prubfact);
 router.post("/valor", controlador.valor);
 router.post("/nuevaventa", controlador.nuevaventa);
