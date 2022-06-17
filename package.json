@@ -13,11 +13,13 @@
     "ejs": "^3.1.7",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
+    "html-pdf": "^3.0.1",
     "material-design-iconic-font": "^2.2.0",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "path": "^0.12.7",
     "pdfkit": "^0.13.0",
+    "pdfkit-construct": "^1.2.3",
     "session": "^0.1.0"
   },
   "devDependencies": {
