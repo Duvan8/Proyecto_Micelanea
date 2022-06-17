@@ -1,20 +1,15 @@
 $(document).ready(function(){
-    $('.btnact').on('click',function(){
-        let btn = $('.btnact').index(this);
-        alert(btn)
-        let id = $('.id').eq(btn);
-        let nom = $('.nom').eq(btn);
-        let cant = $('.cant').eq(btn);
-        let mov = $('.motivo').eq(btn);
-        let fec = $('.fecha').eq(btn);
+    $('.btnter').on('click',function(){
+        let btn = $('.btnter').index(this);
+        let val = $('.valor').eq(btn);
+        let can = $('.cant').eq(btn);
         
-        let i = id.val();
-        let n = nom.val();
-        let c = cant.val();
-        let m = mov.val();
-        let f = fec.val();
-
-        alert("datos para actualizar"+i+n+c+m+f);
+        let v = val.val();
+        let c = can.val();
+        
+        let total = v/c;
+        alert("llega"+v,c);
+        alert("datos para actualizar"+total);
 
         $.ajax({
             type: "POST",

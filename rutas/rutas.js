@@ -13,6 +13,8 @@ router.get("/interfaz", (req, res) => {
 //duvan
 router.get("/prubfact", controlador.prubfact);
 router.get("/valor", controlador.valor);
+router.get("/detalle", controlador.detalle);
+router.post("/detalle", controlador.detalle);
 router.post("/prubfact", controlador.prubfact);
 router.post("/valor", controlador.valor);
 router.post("/nuevaventa", controlador.nuevaventa);
@@ -29,7 +31,10 @@ router.get('/devolucion',(req, res) => {
 router.get('/ganancias',(req, res) => {
     res.render('ganancias');
 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 32ba16e633ba9db23718e793ab28964a39fd3732
 //RUTA PARA VENTAS-FACTURACION :c
 router.get("/ventas", controlador.ventas); //Esta me trae datos
 router.post("/ventas", controlador.ventas);
@@ -87,7 +92,10 @@ router.get('/devolucion',(req, res) => {
 router.get('/tiempo',(req, res) => {
     res.render('tiempo');
 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 32ba16e633ba9db23718e793ab28964a39fd3732
 //TIEMPO
 
 router.get("/tiempo", controlador.tiempo);
@@ -101,7 +109,10 @@ router.post("/nomina", controlador.consultarnomina);
 //PRODUCTOS
 
 router.post("/productos", controlador.cproductos);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 32ba16e633ba9db23718e793ab28964a39fd3732
 
 //BRAYAN
 //TIEMPO CRUD COMPLETO

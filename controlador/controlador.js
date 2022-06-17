@@ -21,7 +21,6 @@ controlador.productos = (req, res, next) => {
 controlador.administrador = (req, res, next) => {
   res.render("administrador");
 };
-// <<<<<<< HEAD
 controlador.ventas = (req, res, next) => {
   res.render("ventas");
 };
@@ -30,6 +29,9 @@ controlador.entrada = (req, res, next) => {
 };
 controlador.tiempo = (req, res, next) => {
   res.render("tiempo");
+};
+controlador.detalle = (req, res, next) => {
+  res.render("detalle");
 };
 
 // =======
@@ -283,27 +285,32 @@ controlador.login = async (req, res, next) => {
 };
 controlador.inserdev = (req, res, next) => {
   const id = req.body.nit;
-  const nom = req.body.nombre;
+  const del = req.body.detalle;
+  const cod = req.body.codigo;
   const cant = req.body.cantidad;
-  const fec = req.body.fecha;
-  const mov = req.body.motivo;
 
   conexion.query(
     "INSERT INTO devoluciones SET ?",
     {
-      id_prov: id,
-      nombre_dev: nom,
+      pedido_prov: id,
+      codigo_del: del,
+      codigo_p: cod,
       cantidad_dev: cant,
-      motivo_dev: mov,
-      fecha_dev: fec,
     },
     (err) => {
       if (err) {
         console.log("error al insertar devoluciones" + err);
         throw err;
       } else {
-        console.log("se inserto exitosamente");
-        res.redirect("/devolucion");
+        conexion.query("SELECT * FROM detalle_fac WHERE codigo_del = '"+del+"'", (err,resbd)=>{
+          if(err){
+            throw err;
+          }
+          else{
+            res.render("devolucion", {datos:resbd});
+          }
+        })
+        //res.redirect("/devolucion");
       }
     }
   );
@@ -354,7 +361,8 @@ controlador.elidev = async (req, res) => {
   );
 };
 controlador.devolucion = async (req, res, next) => {
-  conexion.query("SELECT * FROM devoluciones", (err, resbd) => {
+  const fac = req.body.fac;
+  conexion.query("SELECT * FROM devoluciones WHERE codigo_fac='"+fac+"'", (err, resbd) => {
     if (err) {
       next(new Error(err));
       console.log("Error en la consulta");
@@ -441,9 +449,10 @@ controlador.valor = async (req, res, next) => {
 controlador.pagar = async (req, res, next) => {
   var b = 5000;
   const fac = req.body.ll;
-  const cod = req.body.cc;
-  const can = req.body.aa;
+  const fec = req.body.pp;
 
+  console.log(fec);
+  console.log(fac);
   conexion.query(
     "UPDATE facturacion SET codigo_fac = '" +
       fac +
@@ -584,7 +593,7 @@ controlador.delcarrito = async (req, res, next) => {
           if (err) {
             throw err;
           } else {
-            console.log("actulizo exitosamente")
+            console.log("actulizo exitosamente");
           }
           conexion.query(
             'DELETE FROM detalle_fac WHERE codigo_p ="' + cod + '"',
@@ -606,10 +615,9 @@ controlador.delcarrito = async (req, res, next) => {
 controlador.ventas = async (req, res, next) => {
   conexion.query("SELECT * FROM facturacion", (err, resbd) => {
     if (err) {
-      next(new Error(err));
-      console.log("Error en la consulta");
+      throw err;
     } else {
-      res.render("ventas", { datos: resbd });
+      res.render("ventas", { ventas: resbd });
     }
   });
 };
@@ -628,8 +636,29 @@ controlador.eliminarfac = (req, res, next) => {
       }
     }
   );
+  conexion.query(
+    "SELECT * FROM facturacion INNER JOIN detalle_fac ON (facturacion.codigo_fac=detalle_fac.codigo_fac)",
+    (err, resbd) => {
+      if (err) {
+        throw err;
+      } else {
+        res.render("ventas", { datos: resbd });
+      }
+    }
+  );
 };
-
+controlador.detalle = (req, res, next) => {
+  conexion.query(
+    "SELECT * FROM facturacion INNER JOIN detalle_fac ON (facturacion.codigo_fac=detalle_fac.codigo_fac)",
+    (err, resbd) => {
+      if (err) {
+        throw err;
+      } else {
+        res.render("detalle", { datos: resbd });
+      }
+    }
+  );
+};
 //GENERAR FACTURA PDFS
 controlador.pdfacturas = async (req, res)=>{
   const doc = new PDF({bufferPages: true});

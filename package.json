@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "material-design-iconic-font": "^2.2.0",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
     "path": "^0.12.7",
     "pdfkit": "^0.13.0",
     "pdfkit-construct": "^1.2.3",
@@ -24,6 +26,7 @@
   },
   "devDependencies": {
     "bcryptjs": "^2.4.3",
+    "heroku": "^7.60.2",
     "nodemon": "^2.0.16"
   }
 }
