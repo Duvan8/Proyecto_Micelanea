@@ -25,9 +25,6 @@ router.post("/pagar", controlador.pagar);
 router.get('/inventario',(req, res) => {
     res.render('inventario');
 });
-router.get('/devolucion',(req, res) => {
-    res.render('devolucion');
-});
 router.get('/ganancias',(req, res) => {
     res.render('ganancias');
 });
@@ -54,6 +51,7 @@ router.post("/insentrada", controlador.insentrada);
 router.post("/entrada", controlador.entrada);
 router.post("/actentrada", controlador.actentrada);
 router.post("/eliminarent", controlador.eliminarent);
+router.post("/entra", controlador.entra);
 
 //CIERRE RUTAS ENTRADA
 
@@ -78,10 +76,6 @@ router.post("/administrador", controlador.administrador);
 router.post("/actuadmin", controlador.actuadmin);
 router.post("/eliusu", controlador.eliusu);
 // CIERRA RUTAS DE USUARIOS
-
-router.get('/devolucion',(req, res) => {
-    res.render('devolucion');
-});
 
 //TIEMPO
 router.get('/tiempo',(req, res) => {

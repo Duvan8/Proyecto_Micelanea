@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Entrada</title>
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/sweetalert2.css">
-	<link rel="stylesheet" href="css/material.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
-	<link rel="stylesheet" href="css/main.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Entrada</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/sweetalert2.css">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')</script>
     <script src="js/actentrada.js"></script>
+    <script src="js/entra.js"></script>
     <script src="js/eliminarent.js"></script>
-	<script src="js/material.min.js" ></script>
-	<script src="js/sweetalert2.min.js" ></script>
-	<script src="js/jquery.mCustomScrollbar.concat.min.js" ></script>
-	<script src="js/main.js" ></script>
+    <script src="js/material.min.js"></script>
+    <script src="js/sweetalert2.min.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/main.js"></script>
 </head>
+
 <body>
-	<!-- navLateral -->
-	<section class="full-width navLateral">
+    <!-- navLateral -->
+    <section class="full-width navLateral">
         <div class="full-width navLateral-bg btn-menu"></div>
         <div class="full-width navLateral-body">
             <div class="full-width navLateral-body-logo text-center tittles">
@@ -148,10 +153,10 @@
             </nav>
         </div>
     </section>
-	<!-- pageContent -->
-	<section class="full-width pageContent">
-		<!-- navBar -->
-		<div class="full-width navBar">
+    <!-- pageContent -->
+    <section class="full-width pageContent">
+        <!-- navBar -->
+        <div class="full-width navBar">
             <div class="full-width navBar-options">
                 <i class="zmdi zmdi-swap btn-menu" id="btn-menu"></i>
                 <div class="mdl-tooltip" for="btn-menu">Ocultar / Mostrar MENU</div>
@@ -171,61 +176,65 @@
                 </nav>
             </div>
         </div>
-		
-			<div class="mdl-tabs__tab-bar">
-				<a href="entrada" class="mdl-tabs__tab is-active">ENTRADA</a>
-				<a href="devolucion" class="mdl-tabs__tab">DEVOLUCION</a>
-			</div>
-			<div class="mdl-tabs__panel is-active" id="tabNewProduct">
-				<div class="mdl-grid">
-					<div class="mdl-cell mdl-cell--12-col">
-						<div class="full-width panel mdl-shadow--2dp">
-							<div class="full-width panel-tittle bg-primary text-center tittles">
-								NUEVA ENTRADA
-							</div>
-							<div class="full-width panel-content">
-								<form action="/entrada" method="POST">
-									<div class="mdl-grid">
-										<div class="mdl-cell mdl-cell--12-col">
-									        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; INFORMACION BASICA</legend><br>
-									    </div>
-										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="number" name="cod">
-												<label class="mdl-textfield__label">Codigo de producto</label>
-											</div>
-										</div>
-										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="number" name="can">
-												<label class="mdl-textfield__label">Cantidad del Producto</label>
-											</div>
-										</div>
-										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="number" name="val">
-												<label class="mdl-textfield__label">Valor de Llegada</label>
-											</div>
-										</div>
-										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="number" name="vals">
-												<label class="mdl-textfield__label">Valor de Salida</label>
-											</div>
-										</div>
-									</div>
-									<p class="text-center">
-										<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addProduct">
-											<i class="zmdi zmdi-plus"></i>
-										</button>
-										<div class="mdl-tooltip" for="btn-addProduct">Adicionar Entrada</div>
-									</p>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            <div class="mdl-tabs__tab-bar">
+                <a href="#tabNewProvider" class="mdl-tabs__tab is-active">NUEVO</a>
+                <a href="#tabListProvider" class="mdl-tabs__tab">LISTA</a>
+            </div>
+            <div class="mdl-tabs__panel is-active" id="tabNewProvider">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <div class="full-width panel mdl-shadow--2dp">
+                            <div class="full-width panel-tittle bg-primary text-center tittles">
+                                NUEVA ENTRADA
+                            </div>
+                            <div class="full-width panel-content">
+                                <form action="/insentrada" method="POST">
+                                    <div class="mdl-grid">
+                                        <div class="mdl-cell mdl-cell--12-col">
+                                            <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i>
+                                                &nbsp; INFORMACION BASICA</legend><br>
+                                        </div>
+                                        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                <input class="mdl-textfield__input cod" type="number" name="cod">
+                                                <label class="mdl-textfield__label">Codigo de producto</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                <input class="mdl-textfield__input can" type="number" name="can">
+                                                <label class="mdl-textfield__label">Cantidad del Producto</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                <input class="mdl-textfield__input val" type="number" name="val">
+                                                <label class="mdl-textfield__label">Valor de Llegada</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                <input class="mdl-textfield__input vals" type="number" name="vals">
+                                                <label class="mdl-textfield__label">Valor de Salida</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-center">
+                                        <button type="submit"
+                                            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary entra"
+                                            id="btn-addProduct entra">
+                                            <i class="zmdi zmdi-plus"></i>
+                                        </button>
+                                    <div class="mdl-tooltip" for="btn-addProduct">Adicionar Entrada</div>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdl-tabs__panel" id="tabListProvider">
                 <table class="table table-bordered table-striped text-center mt-3">
                     <thead>
                         <tr class="bg-primary text-white">
@@ -240,16 +249,25 @@
                     <tbody>
                         <% datos.forEach(function (datos) {%>
                             <tr>
-                                <td><input type="text" value="<%= datos.codigo_p%>" name="cod" class="col-6 cod"></td>
-                                <td><input type="text" value="<%= datos.cantidad_entr%>" name="can" class="col-12 doc"></td>
-                                <td><input type="text" value="<%= datos.valor_llegada%>" name="val" class="col-12 cfac"></td>
-                                <td><input type="text" value="<%= datos.valor_salida%>" name="vals" class="col-12 fec"></td>
-                                <td><input type="submit" value="Actualizar" name="actualizar" id="btnzar" class="btnzar"></td>
-                                <td><input type="submit" value="Eliminar" name="eliminar" id="btnnar" class="btnnar"></td>
+                                <td><input type="text" value="<%= datos.codigo_p%>" name="codi" class="col-6 codi"></td>
+                                <td><input type="text" value="<%= datos.cantidad_entr%>" name="cant" class="col-12 cant">
+                                </td>
+                                <td><input type="text" value="<%= datos.valor_llegada%>" name="valo" class="col-12 valo">
+                                </td>
+                                <td><input type="text" value="<%= datos.valor_salida%>" name="valrs" class="col-12 valrs">
+                                </td>
+                                <td><input type="submit" value="Actualizar" name="btnzar" id="btnzar"
+                                        class="btnzar">
+                                </td>
+                                <td><input type="submit" value="Eliminar" name="eliminar" id="btnnar" class="btnnar">
+                                </td>
                             </tr>
-                        <% }) %>
+                            <% }) %>
                     </tbody>
                 </table>
-	</section>
+            </div>
+        </div>
+    </section>
 </body>
+
 </html>

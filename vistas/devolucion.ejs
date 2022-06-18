@@ -165,10 +165,6 @@
             </div>
         </div>
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-            <div class="mdl-tabs__tab-bar">
-                <a href="#tabNewProvider" class="mdl-tabs__tab is-active">NUEVO</a>
-                <a href="#tabListProvider" class="mdl-tabs__tab">LISTA</a>
-            </div>
             <div class="mdl-tabs__panel is-active" id="tabNewProvider">
                 <div class="mdl-grid">
                     <div class="mdl-cell mdl-cell--12-col">
@@ -181,16 +177,15 @@
                                     <div class="mdl-grid">
                                         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input fac" name="cod" type="text"
+                                                <input class="mdl-textfield__input fact" name="fact" type="text"
                                                     id="searchProvider">
-                                                <!-- <input class="mdl-textfield__input" type="number" name="cod"> -->
-                                                <label class="mdl-textfield__label" for="BarCode">codigo del
-                                                    producto</label>
+                                                <label class="mdl-textfield__label" for="BarCode">codigo de la
+                                                    factura</label>
                                             </div>
                                         </div>
                                     </div>
                                     <p class="text-center">
-                                        <button
+                                        <button type="submit"
                                             class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary"
                                             id="btn-addProduct">
                                             <i class="zmdi zmdi-plus"></i>
@@ -198,11 +193,38 @@
                                     <div class="mdl-tooltip" for="btn-addProduct">Adicionar Devolucion</div>
                                     </p>
                                 </form>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <table class="table table-bordered table-striped text-center mt-3">
+                <thead>
+                    <tr class="bg-primary text-white">
+                        <th>Codigo detalle</th>
+                        <th>Cantidad</th>
+                        <th>Codigo producto</th>
+                        <th>Codigo de factura</th>
+                        <th>valor de la producto</th>
+                        <th>devolver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% datos.forEach(function (datos) {%>
+                        <tr>
+                            <td><input type="text" value="<%= datos.codigo_del%>" name="del" class="del"></td>
+                            <td><input type="text" value="<%= datos.cantidad%>" name="cant" class="col-12 canti"
+                                    readonly>
+                            </td>
+                            <td><input type="text" value="<%= datos.codigo_p%>" name="cod" class="col-12 codi"></td>
+                            <td><input type="text" value="<%= datos.codigo_fac%>" name="fac" class="col-12 faci"></td>
+                            <td><input type="text" value="<%= datos.valor_p%>" name="val" class="col-12 vali"></td>
+                            <td><input type="submit" value="devolver" class="vol"></td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
         </div>
     </section>
 </body>

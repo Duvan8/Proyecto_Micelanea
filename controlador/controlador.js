@@ -35,7 +35,6 @@ controlador.detalle = (req, res, next) => {
   res.render("detalle");
 };
 
-// =======
 controlador.devolucion = (req, res, next) => {
   res.render("devolucion");
 };
@@ -303,45 +302,52 @@ controlador.inserdev = (req, res, next) => {
         console.log("error al insertar devoluciones" + err);
         throw err;
       } else {
-        conexion.query("SELECT * FROM detalle_fac WHERE codigo_del = '"+del+"'", (err,resbd)=>{
-          if(err){
-            throw err;
-          }
-          else{
-            res.render("devolucion", {datos:resbd});
-          }
-        })
-        //res.redirect("/devolucion");
+        res.redirect("/devolucion");
       }
     }
   );
 };
 controlador.actudev = async (req, res, next) => {
-  const id = req.body.ii;
-  const nom = req.body.nn;
+  const del = req.body.ll;
   const can = req.body.cc;
-  const mov = req.body.mm;
-  const fec = req.body.ff;
-
+  const cod = req.body.dd;
+  const fac = req.body.ff;
+  const val = req.body.vv;
+  console.log("restar" + val);
   conexion.query(
-    'UPDATE devoluciones SET nombre_dev="' +
-      nom +
-      '", cantidad_dev="' +
-      can +
-      '", motivo_dev="' +
-      mov +
-      '", fecha_dev="' +
-      fec +
-      '" WHERE id_prov="' +
-      id +
+    'UPDATE facturacion SET valor_fac=valor_fac-"' +
+      val +
+      '" WHERE codigo_fac="' +
+      fac +
       '"',
     async (err) => {
       if (err) {
         console.log("error al actualizar devoluciones");
         throw err;
       } else {
-        console.log("actualizado");
-        res.redirect("devolucion");
+        conexion.query(
+          "UPDATE productos SET cantidad_und_prod=cantidad_und_prod+'" +
+            can +
+            "' WHERE codigo_p='" +
+            cod +
+            "'",
+          (err) => {
+            if (err) {
+              throw err;
+            } else {
+              conexion.query(
+                "DELETE FROM detalle_fac WHERE codigo_del='" + del + "'",
+                (err) => {
+                  if (err) {
+                    throw err;
+                  } else {
+                    res.redirect("devolucion");
+                  }
+                }
+              );
+            }
+          }
+        );
       }
     }
   );
@@ -362,15 +368,18 @@ controlador.elidev = async (req, res) => {
   );
 };
 controlador.devolucion = async (req, res, next) => {
-  const fac = req.body.fac;
-  conexion.query("SELECT * FROM devoluciones WHERE codigo_fac='"+fac+"'", (err, resbd) => {
-    if (err) {
-      next(new Error(err));
-      console.log("Error en la consulta");
-    } else {
-      res.render("devolucion", { datos: resbd });
+  const fac = req.body.fact;
+  conexion.query(
+    "SELECT * FROM detalle_fac WHERE codigo_fac='" + fac + "'",
+    (err, resbd) => {
+      if (err) {
+        next(new Error(err));
+        console.log("Error en la consulta");
+      } else {
+        res.render("devolucion", { datos: resbd });
+      }
     }
-  });
+  );
 };
 
 //En este estoy trabajando - JULIAN
@@ -685,11 +694,6 @@ controlador.insentrada = (req, res, next) => {
   conexion.query(
     "INSERT INTO entrada SET ?",
     {
-      codigo_p: co,
-      cantidad_entr: ca,
-      valor_llegada: va,
-      valor_salida: val,
-
       codigo_p: c,
       cantidad_entr: ca,
       valor_llegada: va,
@@ -697,9 +701,9 @@ controlador.insentrada = (req, res, next) => {
     },
     (err) => {
       if (err) {
-        next(new Error(err));
+        throw err;
       } else {
-        res.redirect("/entrada");
+        res.redirect("entrada");
       }
     }
   );
@@ -719,20 +723,43 @@ controlador.entrada = async (req, res, next) => {
 
 // //ACTUALIZAR ENTRADA
 controlador.actentrada = async (req, res) => {
-  const co = req.body.cc;
-  const ca = req.body.dd;
-  const va = req.body.va;
-  const sa = req.body.vls;
+  const codigo = req.body.cc;
+  const cantidad = req.body.dd;
+  const valor = req.body.cl;
+  const valors = req.body.mm;
 
   conexion.query(
-    'UPDATE entrada SET codigo_p="' +
-      co +
-      '",cantidad_entr="' +
-      ca +
+    'UPDATE entrada SET cantidad_entr="' +
+      cantidad +
       '", valor_llegada="' +
-      va +
+      valor +
       '", valor_salida="' +
-      sa +
+      valors +
+      '" WHERE codigo_p="' +
+      codigo +
+      '"',
+    async (err) => {
+      if (err) {
+        console.log("error al actualizar entrada");
+        throw err;
+      } else {
+        res.redirect("entrada");
+      }
+    }
+  );
+};
+controlador.entra = async (req, res) => {
+  const codigo = req.body.cc;
+  const cantidad = req.body.dd;
+  const valor = req.body.cl;
+  const valors = req.body.mm;
+
+  console.log("llega" + codigo + cantidad);
+  conexion.query(
+    'UPDATE productos SET cantidad_und_prod=cantidad_und_prod+"' +
+      cantidad +
+      '", valor_prod="'+valors+'" WHERE codigo_p="' +
+      codigo +
       '"',
     async (err) => {
       if (err) {
@@ -748,6 +775,7 @@ controlador.actentrada = async (req, res) => {
 //BORRAR ENTRADDA?
 controlador.eliminarent = (req, res, next) => {
   const co = req.body.dd;
+  console.log("eliminar", co);
   conexion.query(
     'DELETE FROM entrada WHERE codigo_p="' + co + '"',
     async (err, respbb) => {
@@ -983,7 +1011,6 @@ controlador.elinomina = async (req, res) => {
 
 //Productos
 controlador.insproducto = async (req, res, next) => {
-  const id_pro = req.body.id_pro;
   const cod_pro = req.body.cod_pro;
   const nom_pro = req.body.nom_pro;
   const can_pro = req.body.can_pro;
@@ -993,7 +1020,6 @@ controlador.insproducto = async (req, res, next) => {
   conexion.query(
     "INSERT INTO productos SET ?",
     {
-      id_producto: id_pro,
       codigo_p: cod_pro,
       nombre_prod: nom_pro,
       cantidad_und_prod: can_pro,
@@ -1014,26 +1040,23 @@ controlador.insproducto = async (req, res, next) => {
 
 //Actualizar productos
 controlador.actuproductos = async (req, res, next) => {
-  const idttp = req.body.ddp;
-  const docup = req.body.uup;
-  const hoenp = req.body.aap;
-  const hosap = req.body.ccp;
-  const hotrp = req.body.rrp;
-  const hoexp = req.body.ffp;
+  const cod = req.body.cc;
+  const nom = req.body.nn;
+  const can = req.body.tt;
+  const val = req.body.vv;
+  const iva = req.body.ii;
 
   conexion.query(
-    'UPDATE productos SET codigo_p="' +
-      docup +
-      '", nombre_prod="' +
-      hoenp +
+    'UPDATE productos SET nombre_prod="' +
+      nom +
       '", cantidad_und_prod="' +
-      hosap +
+      can +
       '", valor_prod="' +
-      hotrp +
+      val +
       '", iva_prod="' +
-      hoexp +
-      '" WHERE id_producto="' +
-      idttp +
+      iva +
+      '" WHERE codigo_p="' +
+      cod +
       '"',
     async (err) => {
       if (err) {
@@ -1077,7 +1100,7 @@ controlador.productos = async (req, res, next) => {
 controlador.eliproductos = async (req, res) => {
   const dft = req.body.dts;
   conexion.query(
-    'DELETE FROM productos WHERE id_producto="' + dft + '"',
+    'DELETE FROM productos WHERE codigo_p="' + dft + '"',
     async (err) => {
       if (err) {
         console.log("error al eliminar en productos");
