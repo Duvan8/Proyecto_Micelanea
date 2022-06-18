@@ -6,8 +6,7 @@ const controlador = {};
 //const cnn = connection();
 
 //PDF
-/* const PDF = require("pdfkit");
-const fs = require("fs"); */
+const PDF = require('pdfkit-construct');
 //PDF FINISH
 
 controlador.index = (req, res, next) => {
@@ -670,18 +669,92 @@ controlador.detalle = (req, res, next) => {
   );
 };
 //GENERAR FACTURA PDFS
-controlador.facturapedido = async (req, res) => {
-  const doc = new PDF();
+controlador.pdfacturas = async (req, res)=>{
+  const doc = new PDF({bufferPages: true});
+  
+  const filename = `Factura${Date.now()}.pdf`; 
+  
+  const stream = res.writeHead(200, {
+  'Content-Type': 'application/pdf',
+  'Content-disposition': `attachment;filename=${filename}`
+  });
 
-  doc.text("Hola mundo, estoy realizando una pruba para los pdf", 30, 30);
+  doc.on('data', (data)=>{stream.write(data)});
+  doc.on('end', ()=>{stream.end()});
 
-  doc.pipe(fs.createReadStream("ejemplo.pdf"));
 
+
+  const ejemplo = [
+    {
+      codp: 001,
+      doc: 100,
+      codf: 'F001',
+      fec: 17/06/2022,
+      can: 15,
+      val: 5000,
+      sub: 10000
+    },
+    {
+      codp: 002,
+      doc: 200,
+      codf: 'F002',
+      fec: 16/06/2022,
+      can: 5,
+      val: 2500,
+      sub: 5000
+    },
+  ]
+
+  doc.setDocumentHeader({
+    height: '30'
+  }, ()=>{
+    doc.fontSize(25).text('MISCELANEA LA AMISTAD',{
+      width: 420,
+      align: 'left'
+    });
+    doc.fontSize(20).text('FACTURA',{
+      width: 420,
+      align: 'left'
+    });
+    
+    doc.fontSize(12);
+
+    doc.text('Empleado Encargado: Pepito Perez',{
+      width: 500,
+      align: 'left'
+    });
+    doc.text('Factura Numero: F0001',{
+      width: 500,
+      align: 'left'
+    });
+    doc.text('Fecha: 17/06/2022',{
+      width: 500,
+      align: 'left'
+    });
+  });
+
+  doc.addTable([
+    {key: 'codp', label: 'codp', aling: 'left'},
+    {key: 'doc', label: 'doc', aling: 'left'},
+    {key: 'codf', label: 'codf', aling: 'left'},
+    {key: 'fec', label: 'fec', aling: 'left'},
+    {key: 'can', label: 'can', aling: 'left'},
+    {key: 'val', label: 'val', aling: 'left'},
+    {key: 'sub', label: 'sub', aling: 'right'},
+  ], ejemplo, {
+      border: null,
+      width: "fill_body",
+      striped: true,
+      stripedColors: ["#f6f6f6", "#d6c4dd"],
+      cellsPadding: 10,
+      marginLeft: 45,
+      marginRight: 45,
+      headAlign: 'center'
+  })
+  doc.render();
   doc.end();
-};
+}
 //FIN FACTURA
-
-//FIN FACTURA PDFS
 
 //ENTRADA
 //INSERTAR ENTRADA - PRODCUTO
