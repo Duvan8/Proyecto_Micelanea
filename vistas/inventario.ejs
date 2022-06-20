@@ -162,75 +162,28 @@
                 </nav>
             </div>
         </div>
-		<div class="full-width divider-menu-h"></div>
-		<div class="mdl-grid">
-			<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
-				<div class="table-responsive">
-					<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
-						<thead>
-							<tr>
-								<th class="mdl-data-table__cell--non-numeric">Nombre</th>
-								<th>Codigo</th>
-								<th>Valor</th>
-								<th>Precio</th>
-								<th>Opciones</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Nombre del producto</td>
-								<td>Codigo del producto</td>
-								<td>700</td>
-								<td>1000</td>
-								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
-							</tr>
-							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Nombre del producto</td>
-								<td>Codigo del producto</td>
-								<td>700</td>
-								<td>1000</td>
-								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
-							</tr>
-							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Nombre del producto</td>
-								<td>Codigo del producto</td>
-								<td>700</td>
-								<td>1000</td>
-								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
-							</tr>
-							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Nombre del producto</td>
-								<td>Codigo del producto</td>
-								<td>700</td>
-								<td>1000</td>
-								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
-							</tr>
-							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Nombre del producto</td>
-								<td>Codigo del producto</td>
-								<td>700</td>
-								<td>1000</td>
-								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
-							</tr>
-							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Nombre del producto</td>
-								<td>Codigo del producto</td>
-								<td>700</td>
-								<td>1000</td>
-								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
-							</tr>
-							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Nombre del producto</td>
-								<td>Codigo del producto</td>
-								<td>700</td>
-								<td>1000</td>
-								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
+		<div class="mdl-tabs__panel" id="tabListProvider">
+            <table class="table table-striped-columns">
+                <thead>
+                    <tr>
+                        <th>codigo</th>
+                        <th>Nombre</th>
+                        <th>cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% datos.forEach(function (datos) { %>
+                        <tr>
+                            <td><input type="text" value="<%= datos.codigo_p%>" name="ped" class="col-6 ped">
+                            </td>
+                            <td><input type="text" value="<%= datos.nombre_prod%>" name="nom" class="col-12 nom">
+                            </td>
+                            <td><input type="text" value="<%= datos.cantidad_und_prod%>" name="id" class="col-12 id"></td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
 	</section>
 </body>
 </html>

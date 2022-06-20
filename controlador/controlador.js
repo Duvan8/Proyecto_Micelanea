@@ -1048,7 +1048,6 @@ controlador.consultarnomina = async (req, res) => {
       next(new Error(err));
       console.log("Error en la consulta");
     } else {
-      console.log(resbd);
       res.render("nomina", { datos: resbd });
     }
   });
@@ -1059,7 +1058,6 @@ controlador.nomina = async (req, res) => {
       next(new Error(err));
       console.log("Error en la consulta");
     } else {
-      console.log(resbd);
       res.render("nomina", { datos: resbd });
     }
   });
@@ -1151,7 +1149,6 @@ controlador.cproductos = async (req, res, next) => {
       next(new Error(err));
       console.log("Error en la consulta");
     } else {
-      console.log(resbd);
       res.render("productos", { datos: resbd });
     }
   });
@@ -1163,7 +1160,6 @@ controlador.productos = async (req, res, next) => {
       next(new Error(err));
       console.log("Error en la consulta");
     } else {
-      console.log(resbd);
       res.render("productos", { datos: resbd });
     }
   });
@@ -1186,4 +1182,30 @@ controlador.eliproductos = async (req, res) => {
   );
 };
 
+controlador.ganancias = (req, res, next) => {
+  res.render("ganancias");
+};
+controlador.ganancias = async (req, res) => {
+  conexion.query("SELECT AVG(valor_fac) AS alias FROM facturacion", (err, resbd) => {
+    if (err) {
+      next(new Error(err));
+      console.log("Error en la consulta");
+    } else {
+      res.render("ganancias", { datos: resbd });
+    }
+  });
+};
+controlador.inventario = (req, res, next) => {
+  res.render("inventario");
+};
+controlador.inventario = async (req, res) => {
+  conexion.query("SELECT * FROM productos ORDER BY(cantidad_und_prod)", (err, resbd) => {
+    if (err) {
+      next(new Error(err));
+      console.log("Error en la consulta");
+    } else {
+      res.render("inventario", { datos: resbd });
+    }
+  });
+};
 module.exports = controlador;

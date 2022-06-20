@@ -22,13 +22,6 @@ router.post("/carrito", controlador.carrito);
 router.post("/delcarrito", controlador.delcarrito);
 router.post("/pagar", controlador.pagar);
 
-router.get('/inventario',(req, res) => {
-    res.render('inventario');
-});
-router.get('/ganancias',(req, res) => {
-    res.render('ganancias');
-});
-
 //RUTA PARA VENTAS-FACTURACION :c
 router.get("/ventas", controlador.ventas); //Esta me trae datos
 router.post("/ventas", controlador.ventas);
@@ -80,8 +73,8 @@ router.post("/eliusu", controlador.eliusu);
 // CIERRA RUTAS DE USUARIOS
 
 //TIEMPO
-router.get('/tiempo',(req, res) => {
-    res.render('tiempo');
+router.get("/tiempo", (req, res) => {
+  res.render("tiempo");
 });
 //TIEMPO
 
@@ -96,7 +89,6 @@ router.post("/nomina", controlador.consultarnomina);
 //PRODUCTOS
 
 router.post("/productos", controlador.cproductos);
-
 
 //BRAYAN
 //TIEMPO CRUD COMPLETO
@@ -119,4 +111,9 @@ router.post("/inserproducto", controlador.insproducto);
 router.post("/actuproductos", controlador.actuproductos);
 router.post("/eliproductos", controlador.eliproductos);
 
+router.get("/ganancias", controlador.ganancias);
+router.post("/ganancias", controlador.ganancias);
+
+router.get("/inventario", controlador.inventario);
+router.post("/inventario", controlador.inventario);
 module.exports = router;
