@@ -1,34 +1,31 @@
-$(document).ready(function(){
-    $('.btnact').on('click',function(){
-        let btn = $('.btnact').index(this);
-        alert(btn)
-        let doc = $('.id_p').eq(btn);
-        let usu = $('.c_p').eq(btn);
-        let ape = $('.nom_p').eq(btn);
-        let con = $('.can_p').eq(btn);
-        let rol = $('.vl_p').eq(btn);
-        let fec = $('.iva_p').eq(btn);
-        
-        let d = doc.val();
-        let u = usu.val();
-        let a = ape.val();
-        let c = con.val();
-        let r = rol.val();
-        let f = fec.val();
+$(document).ready(function () {
+  $(".btnact").on("click", function () {
+    let btn = $(".btnact").index(this);
+    alert(btn);
+    let cod = $(".codp").eq(btn);
+    let nom = $(".nom_p").eq(btn);
+    let can = $(".can_p").eq(btn);
+    let val = $(".vl_p").eq(btn);
+    let iva = $(".iva_p").eq(btn);
 
-        alert("Datos a actualizar"+d+u+a+c+r+f);
+    let c = cod.val();
+    let n = nom.val();
+    let t = can.val();
+    let v = val.val();
+    let i = iva.val();
 
-        $.ajax({
-            type: "POST",
-            url: '/actuproductos',
-            data: {
-                ddp: d,
-                uup: u,
-                aap: a,
-                ccp: c,
-                rrp: r,
-                ffp: f,
-            }
-        });
+    alert("Datos a actualizar" + c + n + t + v + i);
+
+    $.ajax({
+      type: "POST",
+      url: "/actuproductos",
+      data: {
+        cc: c,
+        nn: n,
+        tt: t,
+        vv: v,
+        ii: i,
+      },
     });
+  });
 });

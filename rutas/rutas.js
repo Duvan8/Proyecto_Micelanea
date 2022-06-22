@@ -27,6 +27,7 @@ router.post("/carrito", controlador.carrito);
 router.post("/delcarrito", controlador.delcarrito);
 router.post("/pagar", controlador.pagar);
 
+<<<<<<< HEAD
 router.get('/inventario',(req, res) => {
     res.render('inventario');
 });
@@ -37,6 +38,8 @@ router.get('/ganancias',(req, res) => {
     res.render('ganancias');
 });
 
+=======
+>>>>>>> c434fd3d0e475607d556cf4e4afca83ad87eeefc
 //RUTA PARA VENTAS-FACTURACION :c
 router.get("/ventas", controlador.ventas); //Esta me trae datos
 router.post("/ventas", controlador.ventas);
@@ -61,6 +64,7 @@ router.post("/insentrada", controlador.insentrada);
 router.post("/entrada", controlador.entrada);
 router.post("/actentrada", controlador.actentrada);
 router.post("/eliminarent", controlador.eliminarent);
+router.post("/entra", controlador.entra);
 
 //CIERRE RUTAS ENTRADA
 
@@ -86,15 +90,14 @@ router.post("/actuadmin", controlador.actuadmin);
 router.post("/eliusu", controlador.eliusu);
 // CIERRA RUTAS DE USUARIOS
 
-router.get('/devolucion',(req, res) => {
-    res.render('devolucion');
-});
-
 //TIEMPO
-router.get('/tiempo',(req, res) => {
-    res.render('tiempo');
+router.get("/tiempo", (req, res) => {
+  res.render("tiempo");
 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> c434fd3d0e475607d556cf4e4afca83ad87eeefc
 //TIEMPO
 
 router.get("/tiempo", controlador.tiempo);
@@ -108,7 +111,10 @@ router.post("/nomina", controlador.consultarnomina);
 //PRODUCTOS
 
 router.post("/productos", controlador.cproductos);
+<<<<<<< HEAD
 
+=======
+>>>>>>> c434fd3d0e475607d556cf4e4afca83ad87eeefc
 
 //BRAYAN
 //TIEMPO CRUD COMPLETO
@@ -131,4 +137,9 @@ router.post("/inserproducto", controlador.insproducto);
 router.post("/actuproductos", controlador.actuproductos);
 router.post("/eliproductos", controlador.eliproductos);
 
+router.get("/ganancias", controlador.ganancias);
+router.post("/ganancias", controlador.ganancias);
+
+router.get("/inventario", controlador.inventario);
+router.post("/inventario", controlador.inventario);
 module.exports = router;

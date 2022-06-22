@@ -1,26 +1,31 @@
-$(document).ready(function(){
-    $('.btnter').on('click',function(){
-        let btn = $('.btnter').index(this);
-        let val = $('.valor').eq(btn);
-        let can = $('.cant').eq(btn);
-        
-        let v = val.val();
-        let c = can.val();
-        
-        let total = v/c;
-        alert("llega"+v,c);
-        alert("datos para actualizar"+total);
+$(document).ready(function () {
+  $(".vol").on("click", function () {
+    let btn = $(".vol").index(this);
+    alert(btn)
+    let del = $(".del").eq(btn);
+    let can = $(".canti").eq(btn);
+    let cod = $(".codi").eq(btn);
+    let fac = $(".faci").eq(btn);
+    let val = $(".vali").eq(btn);
 
-        $.ajax({
-            type: "POST",
-            url: '/actudev',
-            data: {
-                ii: i,
-                nn: n,
-                cc: c,
-                mm: m,
-                ff: f
-            }
-        });
+    let l = del.val();
+    let c = can.val();
+    let d = cod.val();
+    let f = fac.val();
+    let v = val.val();
+
+    alert("devolver"+l+c+d+f+v);
+
+    $.ajax({
+      type: "POST",
+      url: "/actudev",
+      data: {
+        ll: l,
+        cc: c,
+        dd: d,
+        ff: f,
+        vv: v,
+      },
     });
+  });
 });
