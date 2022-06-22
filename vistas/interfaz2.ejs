@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/sweetalert2.css">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')</script>
+    <script src="js/material.min.js"></script>
+    <script src="js/sweetalert2.min.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+</head>
+
+<body>
+    <!-- navLateral -->
+    <section class="full-width navLateral">
+        <!-- <div class="full-width navLateral-bg btn-menu"></div> -->
+        <div class="full-width navLateral-body">
+            <div class="full-width navLateral-body-logo text-center tittles">
+                <i class="zmdi zmdi-close btn-menu"></i> Inventario
+            </div>
+            <figure class="full-width navLateral-body-tittle-menu">
+                <div>
+                    <img src="assets/img/avatar-male.png" alt="Avatar" class="img-responsive">
+                </div>
+                <figcaption>
+                    <span>
+                        Nombre del Empleado<br>
+                        <small>Empleado</small>
+                    </span>
+                </figcaption>
+            </figure>
+            <nav class="full-width">
+                <ul class="full-width list-unstyle menu-principal">
+                    <li class="full-width">
+                        <a href="interfaz2" class="full-width">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-view-dashboard"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                INICIO
+                            </div>
+                        </a>
+                    </li>
+                    <li class="full-width divider-menu-h"></li>
+                    <li class="full-width">
+                        <a class="full-width btn-subMenu">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-case"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                ADMINISTRACION
+                            </div>
+                            <span class="zmdi zmdi-chevron-left"></span>
+                        </a>
+                        <ul class="full-width menu-principal sub-menu-options">
+                            <li class="full-width">
+                                <a href="proveedores" class="full-width">
+                                    <div class="navLateral-body-cl">
+                                        <i class="zmdi zmdi-truck"></i>
+                                    </div>
+                                    <div class="navLateral-body-cr">
+                                        PROVEEDORES
+                                    </div>
+                                </a>
+                                <a href="entrada" class="full-width">
+                                    <div class="navLateral-body-cl">
+                                        <i class="iconify" data-icon="bx:door-open"></i>
+                                    </div>
+                                    <div class="navLateral-body-cr">
+                                        ENTRADA
+                                    </div>
+                                </a>
+                                <a href="devolucion" class="full-width">
+                                    <div class="navLateral-body-cl">
+                                        <i class="zmdi zmdi-truck"></i>
+                                    </div>
+                                    <div class="navLateral-body-cr">
+                                        DEVOLUCIONES
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="full-width divider-menu-h"></li>
+                    <li class="full-width">
+                        <a class="full-width btn-subMenu">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-face"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                USUARIOS
+                            </div>
+                            <span class="zmdi zmdi-chevron-left"></span>
+                        </a>
+                        <ul class="full-width menu-principal sub-menu-options">
+                            <li class="full-width">
+                                <a href="administrador" class="full-width">
+                                    <div class="navLateral-body-cl">
+                                        <i class="zmdi zmdi-account"></i>
+                                    </div>
+                                    <div class="navLateral-body-cr">
+                                        ADMINISTRADORES
+                                    </div>
+                                </a>
+                                <a href="tiempo" class="full-width">
+                                    <div class="navLateral-body-cl">
+                                        <i class="iconify" data-icon="entypo:back-in-time"></i>
+                                    </div>
+                                    <div class="navLateral-body-cr">
+                                        TIEMPO
+                                    </div>
+                                </a>
+                                <a href="nomina" class="full-width">
+                                    <div class="navLateral-body-cl">
+                                        <i  class="iconify" data-icon="mdi:cash"></i>
+                                    </div>
+                                    <div class="navLateral-body-cr">
+                                        NOMINA
+                                    </div>
+                                    
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="full-width divider-menu-h"></li>
+                    <li class="full-width">
+                        <a href="productos" class="full-width">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-washing-machine"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                PRODUCTOS
+                            </div>
+                        </a>
+                    </li>
+                    <li class="full-width divider-menu-h"></li>
+                    <li class="full-width">
+                        <a href="ventas" class="full-width">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-shopping-cart"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                VENTAS
+                            </div>
+                        </a>
+                    </li>
+                    <li class="full-width divider-menu-h"></li>
+                    <li class="full-width">
+                        <a href="inventario" class="full-width">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-store"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                INVENTARIO
+                            </div>
+                        </a>
+                    </li>
+                    <li class="full-width divider-menu-h"></li>
+                    <li class="full-width">
+                        <a href="ganancias" class="full-width">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-store"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                GANANCIAS
+                            </div>
+                        </a>
+                    </li>
+                    <li class="full-width divider-menu-h"></li>
+                    <li class="full-width">
+                        <a href="pdf" class="full-width">
+                            <div class="navLateral-body-cl">
+                                <i class="zmdi zmdi-store"></i>
+                            </div>
+                            <div class="navLateral-body-cr">
+                                PDFS
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <!-- pageContent -->
+    <section class="full-width pageContent">
+        <!-- navBar -->
+        <div class="full-width navBar">
+            <div class="full-width navBar-options">
+                <i class="zmdi zmdi-swap btn-menu"></i>
+                <div class="mdl-tooltip">Ocultar / Mostrar MENU</div>
+                <nav class="navBar-options-list">
+                    <ul class="list-unstyle">
+                        <li class="btn-exit zmdi zmdi-power">
+                            <div class="mdl-tooltip">cerrar sesion</div>
+                        </li>
+                        <li class="text-condensedLight noLink"><small>Nombre Usuario</small></li>
+                        <li class="noLink">
+                            <figure>
+                                <img src="./assets/img/avatar-male.png" alt="Avatar" class="img-responsive">
+                            </figure>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <section class="full-width text-center" style="padding: 40px 0;">
+            <h3 class="text-center tittles">MISCELANEA LA AMISTAD</h3>
+            <!-- Tiles -->
+            <article class="full-width tile">
+                <div class="tile-text">
+                    <span class="text-condensedLight">
+                        2<br>
+                        <small>Administradores</small>
+                    </span>
+                </div>
+                <i class="zmdi zmdi-account tile-icon"></i>
+            </article>
+            <article class="full-width tile">
+                <div class="tile-text">
+                    <span class="text-condensedLight">
+                        71<br>
+                        <small>Clientes</small>
+                    </span>
+                </div>
+                <i class="zmdi zmdi-accounts tile-icon"></i>
+            </article>
+            <article class="full-width tile">
+                <div class="tile-text">
+                    <span class="text-condensedLight">
+                        6<br>
+                        <small>Proveedores</small>
+                    </span>
+                </div>
+                <i class="zmdi zmdi-washing-machine tile-icon"></i>
+            </article>
+            <article class="full-width tile">
+                <div class="tile-text">
+                    <span class="text-condensedLight">
+                        121<br>
+                        <small>Productos</small>
+                    </span>
+                </div>
+                <i class="zmdi zmdi-washing-machine tile-icon"></i>
+            </article>
+            <article class="full-width tile">
+                <div class="tile-text">
+                    <span class="text-condensedLight">
+                        47<br>
+                        <small>Ventas</small>
+                    </span>
+                </div>
+                <i class="zmdi zmdi-shopping-cart tile-icon"></i>
+            </article>
+            <article class="full-width tile">
+                <div class="tile-text">
+                    <span class="text-condensedLight">
+                        47<br>
+                        <small>Ganancias</small>
+
+                    </span>
+                </div>
+                <i class="zmdi zmdi-money tile-icon"></i>
+            </article>
+        </section>
+    </section>
+    <!-- hola mundo -->
+ 
+</body>
+
+</html>
