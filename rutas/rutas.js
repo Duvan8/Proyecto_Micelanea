@@ -27,19 +27,7 @@ router.post("/carrito", controlador.carrito);
 router.post("/delcarrito", controlador.delcarrito);
 router.post("/pagar", controlador.pagar);
 
-<<<<<<< HEAD
-router.get('/inventario',(req, res) => {
-    res.render('inventario');
-});
-router.get('/devolucion',(req, res) => {
-    res.render('devolucion');
-});
-router.get('/ganancias',(req, res) => {
-    res.render('ganancias');
-});
 
-=======
->>>>>>> c434fd3d0e475607d556cf4e4afca83ad87eeefc
 //RUTA PARA VENTAS-FACTURACION :c
 router.get("/ventas", controlador.ventas); //Esta me trae datos
 router.post("/ventas", controlador.ventas);
@@ -90,14 +78,7 @@ router.post("/actuadmin", controlador.actuadmin);
 router.post("/eliusu", controlador.eliusu);
 // CIERRA RUTAS DE USUARIOS
 
-//TIEMPO
-router.get("/tiempo", (req, res) => {
-  res.render("tiempo");
-});
-<<<<<<< HEAD
 
-=======
->>>>>>> c434fd3d0e475607d556cf4e4afca83ad87eeefc
 //TIEMPO
 
 router.get("/tiempo", controlador.tiempo);
@@ -111,10 +92,6 @@ router.post("/nomina", controlador.consultarnomina);
 //PRODUCTOS
 
 router.post("/productos", controlador.cproductos);
-<<<<<<< HEAD
-
-=======
->>>>>>> c434fd3d0e475607d556cf4e4afca83ad87eeefc
 
 //BRAYAN
 //TIEMPO CRUD COMPLETO
