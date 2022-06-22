@@ -10,6 +10,11 @@ router.post("/login", controlador.login);
 router.get("/interfaz", (req, res) => {
   res.render("interfaz");
 });
+
+router.get("/interfaz2", (req, res) => {
+  res.render("interfaz2");
+});
+
 //duvan
 router.get("/prubfact", controlador.prubfact);
 router.get("/valor", controlador.valor);
@@ -22,6 +27,7 @@ router.post("/nuevaventa", controlador.nuevaventa);
 router.post("/carrito", controlador.carrito);
 router.post("/delcarrito", controlador.delcarrito);
 router.post("/pagar", controlador.pagar);
+
 
 //RUTA PARA VENTAS-FACTURACION :c
 router.get("/ventas", controlador.ventas); //Esta me trae datos
@@ -73,10 +79,7 @@ router.post("/actuadmin", controlador.actuadmin);
 router.post("/eliusu", controlador.eliusu);
 // CIERRA RUTAS DE USUARIOS
 
-//TIEMPO
-router.get("/tiempo", (req, res) => {
-  res.render("tiempo");
-});
+
 //TIEMPO
 
 router.get("/tiempo", controlador.tiempo);

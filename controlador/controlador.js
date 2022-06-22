@@ -267,7 +267,7 @@ controlador.login = async (req, res, next) => {
                 res.redirect("interfaz");
                 break;
               case "empleado":
-                res.redirect("interfaz");
+                res.redirect("interfaz2");
                 break;
             }
           } else {
@@ -688,27 +688,32 @@ controlador.pdfacturas = async (req, res)=>{
 
   const ejemplo = [
     {
-      codp: 001,
-      doc: 100,
-      codf: 'F001',
-      fec: 17/06/2022,
-      can: 15,
-      val: 5000,
-      sub: 10000
+      Cantidad: 10,
+      Producto: 'Hojas',
+      Valor: 5000,
     },
     {
-      codp: 002,
-      doc: 200,
-      codf: 'F002',
-      fec: 16/06/2022,
-      can: 5,
-      val: 2500,
-      sub: 5000
+      Cantidad: 20,
+      Producto: 'Lapices',
+      Valor: 3000,
+    },
+    {
+      Cantidad: 10,
+      Producto: 'Hojas',
+      Valor: 5000,
+    },
+    {
+      Cantidad: 20,
+      Producto: 'Lapices',
+      Valor: 3000,
+    },
+    {
+      Sub: 8000,
     },
   ]
 
   doc.setDocumentHeader({
-    height: '30'
+    height: '25'
   }, ()=>{
     doc.fontSize(25).text('MISCELANEA LA AMISTAD',{
       width: 420,
@@ -721,28 +726,26 @@ controlador.pdfacturas = async (req, res)=>{
     
     doc.fontSize(12);
 
-    doc.text('Empleado Encargado: Pepito Perez',{
+    doc.text('Empleado Encargado: Julián Arenas',{ 
+      height: 20,
       width: 500,
       align: 'left'
     });
-    doc.text('Factura Numero: F0001',{
+    doc.text('Factura Numero: F001',{
       width: 500,
       align: 'left'
     });
-    doc.text('Fecha: 17/06/2022',{
+    doc.text('Fecha: 23/06/2022',{
       width: 500,
       align: 'left'
     });
   });
 
   doc.addTable([
-    {key: 'codp', label: 'codp', aling: 'left'},
-    {key: 'doc', label: 'doc', aling: 'left'},
-    {key: 'codf', label: 'codf', aling: 'left'},
-    {key: 'fec', label: 'fec', aling: 'left'},
-    {key: 'can', label: 'can', aling: 'left'},
-    {key: 'val', label: 'val', aling: 'left'},
-    {key: 'sub', label: 'sub', aling: 'right'},
+    {key: 'Cantidad', label: 'Cantidad', aling: 'left'},
+    {key: 'Producto', label: 'Producto', aling: 'left'},
+    {key: 'Valor', label: 'Valor del Producto', aling: 'left'},
+    {key: 'Sub', label: 'SubTotal de Venta', aling: 'center'},
   ], ejemplo, {
       border: null,
       width: "fill_body",
