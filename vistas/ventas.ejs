@@ -184,7 +184,7 @@
 			<div class="mdl-tabs__tab-bar">
 				<a href="#tabNewProvider" class="mdl-tabs__tab is-active">NUEVO</a>
 				<a href="#tabListProvider" class="mdl-tabs__tab">LISTA</a>
-				<a href="detalle" class="det">DETALLE</a>
+				<!-- <a href="detalle" class="det">DETALLE</a> -->
 			</div>
 			<div class="mdl-tabs__panel is-active" id="tabNewProvider">
 				<div class="mdl-grid">
@@ -223,6 +223,7 @@
 							<th>Codigo Factura</th>
 							<th>Docuemnto</th>
 							<th>Valor de Factura</th>
+							<th>Pdf</th>
 							<th>Eliminar</th>
 						</tr>
 					</thead>
@@ -234,6 +235,7 @@
 								<td><input type="text" value="<%= ventas.doc_usu%>" name="doc" class="col-12 doc"></td>
 								<td><input type="text" value="<%= ventas.valor_fac%>" name="val" class="col-12 val">
 								</td>
+								<td><input type="submit" value="Pdf" class=""></td>
 								<td><input type="submit" value="Eliminar" class="btndel"></td>
 							</tr>
 							<% }) %>
