@@ -657,12 +657,14 @@ controlador.eliminarfac = (req, res, next) => {
   );
 };
 controlador.detalle = (req, res, next) => {
+  const co = req.body.dd;
+  
   conexion.query(
-    "SELECT * FROM facturacion INNER JOIN detalle_fac ON (facturacion.codigo_fac=detalle_fac.codigo_fac)",
-    (err, resbd) => {
+    "SELECT * FROM facturacion INNER JOIN detalle_fac ON (facturacion.codigo_fac=detalle_fac.codigo_fac) INNER JOIN productos ON (productos.codigo_p=facturacion.codigo_fac) WHERE detalle_fac.codigo_fac='"+co+"'",(err, resbd) => {
       if (err) {
         throw err;
       } else {
+        console.log(resbd)
         res.render("detalle", { datos: resbd });
       }
     }

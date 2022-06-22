@@ -274,6 +274,10 @@ select {
   text-transform: none;
 }
 
+.valor{
+  float: left;
+}
+
 /**
  * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
  *    and `video` controls.

@@ -174,47 +174,26 @@
             </div>
         </div>
 
-        <div class="mdl-tabs__tab-bar">
-            <a href="ganancias" class="mdl-tabs__tab is-active">GANANCIAS</a>
-        </div>
+
         <div class="mdl-tabs__panel is-active" id="tabNewProduct">
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--12-col">
                     <div class="full-width panel mdl-shadow--2dp">
-                        <div class="full-width panel-tittle bg-primary text-center tittles">
-                            CONSULTAR GANANCIAS
-                        </div>
                         <div class="full-width panel-content">
-                            <form action="/ganancias" method="POST">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">BUSCAR FECHAS
-                                    <label class="mdl-button mdl-js-button mdl-button--icon" for="searchProvider">
-                                        <i class="zmdi zmdi-search"></i>
-                                    </label>
-                                    <div class="mdl-textfield__expandable-holder">
-                                        <input class="mdl-textfield__input" type="date" id="searchProvider">
-                                        <label class="mdl-textfield__label"></label>
-                                    </div>
-                                    <input type="button" value="Buscar" name="buscar" id="buscar" class="buscar">
-                                </div>
-                                <table class="table table-bordered table-striped text-center mt-3">
-                                    <thead>
-                                        <tr class="bg-primary text-white">
-                                            <th>Codigo Producto</th>
-                                            <th>Cantidad de Entrada</th>
-                                            <th>Valor de Llegada</th>
-                                            <th>Valor de Salida</th>
+                            <table class="table table-bordered table-striped text-center mt-3">
+                                <thead>
+                                    <tr class="bg-primary text-white">
+                                        <th>Valor de promedio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% datos.forEach(function (datos) { %>
+                                        <tr>
+                                            <td><%= datos.alias%></td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <% datos.forEach(function (datos) { %>
-                                            <tr>
-                                                <td><input type="text" value="<%= datos.alias%>" name="val"
-                                                        class="col-12 cfac"></td>
-                                            </tr>
-                                            <% }) %>
-                                    </tbody>
-                                </table>
-                            </form>
+                                        <% }) %>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

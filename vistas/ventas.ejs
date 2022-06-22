@@ -20,7 +20,6 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')</script>
 	<script src="js/eliminarfac.js"></script>
-	<script src="js/detallefac.js"></script>
 	<script src="js/material.min.js"></script>
 	<script src="js/sweetalert2.min.js"></script>
 	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
@@ -217,7 +216,9 @@
 			</div>
 
 			<div class="mdl-tabs__panel" id="tabListProvider">
+				<form action="/detalle" method="post">
 				<table class="table table-bordered table-striped text-center mt-3">
+
 					<thead>
 						<tr class="bg-primary text-white">
 							<th>Codigo Factura</th>
@@ -230,17 +231,18 @@
 					<tbody>
 						<% ventas.forEach(function (ventas) {%>
 							<tr>
-								<td><input type="text" value="<%= ventas.codigo_fac%>" class="col-12 codf">
+								<td><input type="text" value="<%= ventas.codigo_fac%>" name="dd" class="col-12 codf">
 								</td>
 								<td><input type="text" value="<%= ventas.doc_usu%>" name="doc" class="col-12 doc"></td>
 								<td><input type="text" value="<%= ventas.valor_fac%>" name="val" class="col-12 val">
 								</td>
-								<td><input type="submit" value="Pdf" class=""></td>
+								<td><input type="submit" value="Pdf" class="pdf"></td>
 								<td><input type="submit" value="Eliminar" class="btndel"></td>
 							</tr>
 							<% }) %>
 					</tbody>
 				</table>
+			</form>
 			</div>
 		</div>
 	</section>
